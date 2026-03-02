@@ -4,313 +4,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Энерготерапия в Нефтекамске. Гирудотерапия, хиджама, рефлексотерапия, иглонож, ЛФК, АФК, Access Bars, Pole Dance. Сертифицированный специалист с медицинским образованием.">
-    <meta name="keywords" content="энерготерапия, гирудотерапия, хиджама, рефлексотерапия, иглонож, ЛФК, АФК, Access Bars, Pole Dance, Нефтекамск, целитель">
     <title>Энерготерапия Нефтекамск | Гирудотерапия, Хиджама, Access Bars</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; color: #1e293b; line-height: 1.6; background: #fff; }
-        
-        /* Top Bar */
-        .top-bar { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #0ea5e9, #0284c7); padding: 8px 20px; text-align: center; z-index: 1001; }
-        .top-bar-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .top-bar-badge { color: #fff; font-weight: 600; font-size: 0.95rem; }
-        .top-bar-phone { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; }
-        .top-bar-phone:hover { color: #bae6fd; }
-        .top-bar-phone svg { width: 20px; height: 20px; }
-
-        /* Header */
-        .header { position: fixed; top: 40px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
-        .header-inner { max-width: 1400px; margin: 0 auto; padding: 6px 15px; display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; }
-        .header-nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2px; }
-        .header-nav a { color: #0369a1; text-decoration: none; font-size: 1.05rem; font-weight: 600; padding: 6px 10px; border-radius: 10px; transition: all 0.3s; white-space: nowrap; }
-        .header-nav a:hover { background: #0ea5e9; color: #fff; }
-        .menu-toggle { display: none; background: none; border: none; font-size: 2rem; cursor: pointer; color: #0ea5e9; }
-        
-        section[id], div[id^="service-"] { scroll-margin-top: 100px; }
-        .service-card[id] { scroll-margin-top: 100px; }
-        
-        .mobile-menu { display: none; background: #fff; padding: 20px; border-top: 1px solid #e0f2fe; }
-        .mobile-menu.active { display: block; }
-        .mobile-menu a { display: block; padding: 12px 0; color: #334155; text-decoration: none; border-bottom: 1px solid #f1f5f9; font-weight: 600; font-size: 1.1rem; }
-        
-        /* Hero */
-        .hero { min-height: 100vh; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%); padding: 110px 20px 60px; display: flex; align-items: center; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 200%; background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%); animation: float 8s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .hero-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero-content { animation: fadeInUp 1s ease; }
-        .hero-badge { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 8px 20px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
-        .hero-title { font-size: 2.8rem; font-weight: 800; color: #0c4a6e; line-height: 1.2; margin-bottom: 20px; }
-        .hero-title span { color: #0ea5e9; }
-        .hero-subtitle { font-size: 1.2rem; color: #475569; margin-bottom: 30px; }
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
-        .btn-primary { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(14,165,233,0.4); transition: all 0.3s; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(14,165,233,0.5); }
-        .btn-secondary { background: #fff; color: #0ea5e9; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: 2px solid #0ea5e9; transition: all 0.3s; }
-        .btn-secondary:hover { background: #0ea5e9; color: #fff; }
-        
-        .hero-stats { display: flex; gap: 20px; flex-wrap: wrap; }
-        .stat { text-align: center; min-width: 100px; background: rgba(255,255,255,0.9); padding: 15px 18px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); flex-shrink: 0; }
-        .stat-number { font-size: 2rem; font-weight: 800; color: #0ea5e9; line-height: 1.2; white-space: nowrap; }
-        .stat-label { font-size: 0.9rem; color: #64748b; line-height: 1.3; white-space: nowrap; }
-        
-        .hero-image { position: relative; animation: fadeInUp 1s ease 0.3s both; }
-        .photo-placeholder { width: 525px; height: 525px; border-radius: 50%; background: linear-gradient(135deg, #fff, #f0f9ff); border: 3px solid #D4AF37; box-shadow: 0 25px 80px rgba(14,165,233,0.3), 0 0 25px rgba(212,175,55,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto; position: relative; overflow: hidden; padding: 4px; transform: rotate(-30deg); }
-        .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transform: rotate(30deg); }
-        .photo-placeholder-text { color: #94a3b8; font-size: 1rem; text-align: center; padding: 4px; transform: rotate(30deg); }
-        .photo-ring { position: absolute; border: 3px solid rgba(14,165,233,0.3); border-radius: 50%; animation: pulse 3s ease-in-out infinite; }
-        .photo-ring-1 { width: 600px; height: 600px; top: -37px; left: 50%; transform: translateX(-50%); }
-        .photo-ring-2 { width: 675px; height: 675px; top: -75px; left: 50%; transform: translateX(-50%); animation-delay: 0.5s; }
-        
-        .floating-badge { position: absolute; background: #fff; padding: 12px 18px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); font-size: 0.9rem; font-weight: 600; animation: float 4s ease-in-out infinite; }
-        .badge-1 { top: 20px; right: -20px; color: #10b981; animation-delay: 0s; }
-        .badge-2 { bottom: 40px; left: -30px; color: #0ea5e9; animation-delay: 1s; }
-        
-        /* Sections */
-        .section { padding: 80px 20px; }
-        .section-light { background: #fff; }
-        .section-gray { background: linear-gradient(135deg, #f8fafc, #f1f5f9); }
-        .section-blue { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-title { font-size: 2.2rem; font-weight: 800; color: #0c4a6e; margin-bottom: 15px; }
-        .section-subtitle { font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto; }
-        
-        /* About */
-        .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .about-card { background: #fff; padding: 35px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s; }
-        .about-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(14,165,233,0.15); }
-        .about-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; }
-        .about-card h3 { font-size: 1.3rem; color: #0c4a6e; margin-bottom: 15px; }
-        .about-card p { color: #64748b; font-size: 1rem; }
-        
-        /* Services */
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        .service-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: all 0.3s; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(14,165,233,0.15); }
-        .service-image { height: 140px; background: linear-gradient(135deg, #e0f2fe, #bae6fd); display: flex; align-items: center; justify-content: center; position: relative; }
-        .service-image svg { width: 70px; height: 70px; }
-        .service-price { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #10b981, #059669); color: #fff; padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 700; }
-        .service-content { padding: 25px; }
-        .service-content h3 { font-size: 1.2rem; color: #0c4a6e; margin-bottom: 10px; }
-        .service-content p { color: #64748b; font-size: 0.95rem; margin-bottom: 15px; }
-        
-        .service-video { margin: 15px 0; background: linear-gradient(135deg, #1e293b, #334155); border-radius: 12px; overflow: hidden; position: relative; }
-        .service-video iframe { width: 100%; height: 200px; border: none; display: block; }
-        .service-video-placeholder { color: #94a3b8; font-size: 0.9rem; padding: 30px; text-align: center; }
-        .service-video-placeholder svg { width: 40px; height: 40px; margin-bottom: 10px; opacity: 0.7; }
-        .video-facade { width: 100%; height: 200px; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0c4a6e, #0e7490); transition: all 0.3s; }
-        .video-facade:hover { background: linear-gradient(135deg, #0e7490, #0ea5e9); }
-        .video-facade:hover .play-btn { transform: scale(1.15); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        .play-btn { width: 70px; height: 70px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 25px rgba(0,0,0,0.3); transition: all 0.3s; }
-        .play-btn svg { width: 28px; height: 28px; fill: #0c4a6e; margin-left: 4px; }
-        .video-title { position: absolute; bottom: 12px; left: 15px; right: 15px; color: #fff; font-size: 0.85rem; text-shadow: 0 2px 4px rgba(0,0,0,0.6); font-weight: 500; }
-        .video-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 10px; border-radius: 5px; font-size: 0.75rem; }
-        
-        .service-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0; }
-        .service-details h4 { font-size: 0.95rem; color: #0c4a6e; margin-bottom: 10px; }
-        .service-details ul { list-style: none; }
-        .service-details li { padding: 5px 0; color: #64748b; font-size: 0.9rem; padding-left: 20px; position: relative; }
-        .service-details li::before { content: '✓'; position: absolute; left: 0; color: #10b981; font-weight: bold; }
-        .details-toggle { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; width: 100%; transition: all 0.3s; }
-        .details-toggle:hover { background: linear-gradient(135deg, #0284c7, #0369a1); }
-        .service-details-content { display: none; }
-        .service-details-content.active { display: block; }
-        
-        /* Certificates */
-        .certificates-grid { 
-            display: grid; 
-            grid-template-columns: repeat(9, 1fr); 
-            gap: 10px; 
-        }
-        .certificate-item { 
-            aspect-ratio: 3/4; 
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0); 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            border: 2px dashed #cbd5e1; 
-            overflow: hidden; 
-            position: relative; 
-        }
-        .certificate-item:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-color: #0ea5e9; }
-        .certificate-item img { width: 100%; height: 100%; object-fit: cover; }
-        .certificate-placeholder { color: #94a3b8; font-size: 0.7rem; text-align: center; padding: 8px; }
-        .certificate-placeholder svg { width: 24px; height: 24px; margin-bottom: 5px; opacity: 0.5; }
-        
-        .cert-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .cert-modal.active { display: flex; }
-        .cert-modal-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: -1; }
-        .cert-modal img { max-width: 85%; max-height: 85%; object-fit: contain; border-radius: 10px; z-index: 1; user-select: none; }
-        .cert-modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 3rem; cursor: pointer; line-height: 1; z-index: 10; transition: all 0.3s; }
-        .cert-modal-close:hover { color: #0ea5e9; transform: scale(1.2); }
-        .cert-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 2.5rem; width: 60px; height: 80px; cursor: pointer; z-index: 10; transition: all 0.3s; border-radius: 10px; }
-        .cert-nav:hover { background: rgba(14,165,233,0.8); }
-        .cert-prev { left: 20px; }
-        .cert-next { right: 20px; }
-        .cert-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 1.2rem; background: rgba(0,0,0,0.5); padding: 8px 20px; border-radius: 20px; z-index: 10; }
-        
-        /* Benefits */
-        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 50px; }
-        .benefit-card { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s; }
-        .benefit-card:hover { transform: translateY(-5px); }
-        .benefit-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.8rem; }
-        .benefit-card h3 { font-size: 1.1rem; color: #0c4a6e; margin-bottom: 10px; }
-        .benefit-card p { color: #64748b; font-size: 0.95rem; }
-        
-        .cta-banner { background: linear-gradient(135deg, #0ea5e9, #0284c7); border-radius: 25px; padding: 50px; text-align: center; color: #fff; position: relative; overflow: hidden; }
-        .cta-banner::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: shimmer 3s infinite; }
-        @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
-        .cta-banner h3 { font-size: 1.8rem; margin-bottom: 15px; }
-        .cta-banner p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.95; }
-        .cta-banner .btn-white { background: #fff; color: #0ea5e9; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; transition: all 0.3s; }
-        .cta-banner .btn-white:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        
-        /* Reviews */
-        .reviews-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-bottom: 30px; }
-        .all-reviews-link { color: #0ea5e9; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: all 0.3s; }
-        .all-reviews-link:hover { color: #0284c7; text-decoration: underline; }
-        .review-card { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-        .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .review-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #e0f2fe, #bae6fd); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; overflow: hidden; flex-shrink: 0; }
-        .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .review-name { font-weight: 700; color: #0c4a6e; }
-        .review-date { font-size: 0.85rem; color: #94a3b8; }
-        .review-stars { color: #fbbf24; margin-bottom: 10px; }
-        .review-text { color: #64748b; font-size: 0.95rem; line-height: 1.7; }
-        .review-photo { margin-top: 15px; border-radius: 10px; overflow: hidden; cursor: pointer; transition: all 0.3s; }
-        .review-photo:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
-        .review-photo img { width: 100%; max-height: 200px; object-fit: cover; }
-        .review-photo-placeholder { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); padding: 20px; text-align: center; border-radius: 10px; border: 2px dashed #cbd5e1; cursor: default; }
-        .review-photo-placeholder span { color: #94a3b8; font-size: 0.85rem; }
-        
-        /* Review Photo Modal */
-        .review-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
-        .review-modal.active { display: flex; }
-        .review-modal-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: -1; }
-        .review-modal img { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 10px; z-index: 1; user-select: none; }
-        .review-modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 3rem; cursor: pointer; line-height: 1; z-index: 10; transition: all 0.3s; }
-        .review-modal-close:hover { color: #0ea5e9; transform: scale(1.2); }
-        .review-modal-info { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 1.1rem; background: rgba(0,0,0,0.6); padding: 10px 25px; border-radius: 25px; z-index: 10; text-align: center; }
-        
-        .add-review-btn { display: block; margin: 0 auto; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border: none; padding: 15px 40px; border-radius: 30px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .add-review-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(14,165,233,0.4); }
-        
-        /* Modal */
-        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 1500; align-items: center; justify-content: center; padding: 20px; }
-        .modal.active { display: flex; }
-        .modal-content { background: #fff; border-radius: 25px; padding: 40px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: #94a3b8; }
-        .modal-title { font-size: 1.5rem; color: #0c4a6e; margin-bottom: 25px; text-align: center; }
-        
-        /* Form */
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #334155; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; transition: all 0.3s; font-family: inherit; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #0ea5e9; box-shadow: 0 0 0 4px rgba(14,165,233,0.1); }
-        .form-group textarea { resize: vertical; min-height: 100px; }
-        
-        .file-upload { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px dashed #cbd5e1; border-radius: 12px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .file-upload:hover { border-color: #0ea5e9; background: #f0f9ff; }
-        .file-upload input { display: none; }
-        .file-upload-text { color: #64748b; }
-        .file-upload-text svg { width: 30px; height: 30px; margin-bottom: 10px; }
-        
-        .booking-form { background: #fff; padding: 40px; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-        .form-note { background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; border-radius: 12px; padding: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-        .form-note svg { flex-shrink: 0; }
-        .form-note span { color: #065f46; font-size: 0.95rem; }
-        .submit-btn { width: 100%; background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff; border: none; padding: 18px; border-radius: 15px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(14,165,233,0.4); }
-        
-        .format-options { display: flex; gap: 10px; flex-wrap: wrap; }
-        .format-option { flex: 1; min-width: 100px; }
-        .format-option input { display: none; }
-        .format-option label { display: block; padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
-        .format-option input:checked + label { border-color: #0ea5e9; background: #f0f9ff; color: #0ea5e9; }
-        .format-option.disabled label { opacity: 0.5; cursor: not-allowed; }
-        
-        /* Contacts */
-        .contacts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .contact-card { background: #fff; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: all 0.3s; text-decoration: none; display: block; }
-        .contact-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(14,165,233,0.15); }
-        .contact-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; }
-        .contact-icon svg { width: 30px; height: 30px; }
-        .contact-icon.telegram { background: linear-gradient(135deg, #0088cc, #0077b5); }
-        .contact-icon.whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
-        .contact-icon.phone { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
-        .contact-icon.vk { background: linear-gradient(135deg, #4a76a8, #3b5998); }
-        .contact-icon.location { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .contact-card h3 { font-size: 1.1rem; color: #0c4a6e; margin-bottom: 5px; }
-        .contact-card p { color: #64748b; font-size: 0.95rem; }
-        
-        /* Footer */
-        .footer { background: linear-gradient(135deg, #0c4a6e, #0e7490); color: #fff; padding: 30px 20px; }
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .footer-phone { display: flex; align-items: center; gap: 12px; }
-        .footer-phone a { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-size: 1.4rem; font-weight: 700; transition: all 0.3s; }
-        .footer-phone a:hover { color: #7dd3fc; }
-        .footer-phone svg { width: 28px; height: 28px; }
-        .footer-copyright { text-align: center; color: #fff; font-size: 1.1rem; font-weight: 600; }
-        
-        /* Floating buttons */
-        .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 900; }
-        .floating-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 25px rgba(0,0,0,0.25); transition: all 0.3s; animation: pulse 2s infinite; }
-        .floating-btn:hover { transform: scale(1.1); }
-        .floating-btn.telegram { background: #0088cc; }
-        .floating-btn.whatsapp { background: #25d366; }
-        .floating-btn svg { width: 30px; height: 30px; fill: #fff; }
-        
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .certificates-grid { grid-template-columns: repeat(6, 1fr); }
-        }
-        @media (max-width: 1024px) {
-            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .hero-image { order: -1; }
-            .photo-placeholder { width: 420px; height: 420px; }
-            .photo-ring-1 { width: 495px; height: 495px; }
-            .photo-ring-2 { width: 560px; height: 560px; }
-            .hero-buttons { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .services-grid, .about-grid, .benefits-grid, .contacts-grid { grid-template-columns: repeat(2, 1fr); }
-            .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-            .certificates-grid { grid-template-columns: repeat(5, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .top-bar-inner { gap: 10px; }
-            .top-bar-badge { font-size: 0.85rem; }
-            .top-bar-phone { font-size: 0.95rem; }
-            .header { top: 36px; }
-            .header-inner { padding: 8px 15px; }
-            .header-nav { display: none; }
-            .menu-toggle { display: block; }
-            .hero { padding: 100px 20px 40px; }
-            section[id], div[id^="service-"] { scroll-margin-top: 80px; }
-            .service-card[id] { scroll-margin-top: 80px; }
-            .hero-title { font-size: 2rem; }
-            .photo-placeholder { width: 300px; height: 300px; }
-            .photo-ring-1 { width: 360px; height: 360px; }
-            .photo-ring-2 { width: 420px; height: 420px; }
-            .section { padding: 50px 20px; }
-            .section-title { font-size: 1.7rem; }
-            .services-grid, .about-grid, .benefits-grid, .contacts-grid { grid-template-columns: 1fr; }
-            .reviews-grid { grid-template-columns: 1fr; }
-            .floating-buttons { bottom: 20px; right: 20px; }
-            .floating-btn { width: 55px; height: 55px; }
-            .certificates-grid { grid-template-columns: repeat(3, 1fr); }
-        }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1e293b;line-height:1.6;background:#fff}
+img{max-width:100%;height:auto}
+.top-bar{position:fixed;top:0;left:0;right:0;background:linear-gradient(135deg,#0ea5e9,#0284c7);padding:8px 20px;text-align:center;z-index:1001}
+.top-bar-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.top-bar-badge{color:#fff;font-weight:600;font-size:.95rem}
+.top-bar-phone{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem}
+.top-bar-phone svg{width:20px;height:20px}
+.header{position:fixed;top:40px;left:0;right:0;background:rgba(255,255,255,.98);z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.header-inner{max-width:1400px;margin:0 auto;padding:6px 15px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.header-nav{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px}
+.header-nav a{color:#0369a1;text-decoration:none;font-size:1.05rem;font-weight:600;padding:6px 10px;border-radius:10px;white-space:nowrap}
+.header-nav a:hover{background:#0ea5e9;color:#fff}
+.menu-toggle{display:none;background:0 0;border:none;font-size:2rem;cursor:pointer;color:#0ea5e9}
+section[id],.service-card[id]{scroll-margin-top:100px}
+.mobile-menu{display:none;background:#fff;padding:20px;border-top:1px solid #e0f2fe}
+.mobile-menu.active{display:block}
+.mobile-menu a{display:block;padding:12px 0;color:#334155;text-decoration:none;border-bottom:1px solid #f1f5f9;font-weight:600;font-size:1.1rem}
+.hero{min-height:100vh;background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 50%,#bae6fd 100%);padding:110px 20px 60px;display:flex;align-items:center}
+.hero-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:8px 20px;border-radius:25px;font-size:.9rem;font-weight:600;margin-bottom:20px}
+.hero-title{font-size:2.8rem;font-weight:800;color:#0c4a6e;line-height:1.2;margin-bottom:20px}
+.hero-title span{color:#0ea5e9}
+.hero-subtitle{font-size:1.2rem;color:#475569;margin-bottom:30px}
+.hero-buttons{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:30px}
+.btn-primary{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;padding:15px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.1rem;box-shadow:0 10px 30px rgba(14,165,233,.4)}
+.btn-secondary{background:#fff;color:#0ea5e9;padding:15px 35px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.1rem;border:2px solid #0ea5e9}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap}
+.stat{text-align:center;min-width:100px;background:rgba(255,255,255,.9);padding:15px 18px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.08)}
+.stat-number{font-size:2rem;font-weight:800;color:#0ea5e9;line-height:1.2;white-space:nowrap}
+.stat-label{font-size:.9rem;color:#64748b;line-height:1.3;white-space:nowrap}
+.hero-image{position:relative}
+.photo-placeholder{width:400px;height:400px;border-radius:50%;background:linear-gradient(135deg,#fff,#f0f9ff);border:3px solid #D4AF37;box-shadow:0 20px 60px rgba(14,165,233,.25);display:flex;align-items:center;justify-content:center;margin:0 auto;overflow:hidden;transform:rotate(-30deg)}
+.photo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;transform:rotate(30deg)}
+.floating-badge{position:absolute;background:#fff;padding:12px 18px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.12);font-size:.9rem;font-weight:600}
+.badge-1{top:20px;right:-20px;color:#10b981}
+.badge-2{bottom:40px;left:-30px;color:#0ea5e9}
+.section{padding:80px 20px}
+.section-light{background:#fff}
+.section-gray{background:linear-gradient(135deg,#f8fafc,#f1f5f9)}
+.section-blue{background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}
+.container{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:50px}
+.section-title{font-size:2.2rem;font-weight:800;color:#0c4a6e;margin-bottom:15px}
+.section-subtitle{font-size:1.1rem;color:#64748b;max-width:600px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.about-card{background:#fff;padding:35px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.06);text-align:center}
+.about-icon{width:80px;height:80px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem}
+.about-card h3{font-size:1.3rem;color:#0c4a6e;margin-bottom:15px}
+.about-card p{color:#64748b;font-size:1rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.service-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.service-image{height:140px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.service-image img{width:100%;height:100%;object-fit:cover}
+.service-price{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:5px 12px;border-radius:15px;font-size:.85rem;font-weight:700}
+.service-content{padding:25px}
+.service-content h3{font-size:1.2rem;color:#0c4a6e;margin-bottom:10px}
+.service-content p{color:#64748b;font-size:.95rem;margin-bottom:15px}
+.service-video{margin:15px 0;border-radius:12px;overflow:hidden}
+.video-facade{background:linear-gradient(135deg,#1e293b,#334155);padding:25px;text-align:center;cursor:pointer;border-radius:12px;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.video-facade:hover{background:linear-gradient(135deg,#334155,#475569)}
+.play-btn{width:50px;height:50px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.play-btn svg{width:20px;height:20px;fill:#fff;margin-left:3px}
+.video-title{color:#fff;font-size:.85rem}
+.video-badge{display:inline-block;background:rgba(255,255,255,.15);color:#94a3b8;padding:3px 10px;border-radius:10px;font-size:.75rem;margin-top:8px}
+.service-video iframe{width:100%;height:180px;border:none;border-radius:12px}
+.service-details{margin-top:15px;padding-top:15px;border-top:1px solid #e2e8f0}
+.service-details h4{font-size:.95rem;color:#0c4a6e;margin-bottom:10px}
+.service-details ul{list-style:none}
+.service-details li{padding:5px 0;color:#64748b;font-size:.9rem;padding-left:20px;position:relative}
+.service-details li::before{content:'✓';position:absolute;left:0;color:#10b981;font-weight:700}
+.details-toggle{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;padding:10px 20px;border-radius:20px;cursor:pointer;font-size:.9rem;font-weight:600;width:100%}
+.service-details-content{display:none}
+.service-details-content.active{display:block}
+.certificates-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:10px}
+.certificate-item{aspect-ratio:3/4;background:#f1f5f9;border-radius:10px;cursor:pointer;border:2px dashed #cbd5e1;overflow:hidden}
+.certificate-item:hover{border-color:#0ea5e9}
+.certificate-item img{width:100%;height:100%;object-fit:cover}
+.cert-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.cert-modal.active{display:flex}
+.cert-modal img{max-width:90%;max-height:80%;object-fit:contain;border-radius:10px}
+.cert-modal-close{position:absolute;top:20px;right:30px;color:#fff;font-size:3rem;cursor:pointer}
+.cert-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);color:#fff;border:none;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem}
+.cert-nav:hover{background:rgba(255,255,255,.3)}
+.cert-nav.prev{left:20px}
+.cert-nav.next{right:20px}
+.cert-counter{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#fff;font-size:1rem;background:rgba(0,0,0,.5);padding:8px 20px;border-radius:20px}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:50px}
+.benefit-card{background:#fff;padding:30px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.06);text-align:center}
+.benefit-icon{width:70px;height:70px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-size:1.8rem}
+.benefit-card h3{font-size:1.1rem;color:#0c4a6e;margin-bottom:10px}
+.benefit-card p{color:#64748b;font-size:.95rem}
+.cta-banner{background:linear-gradient(135deg,#0ea5e9,#0284c7);border-radius:25px;padding:50px;text-align:center;color:#fff}
+.cta-banner h3{font-size:1.8rem;margin-bottom:15px}
+.cta-banner p{font-size:1.1rem;margin-bottom:25px;opacity:.95}
+.cta-banner .btn-white{background:#fff;color:#0ea5e9;padding:15px 40px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.1rem;display:inline-block}
+.reviews-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-bottom:30px}
+.review-card{background:#fff;padding:30px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.review-header{display:flex;align-items:center;gap:15px;margin-bottom:15px}
+.review-avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#e0f2fe,#bae6fd);display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden}
+.review-avatar img{width:100%;height:100%;object-fit:cover}
+.review-name{font-weight:700;color:#0c4a6e}
+.review-date{font-size:.85rem;color:#94a3b8}
+.review-stars{color:#fbbf24;margin-bottom:10px}
+.review-text{color:#64748b;font-size:.95rem;line-height:1.7}
+.review-photo{margin-top:15px;border-radius:10px;overflow:hidden;cursor:pointer}
+.review-photo img{width:100%;max-height:150px;object-fit:cover}
+.all-reviews-link{color:#0ea5e9;font-size:1.1rem;font-weight:600;text-decoration:none}
+.add-review-btn{display:block;margin:20px auto 0;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;padding:15px 40px;border-radius:30px;font-size:1.1rem;font-weight:600;cursor:pointer}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1500;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:25px;padding:40px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:15px;right:20px;font-size:2rem;cursor:pointer;color:#94a3b8}
+.modal-title{font-size:1.5rem;color:#0c4a6e;margin-bottom:25px;text-align:center}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;margin-bottom:8px;font-weight:600;color:#334155}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:15px;border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;font-family:inherit}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#0ea5e9}
+.form-group textarea{resize:vertical;min-height:100px}
+.file-upload{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:12px;padding:25px;text-align:center;cursor:pointer}
+.file-upload:hover{border-color:#0ea5e9}
+.file-upload input{display:none}
+.file-upload-text{color:#64748b}
+.file-upload-text svg{width:30px;height:30px;margin-bottom:10px}
+.booking-form{background:#fff;padding:40px;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,.08)}
+.form-note{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1px solid #a7f3d0;border-radius:12px;padding:15px;margin-bottom:25px;display:flex;align-items:center;gap:10px}
+.form-note svg{flex-shrink:0}
+.form-note span{color:#065f46;font-size:.95rem}
+.submit-btn{width:100%;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;padding:18px;border-radius:15px;font-size:1.1rem;font-weight:700;cursor:pointer}
+.format-options{display:flex;gap:10px;flex-wrap:wrap}
+.format-option{flex:1;min-width:100px}
+.format-option input{display:none}
+.format-option label{display:block;padding:12px;border:2px solid #e2e8f0;border-radius:10px;text-align:center;cursor:pointer;font-size:.9rem}
+.format-option input:checked+label{border-color:#0ea5e9;background:#f0f9ff;color:#0ea5e9}
+.format-option.disabled label{opacity:.5;cursor:not-allowed}
+.contacts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.contact-card{background:#fff;padding:30px;border-radius:20px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.06);text-decoration:none;display:block}
+.contact-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px}
+.contact-icon svg{width:30px;height:30px}
+.contact-icon.telegram{background:linear-gradient(135deg,#0088cc,#0077b5)}
+.contact-icon.whatsapp{background:linear-gradient(135deg,#25d366,#128c7e)}
+.contact-icon.phone{background:linear-gradient(135deg,#0ea5e9,#0284c7)}
+.contact-icon.vk{background:linear-gradient(135deg,#4a76a8,#3b5998)}
+.contact-icon.location{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.contact-card h3{font-size:1.1rem;color:#0c4a6e;margin-bottom:5px}
+.contact-card p{color:#64748b;font-size:.95rem}
+.footer{background:linear-gradient(135deg,#0c4a6e,#0e7490);color:#fff;padding:30px 20px}
+.footer-content{max-width:800px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:20px}
+.footer-phone a{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-size:1.4rem;font-weight:700}
+.footer-phone svg{width:28px;height:28px}
+.footer-copyright{text-align:center;color:#fff;font-size:1.1rem;font-weight:600}
+.floating-buttons{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:15px;z-index:900}
+.floating-btn{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+.floating-btn.telegram{background:#0088cc}
+.floating-btn.whatsapp{background:#25d366}
+.floating-btn svg{width:30px;height:30px;fill:#fff}
+.review-photo-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:2000;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+.review-photo-modal.active{display:flex}
+.review-photo-modal img{max-width:95%;max-height:85%;object-fit:contain;border-radius:10px}
+.review-photo-modal-close{position:absolute;top:20px;right:30px;color:#fff;font-size:3rem;cursor:pointer}
+.review-photo-caption{color:#fff;margin-top:15px;font-size:1.1rem;text-align:center}
+@media(max-width:1024px){
+.hero-container{grid-template-columns:1fr;text-align:center;gap:40px}
+.hero-image{order:-1}
+.photo-placeholder{width:320px;height:320px}
+.hero-buttons,.hero-stats{justify-content:center}
+.services-grid,.about-grid,.benefits-grid,.contacts-grid{grid-template-columns:repeat(2,1fr)}
+.reviews-grid{grid-template-columns:repeat(2,1fr)}
+.certificates-grid{grid-template-columns:repeat(6,1fr)}
+}
+@media(max-width:768px){
+.top-bar-inner{gap:10px}
+.top-bar-badge{font-size:.85rem}
+.top-bar-phone{font-size:.95rem}
+.header{top:36px}
+.header-nav{display:none}
+.menu-toggle{display:block}
+.hero{padding:100px 20px 40px}
+section[id],.service-card[id]{scroll-margin-top:80px}
+.hero-title{font-size:2rem}
+.section{padding:50px 20px}
+.section-title{font-size:1.7rem}
+.services-grid,.about-grid,.benefits-grid,.contacts-grid,.reviews-grid{grid-template-columns:1fr}
+.floating-buttons{bottom:20px;right:20px}
+.floating-btn{width:55px;height:55px}
+.certificates-grid{grid-template-columns:repeat(4,1fr)}
+.photo-placeholder{width:280px;height:280px}
+}
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-inner">
             <span class="top-bar-badge">📍 Нефтекамск</span>
@@ -321,7 +208,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="header">
         <div class="header-inner">
             <nav class="header-nav">
@@ -347,7 +233,7 @@
             <a href="#service-afk" onclick="closeMenu()">АФК</a>
             <a href="#service-access" onclick="closeMenu()">Access Bars</a>
             <a href="#service-pole" onclick="closeMenu()">Pole Dance</a>
-            <div style="border-top: 2px solid #e0f2fe; margin-top: 15px; padding-top: 15px;">
+            <div style="border-top:2px solid #e0f2fe;margin-top:15px;padding-top:15px">
                 <a href="#about" onclick="closeMenu()">Обо мне</a>
                 <a href="#certificates" onclick="closeMenu()">Сертификаты</a>
                 <a href="#reviews" onclick="closeMenu()">Отзывы</a>
@@ -357,7 +243,6 @@
         </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
@@ -375,10 +260,8 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="photo-ring photo-ring-1"></div>
-                <div class="photo-ring photo-ring-2"></div>
                 <div class="photo-placeholder">
-                    <img src="img/specialist.jpg" alt="Ирина — энерготерапевт">
+                    <img src="img/specialist.jpg" alt="Ирина — энерготерапевт" loading="eager">
                 </div>
                 <div class="floating-badge badge-1">🎓 Медицинское образование</div>
                 <div class="floating-badge badge-2">💜 10+ лет практики</div>
@@ -386,7 +269,6 @@
         </div>
     </section>
 
-    <!-- About -->
     <section class="section section-light" id="about">
         <div class="container">
             <div class="section-header">
@@ -413,7 +295,6 @@
         </div>
     </section>
 
-    <!-- Services -->
     <section class="section section-gray" id="services">
         <div class="container">
             <div class="section-header">
@@ -421,19 +302,18 @@
                 <p class="section-subtitle">Комплексный подход к восстановлению здоровья и гармонии</p>
             </div>
             <div class="services-grid">
-                <!-- Энерготерапия -->
                 <div class="service-card" id="service-energo">
                     <div class="service-image">
-                        <img src="img/energoterapiya.png" alt="Энерготерапия" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/energoterapiya.png" alt="Энерготерапия" loading="lazy">
                         <span class="service-price">7 000 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Энерготерапия</h3>
                         <p>Гармонизация через работу с энергией для восстановления психоэмоционального и физического состояния</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', '87d00d08dfce73a317eb3dec2027c9d5')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/87d00d08dfce73a317eb3dec2027c9d5?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео об энерготерапии</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -453,19 +333,18 @@
                     </div>
                 </div>
 
-                <!-- Гирудотерапия -->
                 <div class="service-card" id="service-giru">
                     <div class="service-image">
-                        <img src="img/girudoterapiya.png" alt="Гирудотерапия" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/girudoterapiya.png" alt="Гирудотерапия" loading="lazy">
                         <span class="service-price">от 400 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Гирудотерапия</h3>
-                        <p>Лечение медицинскими пиявками — древний метод оздоровления</p>
+                        <p>Лечение медицинскими пиявками — древний метод оздоровления, улучшающий кровообращение</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', '26ca19d15f4860bfad0b69b824e88f74')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/26ca19d15f4860bfad0b69b824e88f74?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео о гирудотерапии</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -484,19 +363,18 @@
                     </div>
                 </div>
 
-                <!-- Хиджама -->
                 <div class="service-card" id="service-hijama">
                     <div class="service-image">
-                        <img src="img/hidjama.png" alt="Хиджама" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/hidjama.png" alt="Хиджама" loading="lazy">
                         <span class="service-price">3 000 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Хиджама</h3>
-                        <p>Капиллярное кровопускание — эффективная методика очищения организма</p>
+                        <p>Капиллярное кровопускание — эффективная методика очищения организма и активации иммунной системы</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', '0bbca10109f0ddec0b3530c7c3357e0d')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/0bbca10109f0ddec0b3530c7c3357e0d?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео о хиджаме</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -515,19 +393,18 @@
                     </div>
                 </div>
 
-                <!-- Рефлексотерапия -->
                 <div class="service-card" id="service-reflex">
                     <div class="service-image">
-                        <img src="img/refleksoterapiya.png" alt="Рефлексотерапия" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/refleksoterapiya.png" alt="Рефлексотерапия" loading="lazy">
                         <span class="service-price">2 000 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Рефлексотерапия</h3>
-                        <p>Воздействие на биологически активные точки организма</p>
+                        <p>Воздействие на биологически активные точки для восстановления работы органов и систем</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', 'f27ca1268f61abcf38bba0043e75e136')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/f27ca1268f61abcf38bba0043e75e136?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео о рефлексотерапии</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -546,19 +423,18 @@
                     </div>
                 </div>
 
-                <!-- Иглонож -->
                 <div class="service-card" id="service-iglo">
                     <div class="service-image">
-                        <img src="img/iglonozh.png" alt="Иглонож" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/iglonozh.png" alt="Иглонож" loading="lazy">
                         <span class="service-price">3 000 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Иглонож</h3>
-                        <p>Малоинвазивная методика с использованием микрохирургического инструмента</p>
+                        <p>Малоинвазивная методика лечения с использованием специального микрохирургического инструмента</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'vk', '-38597435_456239250')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://vk.com/video_ext.php?oid=-38597435&id=456239250&autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео об иглоноже</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">VK Video</span>
                             </div>
                         </div>
@@ -577,19 +453,18 @@
                     </div>
                 </div>
 
-                <!-- ЛФК -->
                 <div class="service-card" id="service-lfk">
                     <div class="service-image">
-                        <img src="img/lfk.png" alt="ЛФК" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/lfk.png" alt="ЛФК" loading="lazy">
                         <span class="service-price">уточняйте</span>
                     </div>
                     <div class="service-content">
                         <h3>ЛФК</h3>
-                        <p>Лечебная физическая культура для восстановления здоровья</p>
+                        <p>Лечебная физическая культура — комплекс упражнений для восстановления и укрепления здоровья</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'vk', '-31036717_456247803')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://vk.com/video_ext.php?oid=-31036717&id=456247803&autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео о ЛФК</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">VK Video</span>
                             </div>
                         </div>
@@ -608,19 +483,18 @@
                     </div>
                 </div>
 
-                <!-- АФК -->
                 <div class="service-card" id="service-afk">
                     <div class="service-image">
-                        <img src="img/afk.png" alt="АФК" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/afk.png" alt="АФК" loading="lazy">
                         <span class="service-price">уточняйте</span>
                     </div>
                     <div class="service-content">
                         <h3>АФК</h3>
-                        <p>Адаптивная физкультура для людей с ограниченными возможностями</p>
+                        <p>Адаптивная физическая культура — специальные программы для людей с ограниченными возможностями</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'vk', '-52022326_456239483')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://vk.com/video_ext.php?oid=-52022326&id=456239483&autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео об АФК</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">VK Video</span>
                             </div>
                         </div>
@@ -630,8 +504,8 @@
                                 <h4>Особенности:</h4>
                                 <ul>
                                     <li>Индивидуальный подбор упражнений</li>
-                                    <li>Работа с различными нарушениями</li>
-                                    <li>Развитие двигательных навыков</li>
+                                    <li>Социальная адаптация</li>
+                                    <li>Психологическая поддержка</li>
                                     <li>Повышение качества жизни</li>
                                 </ul>
                             </div>
@@ -639,19 +513,18 @@
                     </div>
                 </div>
 
-                <!-- Access Bars -->
                 <div class="service-card" id="service-access">
                     <div class="service-image">
-                        <img src="img/access_bars.png" alt="Access Bars" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/access_bars.png" alt="Access Bars" loading="lazy">
                         <span class="service-price">3 000 ₽</span>
                     </div>
                     <div class="service-content">
                         <h3>Access Bars</h3>
-                        <p>Мягкое прикосновение к 32 точкам на голове для освобождения от блоков</p>
+                        <p>Мягкое прикосновение к 32 точкам на голове, освобождающее от ментальных блоков</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', '2fc6bb50356757c4d38aea4fcedcba15')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/2fc6bb50356757c4d38aea4fcedcba15?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео об Access Bars</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -670,19 +543,18 @@
                     </div>
                 </div>
 
-                <!-- Pole Dance -->
                 <div class="service-card" id="service-pole">
                     <div class="service-image">
-                        <img src="img/poledance.jpeg" alt="Pole Dance" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="img/poledance.jpeg" alt="Pole Dance" loading="lazy">
                         <span class="service-price">уточняйте</span>
                     </div>
                     <div class="service-content">
                         <h3>Pole Dance</h3>
-                        <p>Танец на пилоне — фитнес, акробатика и хореография</p>
+                        <p>Танец на пилоне — сочетание фитнеса, акробатики и хореографии для красивого тела</p>
                         <div class="service-video">
-                            <div class="video-facade" onclick="loadVideo(this, 'rutube', '82c9b42855f22ed176cbf64d7ec4121a')">
+                            <div class="video-facade" onclick="loadVideo(this,'https://rutube.ru/play/embed/82c9b42855f22ed176cbf64d7ec4121a?autoplay=1')">
                                 <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-                                <span class="video-title">▶ Смотреть видео о Pole Dance</span>
+                                <div class="video-title">▶ Смотреть видео</div>
                                 <span class="video-badge">RuTube</span>
                             </div>
                         </div>
@@ -694,7 +566,7 @@
                                     <li>Укрепление всех групп мышц</li>
                                     <li>Развитие гибкости и пластики</li>
                                     <li>Повышение самооценки</li>
-                                    <li>Занятия для любого уровня</li>
+                                    <li>Грациозность движений</li>
                                 </ul>
                             </div>
                         </div>
@@ -704,7 +576,6 @@
         </div>
     </section>
 
-    <!-- Certificates -->
     <section class="section section-light" id="certificates">
         <div class="container">
             <div class="section-header">
@@ -712,46 +583,35 @@
                 <p class="section-subtitle">Подтверждение квалификации и профессионализма</p>
             </div>
             <div class="certificates-grid">
-                <div class="certificate-item" onclick="openCertModal(0)"><img src="img/cert-1.jpg" alt="Сертификат 1"></div>
-                <div class="certificate-item" onclick="openCertModal(1)"><img src="img/cert-2.jpg" alt="Сертификат 2"></div>
-                <div class="certificate-item" onclick="openCertModal(2)"><img src="img/cert-3.jpg" alt="Сертификат 3"></div>
-                <div class="certificate-item" onclick="openCertModal(3)"><img src="img/cert-4.jpg" alt="Сертификат 4"></div>
-                <div class="certificate-item" onclick="openCertModal(4)"><img src="img/cert-5.jpg" alt="Сертификат 5"></div>
-                <div class="certificate-item" onclick="openCertModal(5)"><img src="img/cert-6.jpg" alt="Сертификат 6"></div>
-                <div class="certificate-item" onclick="openCertModal(6)"><img src="img/cert-7.jpg" alt="Сертификат 7"></div>
-                <div class="certificate-item" onclick="openCertModal(7)"><img src="img/cert-8.jpg" alt="Сертификат 8"></div>
-                <div class="certificate-item" onclick="openCertModal(8)"><img src="img/cert-9.jpg" alt="Сертификат 9"></div>
-                <div class="certificate-item" onclick="openCertModal(9)"><img src="img/cert-10.jpg" alt="Сертификат 10"></div>
-                <div class="certificate-item" onclick="openCertModal(10)"><img src="img/cert-11.jpg" alt="Сертификат 11"></div>
-                <div class="certificate-item" onclick="openCertModal(11)"><img src="img/cert-12.jpg" alt="Сертификат 12"></div>
-                <div class="certificate-item" onclick="openCertModal(12)"><img src="img/cert-13.jpg" alt="Сертификат 13"></div>
-                <div class="certificate-item" onclick="openCertModal(13)"><img src="img/cert-14.jpg" alt="Сертификат 14"></div>
-                <div class="certificate-item" onclick="openCertModal(14)"><img src="img/cert-15.jpg" alt="Сертификат 15"></div>
-                <div class="certificate-item" onclick="openCertModal(15)"><img src="img/cert-16.jpg" alt="Сертификат 16"></div>
-                <div class="certificate-item" onclick="openCertModal(16)"><img src="img/cert-17.jpg" alt="Сертификат 17"></div>
+                <div class="certificate-item" onclick="openCertModal(0)"><img src="img/cert-1.jpg" alt="Сертификат 1" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(1)"><img src="img/cert-2.jpg" alt="Сертификат 2" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(2)"><img src="img/cert-3.jpg" alt="Сертификат 3" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(3)"><img src="img/cert-4.jpg" alt="Сертификат 4" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(4)"><img src="img/cert-5.jpg" alt="Сертификат 5" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(5)"><img src="img/cert-6.jpg" alt="Сертификат 6" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(6)"><img src="img/cert-7.jpg" alt="Сертификат 7" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(7)"><img src="img/cert-8.jpg" alt="Сертификат 8" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(8)"><img src="img/cert-9.jpg" alt="Сертификат 9" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(9)"><img src="img/cert-10.jpg" alt="Сертификат 10" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(10)"><img src="img/cert-11.jpg" alt="Сертификат 11" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(11)"><img src="img/cert-12.jpg" alt="Сертификат 12" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(12)"><img src="img/cert-13.jpg" alt="Сертификат 13" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(13)"><img src="img/cert-14.jpg" alt="Сертификат 14" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(14)"><img src="img/cert-15.jpg" alt="Сертификат 15" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(15)"><img src="img/cert-16.jpg" alt="Сертификат 16" loading="lazy"></div>
+                <div class="certificate-item" onclick="openCertModal(16)"><img src="img/cert-17.jpg" alt="Сертификат 17" loading="lazy"></div>
             </div>
         </div>
     </section>
 
-    <!-- Certificate Modal -->
     <div class="cert-modal" id="certModal">
         <span class="cert-modal-close" onclick="closeCertModal()">&times;</span>
-        <button class="cert-nav cert-prev" onclick="prevCert(event)">&#10094;</button>
-        <img id="certModalImg" src="" alt="Сертификат" onclick="event.stopPropagation()">
-        <button class="cert-nav cert-next" onclick="nextCert(event)">&#10095;</button>
-        <div class="cert-counter"><span id="certCurrent">1</span> / <span id="certTotal">17</span></div>
-        <div class="cert-modal-bg" onclick="closeCertModal()"></div>
+        <button class="cert-nav prev" onclick="prevCert(event)">❮</button>
+        <img id="certModalImg" src="" alt="Сертификат">
+        <button class="cert-nav next" onclick="nextCert(event)">❯</button>
+        <div class="cert-counter" id="certCounter">1 / 17</div>
     </div>
 
-    <!-- Review Photo Modal -->
-    <div class="review-modal" id="reviewPhotoModal">
-        <span class="review-modal-close" onclick="closeReviewPhotoModal()">&times;</span>
-        <img id="reviewPhotoModalImg" src="" alt="Фото отзыва" onclick="event.stopPropagation()">
-        <div class="review-modal-info" id="reviewPhotoModalInfo"></div>
-        <div class="review-modal-bg" onclick="closeReviewPhotoModal()"></div>
-    </div>
-
-    <!-- Benefits -->
     <section class="section section-blue" id="benefits">
         <div class="container">
             <div class="section-header">
@@ -759,36 +619,12 @@
                 <p class="section-subtitle">6 причин доверить мне своё здоровье</p>
             </div>
             <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎓</div>
-                    <h3>Медицинское образование</h3>
-                    <p>Профессиональная база и понимание физиологии</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📜</div>
-                    <h3>Сертификаты</h3>
-                    <p>Подтверждённая квалификация по всем направлениям</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🆓</div>
-                    <h3>Бесплатная консультация</h3>
-                    <p>Первичная консультация без оплаты</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌐</div>
-                    <h3>Удобный формат</h3>
-                    <p>Очно, онлайн или дистанционно по фото</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💝</div>
-                    <h3>Индивидуальный подход</h3>
-                    <p>Программа под ваши потребности</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⭐</div>
-                    <h3>10+ лет опыта</h3>
-                    <p>Более 500 довольных клиентов</p>
-                </div>
+                <div class="benefit-card"><div class="benefit-icon">🎓</div><h3>Медицинское образование</h3><p>Профессиональная база и понимание физиологии</p></div>
+                <div class="benefit-card"><div class="benefit-icon">📜</div><h3>Сертификаты</h3><p>Подтверждённая квалификация по всем направлениям</p></div>
+                <div class="benefit-card"><div class="benefit-icon">🆓</div><h3>Бесплатная консультация</h3><p>Первичная консультация без оплаты</p></div>
+                <div class="benefit-card"><div class="benefit-icon">🌐</div><h3>Удобный формат</h3><p>Очно, онлайн или дистанционно по фото</p></div>
+                <div class="benefit-card"><div class="benefit-icon">💝</div><h3>Индивидуальный подход</h3><p>Программа под ваши потребности</p></div>
+                <div class="benefit-card"><div class="benefit-icon">⭐</div><h3>10+ лет опыта</h3><p>Более 500 довольных клиентов</p></div>
             </div>
             <div class="cta-banner">
                 <h3>Готовы начать путь к здоровью?</h3>
@@ -798,7 +634,6 @@
         </div>
     </section>
 
-    <!-- Reviews -->
     <section class="section section-light" id="reviews">
         <div class="container">
             <div class="section-header">
@@ -808,156 +643,86 @@
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-header">
-                        <div class="review-avatar"><img src="img/ak.jpg" alt="Альбина Кузнецова" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
-                        <div>
-                            <div class="review-name">Альбина Кузнецова</div>
-                            <div class="review-date">8 января 2026</div>
-                        </div>
+                        <div class="review-avatar"><img src="img/ak.jpg" alt="Альбина" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
+                        <div><div class="review-name">Альбина Кузнецова</div><div class="review-date">8 января 2026</div></div>
                     </div>
                     <div class="review-stars">★★★★★</div>
-                    <div class="review-text">В канун Рождественского Сочельника обратилась к Ирине, обладающей невероятной энергетикой за помощью. Она бережно и чутко провела со мной Аксесс барс. Обстановка умиротворяющая. Знает, когда надо подбодрить, а когда сказать доброе слово. Чувствовалось бережное отношение к личности. Обращусь ещё к ней не единожды.</div>
-                    <div class="review-photo" onclick="openReviewPhoto('img/ak-o.jpg', 'Альбина Кузнецова')"><img src="img/ak-o.jpg" alt="Фото отзыва Альбины" onerror="this.parentElement.onclick=null;this.parentElement.innerHTML='<div class=review-photo-placeholder><span>📷 Место для фото</span></div>'"></div>
+                    <div class="review-text">В канун Рождественского Сочельника обратилась к Ирине, обладающей невероятной энергетикой за помощью. Она бережно и чутко провела со мной Аксесс барс. Обстановка умиротворяющая. Чувствовалось бережное отношение к личности.</div>
+                    <div class="review-photo" onclick="openReviewPhoto('img/ak-o.jpg','Альбина Кузнецова')"><img src="img/ak-o.jpg" alt="Фото отзыва" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                 </div>
                 <div class="review-card">
                     <div class="review-header">
-                        <div class="review-avatar"><span>👩</span></div>
-                        <div>
-                            <div class="review-name">Марго Свияш</div>
-                            <div class="review-date">24 августа 2025</div>
-                        </div>
+                        <div class="review-avatar">👩</div>
+                        <div><div class="review-name">Марго Свияш</div><div class="review-date">24 августа 2025</div></div>
                     </div>
                     <div class="review-stars">★★★★★</div>
-                    <div class="review-text">Веду борьбу с высоким давлением, попала к Ирине на хиджаму, теперь планирую курс пиявок. В руках специалиста чувствую себя замечательно. Доверяюсь в руки специалиста — всё деликатно, с объяснением.</div>
-                    <div class="review-photo" onclick="openReviewPhoto('img/ms-o.jpg', 'Марго Свияш')"><img src="img/ms-o.jpg" alt="Фото отзыва Марго" onerror="this.parentElement.onclick=null;this.parentElement.innerHTML='<div class=review-photo-placeholder><span>📷 Место для фото</span></div>'"></div>
+                    <div class="review-text">Веду борьбу с высоким давлением, попала к Ирине на хиджаму, теперь планирую курс пиявок. В руках специалиста чувствую себя замечательно. Всё деликатно, с объяснением.</div>
+                    <div class="review-photo" onclick="openReviewPhoto('img/ms-o.jpg','Марго Свияш')"><img src="img/ms-o.jpg" alt="Фото отзыва" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                 </div>
                 <div class="review-card">
                     <div class="review-header">
-                        <div class="review-avatar"><img src="img/lg.jpg" alt="Ляйсан Галиева" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
-                        <div>
-                            <div class="review-name">Ляйсан Галиева</div>
-                            <div class="review-date">12 августа 2025</div>
-                        </div>
+                        <div class="review-avatar"><img src="img/lg.jpg" alt="Ляйсан" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
+                        <div><div class="review-name">Ляйсан Галиева</div><div class="review-date">12 августа 2025</div></div>
                     </div>
                     <div class="review-stars">★★★★★</div>
                     <div class="review-text">Я в восторге от твоей энергетики! 😍</div>
-                    <div class="review-photo" onclick="openReviewPhoto('img/lg-o.jpg', 'Ляйсан Галиева')"><img src="img/lg-o.jpg" alt="Фото отзыва Ляйсан" onerror="this.parentElement.onclick=null;this.parentElement.innerHTML='<div class=review-photo-placeholder><span>📷 Место для фото</span></div>'"></div>
+                    <div class="review-photo" onclick="openReviewPhoto('img/lg-o.jpg','Ляйсан Галиева')"><img src="img/lg-o.jpg" alt="Фото отзыва" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                 </div>
                 <div class="review-card">
                     <div class="review-header">
-                        <div class="review-avatar"><img src="img/mg.jpg" alt="Мария Гайсина" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
-                        <div>
-                            <div class="review-name">Мария Гайсина</div>
-                            <div class="review-date">11 августа 2025</div>
-                        </div>
+                        <div class="review-avatar"><img src="img/mg.jpg" alt="Мария" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='👩'"></div>
+                        <div><div class="review-name">Мария Гайсина</div><div class="review-date">11 августа 2025</div></div>
                     </div>
                     <div class="review-stars">★★★★★</div>
-                    <div class="review-text">Мне нравится. Ощущение лучше чем было раньше. Терапия прошла успешно и я себя чувствую лучше. Советую данного исполнителя услуг. Спасибо за помощь.</div>
-                    <div class="review-photo" onclick="openReviewPhoto('img/mg-o.jpg', 'Мария Гайсина')"><img src="img/mg-o.jpg" alt="Фото отзыва Марии" onerror="this.parentElement.onclick=null;this.parentElement.innerHTML='<div class=review-photo-placeholder><span>📷 Место для фото</span></div>'"></div>
+                    <div class="review-text">Мне нравится. Ощущение лучше чем было раньше. Терапия прошла успешно. Советую данного исполнителя услуг. Спасибо за помощь.</div>
+                    <div class="review-photo" onclick="openReviewPhoto('img/mg-o.jpg','Мария Гайсина')"><img src="img/mg-o.jpg" alt="Фото отзыва" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
+            <div style="text-align:center;margin-top:30px">
                 <a href="https://vk.com/topic-216082888_49486093" target="_blank" class="all-reviews-link">Читать все отзывы →</a>
             </div>
-            <button class="add-review-btn" onclick="openReviewModal()" style="margin-top: 20px;">Оставить отзыв</button>
+            <button class="add-review-btn" onclick="openReviewModal()">Оставить отзыв</button>
         </div>
     </section>
 
-    <!-- Review Modal -->
+    <div class="review-photo-modal" id="reviewPhotoModal" onclick="closeReviewPhoto()">
+        <span class="review-photo-modal-close">&times;</span>
+        <img id="reviewPhotoImg" src="" alt="Фото отзыва">
+        <div class="review-photo-caption" id="reviewPhotoCaption"></div>
+    </div>
+
     <div class="modal" id="reviewModal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeReviewModal()">&times;</span>
             <h3 class="modal-title">Оставить отзыв</h3>
             <form id="reviewForm" onsubmit="submitReview(event)">
-                <div class="form-group">
-                    <label>Ваше имя</label>
-                    <input type="text" name="name" required placeholder="Как вас зовут?">
-                </div>
-                <div class="form-group">
-                    <label>Оценка</label>
-                    <select name="rating" required>
-                        <option value="5">★★★★★ Отлично</option>
-                        <option value="4">★★★★☆ Хорошо</option>
-                        <option value="3">★★★☆☆ Нормально</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Ваш отзыв</label>
-                    <textarea name="review" required placeholder="Поделитесь впечатлениями..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Прикрепить фото</label>
-                    <label class="file-upload">
-                        <input type="file" name="photo" accept="image/*">
-                        <div class="file-upload-text">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                            <div>Нажмите для загрузки фото</div>
-                        </div>
-                    </label>
-                </div>
+                <div class="form-group"><label>Ваше имя</label><input type="text" name="name" required placeholder="Как вас зовут?"></div>
+                <div class="form-group"><label>Оценка</label><select name="rating" required><option value="5">★★★★★ Отлично</option><option value="4">★★★★☆ Хорошо</option><option value="3">★★★☆☆ Нормально</option></select></div>
+                <div class="form-group"><label>Ваш отзыв</label><textarea name="review" required placeholder="Поделитесь впечатлениями..."></textarea></div>
+                <div class="form-group"><label>Прикрепить фото</label><label class="file-upload"><input type="file" name="photo" accept="image/*"><div class="file-upload-text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><div>Нажмите для загрузки фото</div></div></label></div>
                 <button type="submit" class="submit-btn">Отправить отзыв</button>
             </form>
         </div>
     </div>
 
-    <!-- Booking -->
     <section class="section section-gray" id="booking">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Записаться на приём</h2>
                 <p class="section-subtitle">Заполните форму и я свяжусь с вами в ближайшее время</p>
             </div>
-            <div style="max-width: 600px; margin: 0 auto;">
+            <div style="max-width:600px;margin:0 auto">
                 <div class="booking-form">
                     <div class="form-note">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span><strong>Консультация бесплатно!</strong> Обсудим вашу ситуацию и подберём оптимальное решение.</span>
                     </div>
                     <form id="bookingForm" onsubmit="submitBooking(event)">
-                        <div class="form-group">
-                            <label>Ваше имя *</label>
-                            <input type="text" name="name" required placeholder="Как вас зовут?">
-                        </div>
-                        <div class="form-group">
-                            <label>Телефон *</label>
-                            <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
-                        </div>
-                        <div class="form-group">
-                            <label>Выберите услугу *</label>
-                            <select name="service" id="serviceSelect" required onchange="updateFormatOptions()">
-                                <option value="">-- Выберите услугу --</option>
-                                <option value="Бесплатная консультация">Бесплатная консультация</option>
-                                <option value="Энерготерапия">Энерготерапия</option>
-                                <option value="Гирудотерапия">Гирудотерапия</option>
-                                <option value="Хиджама">Хиджама</option>
-                                <option value="Рефлексотерапия">Рефлексотерапия</option>
-                                <option value="Иглонож">Иглонож</option>
-                                <option value="ЛФК">ЛФК</option>
-                                <option value="АФК">АФК</option>
-                                <option value="Access Bars">Access Bars</option>
-                                <option value="Pole Dance">Pole Dance</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Формат *</label>
-                            <div class="format-options" id="formatOptions">
-                                <div class="format-option">
-                                    <input type="radio" name="format" id="format1" value="Очно" required checked>
-                                    <label for="format1">🏠 Очно</label>
-                                </div>
-                                <div class="format-option" id="formatOnline">
-                                    <input type="radio" name="format" id="format2" value="Онлайн">
-                                    <label for="format2">💻 Онлайн</label>
-                                </div>
-                                <div class="format-option" id="formatDistance">
-                                    <input type="radio" name="format" id="format3" value="Дистанционно">
-                                    <label for="format3">📷 Дистанционно</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Сообщение</label>
-                            <textarea name="message" placeholder="Опишите вашу проблему или задайте вопрос"></textarea>
-                        </div>
+                        <div class="form-group"><label>Ваше имя *</label><input type="text" name="name" required placeholder="Как вас зовут?"></div>
+                        <div class="form-group"><label>Телефон *</label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"></div>
+                        <div class="form-group"><label>Выберите услугу *</label><select name="service" id="serviceSelect" required onchange="updateFormatOptions()"><option value="">-- Выберите услугу --</option><option value="Бесплатная консультация">Бесплатная консультация</option><option value="Энерготерапия">Энерготерапия</option><option value="Гирудотерапия">Гирудотерапия</option><option value="Хиджама">Хиджама</option><option value="Рефлексотерапия">Рефлексотерапия</option><option value="Иглонож">Иглонож</option><option value="ЛФК">ЛФК</option><option value="АФК">АФК</option><option value="Access Bars">Access Bars</option><option value="Pole Dance">Pole Dance</option></select></div>
+                        <div class="form-group"><label>Формат *</label><div class="format-options" id="formatOptions"><div class="format-option"><input type="radio" name="format" id="format1" value="Очно" required checked><label for="format1">🏠 Очно</label></div><div class="format-option" id="formatOnline"><input type="radio" name="format" id="format2" value="Онлайн"><label for="format2">💻 Онлайн</label></div><div class="format-option" id="formatDistance"><input type="radio" name="format" id="format3" value="Дистанционно"><label for="format3">📷 Дистанционно</label></div></div></div>
+                        <div class="form-group"><label>Сообщение</label><textarea name="message" placeholder="Опишите вашу проблему или задайте вопрос"></textarea></div>
                         <button type="submit" class="submit-btn">Отправить заявку</button>
                     </form>
                 </div>
@@ -965,7 +730,6 @@
         </div>
     </section>
 
-    <!-- Contacts -->
     <section class="section section-light" id="contacts">
         <div class="container">
             <div class="section-header">
@@ -973,230 +737,53 @@
                 <p class="section-subtitle">Свяжитесь со мной любым удобным способом</p>
             </div>
             <div class="contacts-grid">
-                <a href="tel:+79371608924" class="contact-card">
-                    <div class="contact-icon phone"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
-                    <h3>Телефон</h3>
-                    <p>+7 937 160-89-24</p>
-                </a>
-                <a href="https://t.me/+79371608924" target="_blank" class="contact-card">
-                    <div class="contact-icon telegram"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg></div>
-                    <h3>Telegram</h3>
-                    <p>Написать в Telegram</p>
-                </a>
-                <a href="https://wa.me/79371608924" target="_blank" class="contact-card">
-                    <div class="contact-icon whatsapp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-                    <h3>WhatsApp</h3>
-                    <p>Написать в WhatsApp</p>
-                </a>
-                <a href="https://vk.com/energoterapia_hidjama_neftekamsk" target="_blank" class="contact-card">
-                    <div class="contact-icon vk"><svg viewBox="0 0 24 24" fill="#fff"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.076c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></div>
-                    <h3>VK (личная)</h3>
-                    <p>Личная страница</p>
-                </a>
-                <a href="https://vk.com/hidjama.neftekamsk" target="_blank" class="contact-card">
-                    <div class="contact-icon vk"><svg viewBox="0 0 24 24" fill="#fff"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.076c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></div>
-                    <h3>VK (группа)</h3>
-                    <p>Группа ВКонтакте</p>
-                </a>
-                <div class="contact-card" style="cursor: default;">
-                    <div class="contact-icon location"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-                    <h3>Адрес</h3>
-                    <p>г. Нефтекамск</p>
-                </div>
+                <a href="tel:+79371608924" class="contact-card"><div class="contact-icon phone"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><h3>Телефон</h3><p>+7 937 160-89-24</p></a>
+                <a href="https://t.me/+79371608924" target="_blank" class="contact-card"><div class="contact-icon telegram"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg></div><h3>Telegram</h3><p>Написать в Telegram</p></a>
+                <a href="https://wa.me/79371608924" target="_blank" class="contact-card"><div class="contact-icon whatsapp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div><h3>WhatsApp</h3><p>Написать в WhatsApp</p></a>
+                <a href="https://vk.com/energoterapia_hidjama_neftekamsk" target="_blank" class="contact-card"><div class="contact-icon vk"><svg viewBox="0 0 24 24" fill="#fff"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.076c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></div><h3>VK (личная)</h3><p>Личная страница</p></a>
+                <a href="https://vk.com/hidjama.neftekamsk" target="_blank" class="contact-card"><div class="contact-icon vk"><svg viewBox="0 0 24 24" fill="#fff"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.076c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></div><h3>VK (группа)</h3><p>Группа ВКонтакте</p></a>
+                <div class="contact-card" style="cursor:default"><div class="contact-icon location"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><h3>Адрес</h3><p>г. Нефтекамск</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-phone">
-                <a href="tel:+79371608924">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    +7 937 160-89-24
-                </a>
-            </div>
+            <div class="footer-phone"><a href="tel:+79371608924"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>+7 937 160-89-24</a></div>
             <div class="footer-copyright">© 2026 Энерготерапия Нефтекамск. Все права защищены.</div>
         </div>
     </footer>
 
-    <!-- Floating Buttons -->
     <div class="floating-buttons">
-        <a href="https://t.me/+79371608924" target="_blank" class="floating-btn telegram" title="Telegram">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
-        </a>
-        <a href="https://wa.me/79371608924" target="_blank" class="floating-btn whatsapp" title="WhatsApp">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+        <a href="https://t.me/+79371608924" target="_blank" class="floating-btn telegram" title="Telegram"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg></a>
+        <a href="https://wa.me/79371608924" target="_blank" class="floating-btn whatsapp" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
     </div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-        }
-        function closeMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-        }
-        function toggleDetails(btn) {
-            var content = btn.nextElementSibling;
-            content.classList.toggle('active');
-            btn.textContent = content.classList.contains('active') ? 'Скрыть' : 'Подробнее';
-        }
-        function updateFormatOptions() {
-            var service = document.getElementById('serviceSelect').value;
-            var onlineOpt = document.getElementById('formatOnline');
-            var distOpt = document.getElementById('formatDistance');
-            var allowRemote = service.includes('Энерготерапия') || service.includes('консультация');
-            if (allowRemote) {
-                onlineOpt.classList.remove('disabled');
-                distOpt.classList.remove('disabled');
-                onlineOpt.querySelector('input').disabled = false;
-                distOpt.querySelector('input').disabled = false;
-            } else {
-                onlineOpt.classList.add('disabled');
-                distOpt.classList.add('disabled');
-                onlineOpt.querySelector('input').disabled = true;
-                distOpt.querySelector('input').disabled = true;
-                document.getElementById('format1').checked = true;
-            }
-        }
-        // ===== TELEGRAM BOT =====
-        var TG_TOKEN = 'YOUR_BOT_TOKEN';
-        var TG_CHAT = 'YOUR_CHAT_ID';
-        function sendTG(t){if(TG_TOKEN==='YOUR_BOT_TOKEN')return;fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:t,parse_mode:'HTML'})}).catch(function(e){console.error(e);});}
-        
-        function submitBooking(e) {
-            e.preventDefault();
-            var form = e.target;
-            var n=form.name.value,p=form.phone.value,s=form.service.value,f=form.format.value,m=form.message.value;
-            var tg='🌟 <b>Новая заявка</b>\n\n👤 '+n+'\n📱 '+p+'\n📋 '+s+'\n🏠 '+f+(m?'\n💬 '+m:'')+'\n\n📅 '+new Date().toLocaleString('ru-RU');
-            sendTG(tg);
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            form.reset();
-            // var text = '🌟 *OLD\n\n👤 ' + form.name.value + '\n📱 ' + form.phone.value + '\n📋 ' + form.service.value + '\n🏠 ' + form.format.value;
-            if (form.message.value) text += '\n💬 ' + form.message.value;
-            window.open('https://wa.me/79371608924?text=' + encodeURIComponent(text), '_blank');
-            alert('Спасибо! Переадресация в WhatsApp...');
-            form.reset();
-        }
-        // Certificate gallery with navigation
-        var certImages = [
-            'img/cert-1.jpg', 'img/cert-2.jpg', 'img/cert-3.jpg', 'img/cert-4.jpg', 'img/cert-5.jpg',
-            'img/cert-6.jpg', 'img/cert-7.jpg', 'img/cert-8.jpg', 'img/cert-9.jpg', 'img/cert-10.jpg',
-            'img/cert-11.jpg', 'img/cert-12.jpg', 'img/cert-13.jpg', 'img/cert-14.jpg', 'img/cert-15.jpg',
-            'img/cert-16.jpg', 'img/cert-17.jpg'
-        ];
-        var currentCert = 0;
-        
-        function openCertModal(index) {
-            currentCert = index;
-            updateCertImage();
-            document.getElementById('certModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function updateCertImage() {
-            document.getElementById('certModalImg').src = certImages[currentCert];
-            document.getElementById('certCurrent').textContent = currentCert + 1;
-            document.getElementById('certTotal').textContent = certImages.length;
-        }
-        function closeCertModal() {
-            document.getElementById('certModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        function prevCert(e) {
-            e.stopPropagation();
-            currentCert = (currentCert - 1 + certImages.length) % certImages.length;
-            updateCertImage();
-        }
-        function nextCert(e) {
-            e.stopPropagation();
-            currentCert = (currentCert + 1) % certImages.length;
-            updateCertImage();
-        }
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('certModal').classList.contains('active')) {
-                if (e.key === 'ArrowLeft') prevCert(e);
-                if (e.key === 'ArrowRight') nextCert(e);
-                if (e.key === 'Escape') closeCertModal();
-            }
-        });
-        // Touch swipe
-        var touchStartX = 0;
-        document.getElementById('certModal').addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        document.getElementById('certModal').addEventListener('touchend', function(e) {
-            var diff = touchStartX - e.changedTouches[0].screenX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) nextCert(e); else prevCert(e);
-            }
-        });
-        function openReviewModal() {
-            document.getElementById('reviewModal').classList.add('active');
-        }
-        function closeReviewModal() {
-            document.getElementById('reviewModal').classList.remove('active');
-        }
-        function submitReview(e) {
-            e.preventDefault();
-            var form = e.target;
-            var text = '⭐ *Новый отзыв*\n\n👤 ' + form.name.value + '\n⭐ ' + '★'.repeat(parseInt(form.rating.value)) + '\n💬 ' + form.review.value;
-            window.open('https://wa.me/79371608924?text=' + encodeURIComponent(text), '_blank');
-            alert('Спасибо за отзыв!');
-            closeReviewModal();
-            form.reset();
-        }
-        document.getElementById('reviewModal').addEventListener('click', function(e) { if (e.target === this) closeReviewModal(); });
-        
-        // Review photo modal
-        function openReviewPhoto(src, name) {
-            document.getElementById('reviewPhotoModalImg').src = src;
-            document.getElementById('reviewPhotoModalInfo').textContent = 'Отзыв от ' + name;
-            document.getElementById('reviewPhotoModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeReviewPhotoModal() {
-            document.getElementById('reviewPhotoModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        // Close review photo modal on Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.getElementById('reviewPhotoModal').classList.contains('active')) {
-                closeReviewPhotoModal();
-            }
-        });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-            a.addEventListener('click', function(e) {
-                var href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    var target = document.querySelector(href);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-        
-        // Lazy load video on click (no autoplay, no ads until click)
-        function loadVideo(facade, type, videoId) {
-            var iframe = document.createElement('iframe');
-            iframe.style.width = '100%';
-            iframe.style.height = '200px';
-            iframe.style.border = 'none';
-            iframe.setAttribute('allowfullscreen', 'true');
-            
-            if (type === 'rutube') {
-                iframe.src = 'https://rutube.ru/play/embed/' + videoId;
-                iframe.allow = 'clipboard-write; fullscreen';
-            } else if (type === 'vk') {
-                var parts = videoId.split('_');
-                iframe.src = 'https://vk.com/video_ext.php?oid=' + parts[0] + '&id=' + parts[1];
-                iframe.allow = 'encrypted-media; fullscreen; picture-in-picture';
-            }
-            
-            facade.parentNode.replaceChild(iframe, facade);
-        }
-    </script>
+<script>
+var TG_TOKEN='YOUR_BOT_TOKEN';
+var TG_CHAT='YOUR_CHAT_ID';
+var currentCert=0;
+var totalCerts=17;
+
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('active')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('active')}
+function toggleDetails(b){var c=b.nextElementSibling;c.classList.toggle('active');b.textContent=c.classList.contains('active')?'Скрыть':'Подробнее'}
+function loadVideo(el,url){el.outerHTML='<iframe src="'+url+'" frameborder="0" allowfullscreen loading="lazy" style="width:100%;height:180px;border-radius:12px"></iframe>'}
+function updateFormatOptions(){var s=document.getElementById('serviceSelect').value,o=document.getElementById('formatOnline'),d=document.getElementById('formatDistance'),a=s.includes('Энерготерапия')||s.includes('консультация');if(a){o.classList.remove('disabled');d.classList.remove('disabled');o.querySelector('input').disabled=false;d.querySelector('input').disabled=false}else{o.classList.add('disabled');d.classList.add('disabled');o.querySelector('input').disabled=true;d.querySelector('input').disabled=true;document.getElementById('format1').checked=true}}
+function sendTG(t){if(TG_TOKEN==='YOUR_BOT_TOKEN')return;fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:t,parse_mode:'HTML'})})}
+function submitBooking(e){e.preventDefault();var f=e.target,n=f.name.value,p=f.phone.value,s=f.service.value,fm=f.format.value,m=f.message.value;var t='🌟 <b>Новая заявка</b>\n\n👤 '+n+'\n📱 '+p+'\n📋 '+s+'\n🏠 '+fm+(m?'\n💬 '+m:'')+'\n\n📅 '+new Date().toLocaleString('ru');sendTG(t);var w='🌟 *Новая заявка*\n\n👤 '+n+'\n📱 '+p+'\n📋 '+s+'\n🏠 '+fm+(m?'\n💬 '+m:'');window.open('https://wa.me/79371608924?text='+encodeURIComponent(w),'_blank');alert('Спасибо за заявку!');f.reset()}
+function openCertModal(i){currentCert=i;document.getElementById('certModalImg').src='img/cert-'+(i+1)+'.jpg';document.getElementById('certCounter').textContent=(i+1)+' / '+totalCerts;document.getElementById('certModal').classList.add('active');document.body.style.overflow='hidden'}
+function closeCertModal(){document.getElementById('certModal').classList.remove('active');document.body.style.overflow=''}
+function prevCert(e){e.stopPropagation();currentCert=(currentCert-1+totalCerts)%totalCerts;document.getElementById('certModalImg').src='img/cert-'+(currentCert+1)+'.jpg';document.getElementById('certCounter').textContent=(currentCert+1)+' / '+totalCerts}
+function nextCert(e){e.stopPropagation();currentCert=(currentCert+1)%totalCerts;document.getElementById('certModalImg').src='img/cert-'+(currentCert+1)+'.jpg';document.getElementById('certCounter').textContent=(currentCert+1)+' / '+totalCerts}
+function openReviewPhoto(s,n){document.getElementById('reviewPhotoImg').src=s;document.getElementById('reviewPhotoCaption').textContent='Отзыв от '+n;document.getElementById('reviewPhotoModal').classList.add('active');document.body.style.overflow='hidden'}
+function closeReviewPhoto(){document.getElementById('reviewPhotoModal').classList.remove('active');document.body.style.overflow=''}
+function openReviewModal(){document.getElementById('reviewModal').classList.add('active')}
+function closeReviewModal(){document.getElementById('reviewModal').classList.remove('active')}
+function submitReview(e){e.preventDefault();var f=e.target,n=f.name.value,r=f.rating.value,t=f.review.value;var m='⭐ *Новый отзыв*\n\n👤 '+n+'\n⭐ Оценка: '+r+'/5\n💬 '+t;window.open('https://wa.me/79371608924?text='+encodeURIComponent(m),'_blank');alert('Спасибо за отзыв!');closeReviewModal();f.reset()}
+document.getElementById('certModal').addEventListener('click',function(e){if(e.target===this)closeCertModal()});
+document.getElementById('reviewModal').addEventListener('click',function(e){if(e.target===this)closeReviewModal()});
+document.addEventListener('keydown',function(e){if(document.getElementById('certModal').classList.contains('active')){if(e.key==='Escape')closeCertModal();if(e.key==='ArrowLeft')prevCert(e);if(e.key==='ArrowRight')nextCert(e)}if(e.key==='Escape'&&document.getElementById('reviewPhotoModal').classList.contains('active'))closeReviewPhoto()});
+</script>
 </body>
 </html>
