@@ -498,7 +498,7 @@ html{scroll-behavior:smooth}
 </div>
 
 <script>
-var TG_TOKEN='YOUR_BOT_TOKEN',TG_CHAT='YOUR_CHAT_ID',curCert=0;
+var TG_TOKEN='8195006313:AAG_ItyGOFGHjdmcWhYtlSWgOfBYE1yh8Ps',TG_CHAT='5569439365',curCert=0;
 function loadVideo(el,url){el.innerHTML='<iframe src="'+url+'" allow="fullscreen" loading="lazy"></iframe>';el.classList.add('ld')}
 function updFmt(){var s=document.getElementById('svcSel').value,a=s.includes('Энерготерапия')||s.includes('консультация');document.getElementById('fmtOn').classList.toggle('ds',!a);document.getElementById('fmtDs').classList.toggle('ds',!a);if(!a)document.querySelector('[name="format"][value="Очно"]').checked=true}
 function sendTG(t){if(TG_TOKEN==='YOUR_BOT_TOKEN')return;fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:t,parse_mode:'HTML'})})}
