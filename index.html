@@ -434,8 +434,8 @@ html{scroll-behavior:smooth}
 <div class="frm">
 <div class="frm-n">✅ <strong>Консультация бесплатно!</strong> Обсудим вашу ситуацию.</div>
 <form id="bookingForm" onsubmit="submitForm(event)">
-<div class="fg"><label>Ваше имя *</label><input type="text" name="name" required placeholder="Как вас зовут?"></div>
-<div class="fg"><label>Телефон *</label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__"></div>
+<div class="fg"><label>Ваше имя *</label><input type="text" name="name" required placeholder="Как вас зовут?" maxlength="50" oninput="this.value=this.value.replace(/[^а-яёА-ЯЁa-zA-Z\s\-]/g,'')"></div>
+<div class="fg"><label>Телефон *</label><input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" maxlength="18" oninput="formatPhone(this)" onfocus="if(!this.value)this.value='+7 '"></div>
 <div class="fg"><label>Выберите услугу *</label>
 <select name="service" id="svcSel" required onchange="updFmt()">
 <option value="">-- Выберите --</option>
@@ -498,7 +498,8 @@ html{scroll-behavior:smooth}
 </div>
 
 <script>
-var TG_TOKEN='8195006313:AAG_ItyGOFGHjdmcWhYtlSWgOfBYE1yh8Ps',TG_CHAT='5569439365',curCert=0;
+var TG_TOKEN='8195006313:AAG_ItyGOFGHjdmcWhYtlSWgOfBYE1yh8Ps',TG_CHAT='8195006313',curCert=0;
+function formatPhone(input){var v=input.value.replace(/\D/g,'');if(v.length>0&&v[0]!='7')v='7'+v;if(v.length>11)v=v.slice(0,11);var f='+7';if(v.length>1)f+=' ('+v.slice(1,4);if(v.length>4)f+=') '+v.slice(4,7);if(v.length>7)f+='-'+v.slice(7,9);if(v.length>9)f+='-'+v.slice(9,11);input.value=f}
 function loadVideo(el,url){el.innerHTML='<iframe src="'+url+'" allow="fullscreen" loading="lazy"></iframe>';el.classList.add('ld')}
 function updFmt(){var s=document.getElementById('svcSel').value,a=s.includes('Энерготерапия')||s.includes('консультация');document.getElementById('fmtOn').classList.toggle('ds',!a);document.getElementById('fmtDs').classList.toggle('ds',!a);if(!a)document.querySelector('[name="format"][value="Очно"]').checked=true}
 function sendTG(t){if(TG_TOKEN==='YOUR_BOT_TOKEN')return;fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:t,parse_mode:'HTML'})})}
