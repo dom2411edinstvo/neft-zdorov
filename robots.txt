@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dom2411edinstvo.github.io/neft-zdorov/sitemap.xml
+
+Host: dom2411edinstvo.github.io
