@@ -316,6 +316,7 @@ const IMAGE_MODEL   = "openai/dall-e-3";
 let selectedDirection = null;
 let selectedTone      = "Тёплый и заботливый";
 
+
 /* =============================================
    ПРИВЕТСТВИЕ ПО ВРЕМЕНИ (UTC+5 Нефтекамск)
    ============================================= */
@@ -452,27 +453,26 @@ function hideOverlay() {
 /* =============================================
    ПРОМПТЫ
    ============================================= */
- // 1. Формируем SEO блок правильно (вне текста)
-  let seoInstruction = "";
-  if (direction !== "Энерготерапия") {
-      seoInstruction = "Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте (1-3 раза). В конце добавь 10-15 хэштегов для ВК и Яндекса, ОБЯЗАТЕЛЬНО включая гео-хэштеги (например, #нефтекамск #хиджаманефтекамск) и тематические.";
-  } else {
-      seoInstruction = "Пиши БЕЗ привязки к городу Нефтекамск. Добавь универсальные тематические хэштеги, без гео-тегов.";
-  }
+function buildTextMessages(direction, tone, topic, withPoem) {
+  const isEnergo = direction === 'Энерготерапия';
 
-  // 2. Формируем стих
-  const poemInstruction = document.getElementById('poemToggle').checked 
-      ? "Органично вплети в пост красивое, трогательное стихотворение по теме." 
-      : "";
+  const poemInstruction = withPoem
+    ? ' В конце текста органично вплети красивое, трогательное, ритмичное стихотворение (4–8 строк) по теме поста.'
+    : '';
 
-  // 3. Собираем итоговый системный промпт
-  const systemContent = `Ты профи-копирайтер. Напиши пост для ВКонтакте. Ниша: ${direction}. Тема: ${topic}. Тон: ${tone}. ${poemInstruction} ${seoInstruction}`;
+  const seoInstruction = isEnergo
+    ? ' Пиши БЕЗ привязки к городу Нефтекамск. В конце добавь блок из 8–12 универсальных тематических хэштегов по энерготерапии, биоэнергетике и духовным практикам — без гео-тегов.'
+    : ` Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте (1–3 раза). В конце добавь блок из 10–15 хэштегов для ВКонтакте и Яндекса: обязательно включи гео-хэштеги (#нефтекамск и релевантные гео-варианты для направления "${direction}"), тематические хэштеги по направлению и общие популярные хэштеги по здоровью и красоте.`;
 
-  // 4. Формируем сообщения для API
-  const messages = [
-      { role: "system", content: systemContent },
-      { role: "user", content: `Напиши пост на тему: ${topic}` }
+  const system = `Ты профессиональный SMM-копирайтер. Пишешь вовлекающие посты для ВКонтакте. Тон: ${tone} — живой, современный, без канцелярита. Используй эмодзи умеренно (3–6 штук). Структурируй: цепляющее начало, польза, призыв к действию. Длина 150–260 слов.${poemInstruction}${seoInstruction}`;
+
+  const user = `Экспертная ниша: ${direction}.\nТема поста: ${topic}.\n\nНапиши пост.`;
+
+  return [
+    { role: 'system', content: system },
+    { role: 'user',   content: user }
   ];
+}
 
 function buildImagePrompt(direction, topic) {
   return `Aesthetic high-quality cinematic photograph. Theme: "${direction}" and "${topic}". Beautiful natural light, shallow depth of field, warm tones. Organically integrated large beautiful Russian text that reflects the essence of the topic. High detail, editorial style, inspirational mood.`;
@@ -499,12 +499,8 @@ async function fetchImage(prompt) {
   const res = await fetch(API_URL_IMAGE, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
-    body: JSON.stringify({
-    model: IMAGE_MODEL,
-    prompt: `Красивая, эстетичная фотография. Тема: ${document.querySelector('.chip.active')?.textContent || 'Творчество'} - ${document.querySelector('textarea').value.substring(0, 100)}. На картинке красиво написан текст на русском языке. Высокое качество.`,
-    n: 1,
-    size: "1024x1024"
-})
+    body: JSON.stringify({ model: IMAGE_MODEL, prompt, n: 1, size: '1024x1024' })
+  });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(err?.error?.message || `Ошибка картинки: ${res.status}`);
