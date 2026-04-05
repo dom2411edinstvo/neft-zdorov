@@ -288,7 +288,6 @@ a{text-decoration:none;color:inherit}
    ============================================= */
 const API_KEY      = "";
 const API_URL_CHAT = "https://api.vsegpt.ru/v1/chat/completions";
-const CORS_PROXY   = "https://corsproxy.io/?url=";
 const TEXT_MODEL   = "google/gemini-1.5-pro-exp";
 
 /* =============================================
@@ -458,30 +457,43 @@ function buildTextMessages(direction, tone, topic, withPoem) {
    API ЗАПРОС через CORS-прокси
    ============================================= */
 async function fetchText(messages) {
-  const targetUrl = API_URL_CHAT;
-  const proxyUrl  = CORS_PROXY + encodeURIComponent(targetUrl);
+  // Пробуем несколько CORS-прокси по очереди
+  const proxies = [
+    url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://thingproxy.freeboard.io/fetch/${url}`,
+  ];
 
-  const res = await fetch(proxyUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-      'x-requested-with': 'XMLHttpRequest'
-    },
-    body: JSON.stringify({
-      model: TEXT_MODEL,
-      messages,
-      max_tokens: 1024,
-      temperature: 0.85
-    })
-  });
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.error?.message || `Ошибка: ${res.status}`);
+  let lastErr;
+  for (const makeProxy of proxies) {
+    const proxyUrl = makeProxy(API_URL_CHAT);
+    try {
+      const res = await fetch(proxyUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`,
+          'x-requested-with': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+          model: TEXT_MODEL,
+          messages,
+          max_tokens: 1024,
+          temperature: 0.85
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `Ошибка: ${res.status}`);
+      }
+      const data = await res.json();
+      return data.choices?.[0]?.message?.content || '';
+    } catch (e) {
+      lastErr = e;
+      console.warn('Прокси не сработал:', proxyUrl, e.message);
+    }
   }
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || '';
+  throw lastErr || new Error('Все прокси недоступны');
 }
 
 /* =============================================
