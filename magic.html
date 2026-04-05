@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Магия контента ✨</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230ea5e9'/><polygon points='50,15 61,38 87,38 66,56 74,80 50,64 26,80 34,56 13,38 39,38' fill='%23FFD700' stroke='%23fff' stroke-width='2'/></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;color:#1e293b;line-height:1.5;background:linear-gradient(135deg,#f0f9ff,#e0f2fe,#bae6fd);min-height:100vh}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;height:auto}
+
+/* HEADER */
+.hd{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.hd-logo{font-size:1.05rem;font-weight:800;color:#0c4a6e;display:flex;align-items:center;gap:8px}
+.hd-back{color:#0ea5e9;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:4px}
+.hd-back:hover{color:#0284c7}
+.hd-hist{background:#f0f9ff;border:2px solid #bae6fd;color:#0ea5e9;padding:6px 14px;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s}
+.hd-hist:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+
+/* PAGE */
+.page{max-width:680px;margin:0 auto;padding:24px 16px 80px}
+
+/* GREETING */
+.greeting-block{text-align:center;margin-bottom:28px;animation:fadeInDown .8s ease forwards;opacity:0}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+.greeting-text{font-size:1.35rem;font-weight:700;color:#0c4a6e;margin-bottom:8px}
+.greeting-quote{font-style:italic;font-size:.88rem;color:#94a3b8;line-height:1.6;max-width:420px;margin:0 auto;animation:fadeInDown 1.1s ease forwards;opacity:0}
+
+/* HERO */
+.magic-hero{text-align:center;margin-bottom:26px;animation:fadeInDown .9s ease .1s forwards;opacity:0}
+.magic-hero h1{font-size:2rem;font-weight:800;color:#0c4a6e;letter-spacing:-.5px}
+.magic-hero h1 span{color:#0ea5e9}
+.magic-hero p{color:#64748b;margin-top:6px;font-size:.95rem}
+
+/* CARD */
+.card{background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(14,165,233,.1);padding:24px;margin-bottom:16px}
+.card-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:14px}
+
+/* CHIPS */
+.chips-group{margin-bottom:12px}
+.chips-label{font-size:.75rem;font-weight:700;color:#0ea5e9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:8px 15px;border-radius:50px;border:2px solid #e2e8f0;background:#f8fafc;color:#475569;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s ease;user-select:none;-webkit-tap-highlight-color:transparent}
+.chip:hover{border-color:#0ea5e9;color:#0ea5e9;background:#f0f9ff}
+.chip.active{border-color:#0ea5e9;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;box-shadow:0 4px 12px rgba(14,165,233,.35)}
+.chip-sport.active{background:linear-gradient(135deg,#a855f7,#7c3aed);border-color:#a855f7;box-shadow:0 4px 12px rgba(168,85,247,.35)}
+.chip-sport:hover{border-color:#a855f7;color:#a855f7;background:#faf5ff}
+.chip-tone.active.warm{background:linear-gradient(135deg,#f59e0b,#d97706);border-color:#f59e0b;box-shadow:0 4px 12px rgba(245,158,11,.35)}
+.chip-tone.active.energy{background:linear-gradient(135deg,#ef4444,#dc2626);border-color:#ef4444;box-shadow:0 4px 12px rgba(239,68,68,.35)}
+.chip-tone.active.expert{background:linear-gradient(135deg,#10b981,#059669);border-color:#10b981;box-shadow:0 4px 12px rgba(16,185,129,.35)}
+.divider{height:1px;background:#f1f5f9;margin:14px 0}
+
+/* TEXTAREA */
+.field-label{display:block;font-weight:700;color:#334155;font-size:.92rem;margin-bottom:8px}
+.field-textarea{width:100%;padding:14px;border:2px solid #e2e8f0;border-radius:12px;font-size:.95rem;font-family:inherit;resize:vertical;min-height:95px;transition:border-color .2s;color:#1e293b;background:#fafbfc}
+.field-textarea:focus{outline:none;border-color:#0ea5e9;background:#fff}
+.char-counter{text-align:right;font-size:.78rem;color:#94a3b8;margin-top:5px}
+.char-counter.warn{color:#f59e0b}
+.char-counter.over{color:#ef4444}
+
+/* TOGGLE */
+.toggle-row{display:flex;align-items:center;gap:14px;padding:10px 0}
+.toggle-label{font-size:.97rem;font-weight:600;color:#334155;cursor:pointer;flex:1}
+.toggle{position:relative;width:52px;height:28px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#e2e8f0;border-radius:50px;cursor:pointer;transition:.3s}
+.toggle-slider:before{content:'';position:absolute;width:22px;height:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.toggle input:checked+.toggle-slider{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.toggle input:checked+.toggle-slider:before{transform:translateX(24px)}
+
+/* GENERATE BUTTON */
+.btn-generate{width:100%;padding:18px;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;border-radius:16px;font-size:1.1rem;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:all .2s ease;box-shadow:0 6px 20px rgba(14,165,233,.4);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
+.btn-generate:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(14,165,233,.5)}
+.btn-generate:active{transform:translateY(0)}
+.btn-generate:disabled{opacity:.65;cursor:not-allowed;transform:none}
+
+/* MAGIC OVERLAY */
+.magic-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(12,74,110,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:28px}
+.magic-overlay.show{display:flex;animation:fadeInOverlay .5s ease forwards}
+@keyframes fadeInOverlay{from{opacity:0}to{opacity:1}}
+.magic-phrase{font-family:'Georgia','Times New Roman',serif;font-style:italic;font-size:clamp(1.3rem,5vw,2.1rem);font-weight:400;color:#fff;text-align:center;line-height:1.7;padding:0 24px;letter-spacing:.5px;animation:breathe 3s ease-in-out infinite;text-shadow:0 0 20px rgba(212,175,55,.9),0 0 40px rgba(212,175,55,.6),0 0 70px rgba(212,175,55,.35),0 2px 4px rgba(0,0,0,.3)}
+@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+.magic-stars{font-size:1.5rem;animation:breathe 3s ease-in-out infinite;animation-delay:.5s;letter-spacing:8px;opacity:.8}
+.magic-dots{display:flex;gap:8px}
+.magic-dot{width:8px;height:8px;border-radius:50%;background:rgba(212,175,55,.8);animation:dotPulse 1.4s ease-in-out infinite}
+.magic-dot:nth-child(2){animation-delay:.2s}
+.magic-dot:nth-child(3){animation-delay:.4s}
+@keyframes dotPulse{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+
+/* RESULTS */
+.results{display:none;animation:slideUp .5s ease forwards}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.results.show{display:block}
+.result-label{font-size:.82rem;font-weight:700;color:#0ea5e9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.result-text{width:100%;min-height:220px;padding:16px;border:2px solid #e2e8f0;border-radius:12px;font-size:.95rem;font-family:inherit;resize:vertical;color:#1e293b;line-height:1.7;background:#fafbfc;transition:border-color .2s}
+.result-text:focus{outline:none;border-color:#0ea5e9;background:#fff}
+.result-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.action-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;border:2px solid #bae6fd;background:#f0f9ff;color:#0ea5e9}
+.action-btn:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+.action-btn.copied{background:#10b981;color:#fff;border-color:#10b981}
+.action-btn.regen{border-color:#e0f2fe;background:#f0f9ff;color:#0284c7}
+.action-btn.regen:hover{background:#0284c7;color:#fff;border-color:#0284c7}
+.img-section{margin-top:4px}
+.img-wrap{border-radius:14px;overflow:hidden;background:#f1f5f9;border:2px dashed #cbd5e1;min-height:160px;display:flex;align-items:center;justify-content:center;position:relative}
+.img-wrap img{width:100%;height:auto;display:block;border-radius:12px;animation:slideUp .5s ease forwards}
+.img-placeholder{text-align:center;color:#94a3b8;padding:30px}
+.img-placeholder div{font-size:2.5rem;margin-bottom:8px}
+.img-placeholder p{font-size:.85rem}
+.img-download{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 18px;background:#f0f9ff;color:#0284c7;border:2px solid #bae6fd;border-radius:20px;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none}
+.img-download:hover{background:#0284c7;color:#fff;border-color:#0284c7}
+
+/* ERROR */
+.error-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;padding:14px 18px;color:#991b1b;font-size:.9rem;margin-top:16px;display:none}
+.error-box.show{display:block}
+
+/* HINT */
+.hint{font-size:.8rem;color:#f59e0b;font-weight:600;margin-top:6px;display:none}
+.hint.show{display:block}
+
+/* HISTORY MODAL */
+.hist-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center}
+.hist-modal.show{display:flex;animation:fadeInOverlay .3s ease forwards}
+.hist-panel{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:680px;max-height:80vh;overflow-y:auto;padding:24px 20px 40px;animation:slideUp .35s ease forwards}
+.hist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.hist-header h3{font-size:1.1rem;font-weight:800;color:#0c4a6e}
+.hist-close{background:none;border:none;font-size:1.6rem;cursor:pointer;color:#94a3b8;line-height:1}
+.hist-empty{text-align:center;color:#94a3b8;padding:30px 0;font-size:.95rem}
+.hist-item{border:2px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.hist-item:hover{border-color:#0ea5e9;background:#f0f9ff}
+.hist-item-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.hist-item-date{font-size:.75rem;color:#94a3b8;font-weight:600}
+.hist-item-dir{font-size:.75rem;color:#0ea5e9;font-weight:700;background:#f0f9ff;padding:2px 10px;border-radius:20px}
+.hist-item-preview{font-size:.88rem;color:#475569;line-height:1.5}
+.hist-item-full{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #f1f5f9}
+.hist-item-full textarea{width:100%;min-height:140px;padding:12px;border:2px solid #e2e8f0;border-radius:10px;font-size:.88rem;font-family:inherit;resize:vertical;color:#1e293b;line-height:1.6}
+.hist-copy{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:7px 14px;background:#f0f9ff;color:#0ea5e9;border:2px solid #bae6fd;border-radius:15px;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s}
+.hist-copy:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+.hist-clear{width:100%;margin-top:16px;padding:12px;background:#fef2f2;color:#dc2626;border:2px solid #fca5a5;border-radius:12px;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.hist-clear:hover{background:#dc2626;color:#fff;border-color:#dc2626}
+
+/* FOOTER */
+.magic-footer{text-align:center;color:#94a3b8;font-size:.8rem;margin-top:40px}
+
+/* MOBILE */
+@media(max-width:480px){
+  .magic-hero h1{font-size:1.7rem}
+  .card{padding:18px}
+  .btn-generate{font-size:1rem;padding:16px}
+  .chip{font-size:.82rem;padding:7px 12px}
+  .greeting-text{font-size:1.15rem}
+  .result-btns{gap:8px}
+  .action-btn{font-size:.8rem;padding:8px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd">
+  <div class="hd-logo"><span>&#10024;</span> Магия контента</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="hd-hist" onclick="openHistory()">&#128218; Мои посты</button>
+    <a href="index.html" class="hd-back">&#8592; На сайт</a>
+  </div>
+</header>
+
+<!-- MAGIC OVERLAY -->
+<div class="magic-overlay" id="magicOverlay">
+  <div class="magic-stars">&#10022; &#10023; &#10022;</div>
+  <div class="magic-phrase">Свет очей безусловный невидимый</div>
+  <div class="magic-dots">
+    <div class="magic-dot"></div>
+    <div class="magic-dot"></div>
+    <div class="magic-dot"></div>
+  </div>
+</div>
+
+<!-- HISTORY MODAL -->
+<div class="hist-modal" id="histModal" onclick="closeHistoryOutside(event)">
+  <div class="hist-panel" id="histPanel">
+    <div class="hist-header">
+      <h3>&#128218; История постов</h3>
+      <button class="hist-close" onclick="closeHistory()">&#10005;</button>
+    </div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="page">
+
+  <!-- GREETING -->
+  <div class="greeting-block" id="greetingBlock">
+    <div class="greeting-text" id="greetingText"></div>
+    <div class="greeting-quote" id="greetingQuote"></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="magic-hero">
+    <h1>Магия контента <span>&#10024;</span></h1>
+    <p>Выбери направление — и ИИ создаст пост и картинку для ВКонтакте</p>
+  </div>
+
+  <!-- CARD: Направление -->
+  <div class="card">
+    <div class="card-title">1 — Выбери направление</div>
+    <div class="chips-group">
+      <div class="chips-label">&#127941; Спорт</div>
+      <div class="chips">
+        <div class="chip chip-sport" data-value="Pole Dance" data-group="direction">&#128137; Pole Dance</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="chips-group">
+      <div class="chips-label">&#127807; Оздоровление</div>
+      <div class="chips">
+        <div class="chip" data-value="Энерготерапия" data-group="direction">&#10024; Энерготерапия</div>
+        <div class="chip" data-value="Гирудотерапия" data-group="direction">&#129656; Гирудотерапия</div>
+        <div class="chip" data-value="Хиджама" data-group="direction">&#129371; Хиджама</div>
+        <div class="chip" data-value="Иглоукалывание" data-group="direction">&#129505; Иглоукалывание</div>
+        <div class="chip" data-value="Иглонож" data-group="direction">&#9889; Иглонож</div>
+        <div class="chip" data-value="ЛФК" data-group="direction">&#127939; ЛФК</div>
+        <div class="chip" data-value="АФК" data-group="direction">&#129336; АФК</div>
+        <div class="chip" data-value="Access Bars" data-group="direction">&#129504; Access Bars</div>
+      </div>
+    </div>
+    <div class="hint" id="chipHint">&#9888;&#65039; Выбери хотя бы одно направление</div>
+  </div>
+
+  <!-- CARD: Тон -->
+  <div class="card">
+    <div class="card-title">2 — Тон поста</div>
+    <div class="chips">
+      <div class="chip chip-tone warm active" data-value="Тёплый и заботливый" data-group="tone" data-cls="warm">&#128155; Тёплый и заботливый</div>
+      <div class="chip chip-tone energy" data-value="Энергичный и мотивирующий" data-group="tone" data-cls="energy">&#128293; Энергичный и мотивирующий</div>
+      <div class="chip chip-tone expert" data-value="Экспертный и серьёзный" data-group="tone" data-cls="expert">&#129504; Экспертный и серьёзный</div>
+    </div>
+  </div>
+
+  <!-- CARD: Тема -->
+  <div class="card">
+    <div class="card-title">3 — О чём пишем</div>
+    <label class="field-label" for="topicInput">Твои мысли, факты или польза по теме:</label>
+    <textarea class="field-textarea" id="topicInput" placeholder="О чём пишем сегодня? (пара мыслей, фактов или польза)" rows="4" maxlength="500"></textarea>
+    <div class="char-counter" id="charCounter">0 / 500</div>
+    <div class="hint" id="topicHint">&#9888;&#65039; Напиши хотя бы пару слов о теме</div>
+  </div>
+
+  <!-- CARD: Настройки -->
+  <div class="card">
+    <div class="card-title">4 — Настройки</div>
+    <div class="toggle-row">
+      <label class="toggle-label" for="poemToggle">&#10024; Добавить красивый стих в текст</label>
+      <label class="toggle">
+        <input type="checkbox" id="poemToggle">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- GENERATE -->
+  <button class="btn-generate" id="generateBtn" onclick="handleGenerate()">
+    <span>&#10024;</span> Создать пост и картинку &#128302;
+  </button>
+
+  <!-- ERROR -->
+  <div class="error-box" id="errorBox"></div>
+
+  <!-- RESULTS -->
+  <div class="results" id="resultsBlock">
+    <div class="card" style="margin-top:22px">
+      <div class="result-label">&#128221; Готовый пост</div>
+      <textarea class="result-text" id="resultText" placeholder="Здесь появится текст поста..."></textarea>
+      <div class="result-btns">
+        <button class="action-btn" id="copyBtn" onclick="copyText()">
+          <span>&#128203;</span> <span id="copyBtnText">Скопировать текст</span>
+        </button>
+        <button class="action-btn regen" onclick="handleGenerate(true)">
+          <span>&#128260;</span> Ещё вариант
+        </button>
+      </div>
+    </div>
+
+    <div class="card img-section">
+      <div class="result-label">&#128444;&#65039; Сгенерированная картинка</div>
+      <div class="img-wrap" id="imgWrap">
+        <div class="img-placeholder" id="imgPlaceholder">
+          <div>&#127912;</div>
+          <p>Картинка появится здесь</p>
+        </div>
+      </div>
+      <a class="img-download" id="imgDownload" style="display:none" download="magic-post.png" target="_blank">
+        &#11015;&#65039; Сохранить картинку
+      </a>
+    </div>
+  </div>
+
+  <div class="magic-footer">&#10022; Магия создана с любовью &#10022;</div>
+</main>
+
+<script>
+/* =============================================
+   НАСТРОЙКИ API
+   ============================================= */
+const API_KEY       = "sk-or-vv-a0ace08311df28a37a7fd4d34ba79e52dba5272d350d6890293a94f39043ee68";
+const API_URL_CHAT  = "https://api.vsegpt.ru/v1/chat/completions";
+const API_URL_IMAGE = "https://api.vsegpt.ru/v1/images/generations";
+const TEXT_MODEL    = "anthropic/claude-opus-4.6-thinking";
+const IMAGE_MODEL   = "openai/dall-e-3";
+
+/* =============================================
+   СОСТОЯНИЕ
+   ============================================= */
+let selectedDirection = null;
+let selectedTone      = "Тёплый и заботливый";
+
+/* =============================================
+   ПРИВЕТСТВИЕ ПО ВРЕМЕНИ (UTC+5 Нефтекамск)
+   ============================================= */
+const QUOTES = [
+  "Творчество — это позволить себе ошибиться. Искусство — знать, какие ошибки оставить.",
+  "Женщина, знающая свою силу, — это тихий ураган, меняющий мир вокруг себя.",
+  "Здоровье — это не всё, но без здоровья всё — ничто.",
+  "Каждый пост — это семя, которое ты бросаешь в мир. Оно обязательно прорастёт.",
+  "Вдохновение приходит к тем, кто уже сидит за работой.",
+  "Твоя история — лучший контент, который только существует.",
+  "Красота начинается там, где ты решаешь быть собой.",
+  "Слова, сказанные с любовью, долетают до самых закрытых сердец.",
+  "Энергия, которую ты вкладываешь в слова, возвращается к тебе сторицей.",
+  "Магия случается, когда смелость встречается с мастерством.",
+  "Настоящий эксперт — тот, кто умеет объяснить сложное просто и с душой.",
+  "Каждое доброе слово — это маленькое исцеление для того, кто его читает.",
+  "Сила женщины — в её способности создавать уют даже в словах.",
+  "Не бойся показывать своё призвание. Мир ждёт именно тебя.",
+  "Контент — это разговор с теми, кто тебя ещё не встретил.",
+  "Твоё дело помогает людям. Расскажи об этом — и помощь умножится.",
+  "Каждое утро — это чистая страница. Напиши что-то достойное.",
+  "Женская мудрость — самый тёплый свет в любом тексте.",
+  "Исцеление начинается с одного шага навстречу себе.",
+  "Гармония внутри рождает красоту снаружи — в словах, делах и жизни.",
+  "Пиши так, будто разговариваешь с лучшей подругой — честно и с теплом.",
+  "Твой голос важен. Молчание — это тоже выбор, но не всегда лучший.",
+  "Движение — это жизнь. Слово — это связь. Совмести оба.",
+  "Настоящий контент рождается из опыта, а не из воздуха.",
+  "Каждая клиентка — это история, которую ты помогаешь написать.",
+  "Доверие строится словами, искренними как утренний свет.",
+  "Творческая усталость — знак того, что ты вкладываешь душу.",
+  "Маленькие регулярные шаги создают большие результаты.",
+  "Пусть каждый твой пост — это объятие для читателя.",
+  "Самый мощный маркетинг — это искренняя забота."
+];
+
+function initGreeting() {
+  // UTC+5 Нефтекамск
+  const now     = new Date();
+  const utc     = now.getTime() + now.getTimezoneOffset() * 60000;
+  const neft    = new Date(utc + 5 * 3600000);
+  const hour    = neft.getHours();
+  const day     = neft.getDate(); // 1–31
+
+  let greet;
+  if (hour >= 5 && hour < 12) {
+    greet = "Доброе утро, Ирина &#9728;&#65039; Пусть день будет творческим!";
+  } else if (hour >= 12 && hour < 17) {
+    greet = "Добрый день, Ирина &#127800; Время создавать магию!";
+  } else if (hour >= 17 && hour < 22) {
+    greet = "Добрый вечер, Ирина &#127769; Вдохновение уже здесь...";
+  } else {
+    greet = "Доброй ночи, Ирина &#10024; Даже звёзды ждут твоих постов...";
+  }
+
+  const quoteIndex = (day - 1) % QUOTES.length;
+
+  document.getElementById('greetingText').innerHTML  = greet;
+  document.getElementById('greetingQuote').textContent = "«" + QUOTES[quoteIndex] + "»";
+}
+initGreeting();
+
+/* =============================================
+   CHIPS
+   ============================================= */
+document.querySelectorAll('.chip[data-group="direction"]').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip[data-group="direction"]').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    selectedDirection = chip.dataset.value;
+    document.getElementById('chipHint').classList.remove('show');
+  });
+});
+
+document.querySelectorAll('.chip[data-group="tone"]').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip[data-group="tone"]').forEach(c => {
+      c.classList.remove('active');
+      if (c.dataset.cls) c.classList.remove(c.dataset.cls);
+    });
+    chip.classList.add('active');
+    if (chip.dataset.cls) chip.classList.add(chip.dataset.cls);
+    selectedTone = chip.dataset.value;
+  });
+});
+
+/* =============================================
+   СЧЁТЧИК СИМВОЛОВ
+   ============================================= */
+document.getElementById('topicInput').addEventListener('input', function() {
+  const len = this.value.length;
+  const counter = document.getElementById('charCounter');
+  counter.textContent = len + ' / 500';
+  counter.className = 'char-counter' + (len > 450 ? ' warn' : '') + (len >= 500 ? ' over' : '');
+  if (len >= 3) document.getElementById('topicHint').classList.remove('show');
+});
+
+/* =============================================
+   ВАЛИДАЦИЯ
+   ============================================= */
+function validate() {
+  let ok = true;
+  if (!selectedDirection) {
+    document.getElementById('chipHint').classList.add('show');
+    ok = false;
+  }
+  const topic = document.getElementById('topicInput').value.trim();
+  if (topic.length < 3) {
+    document.getElementById('topicHint').classList.add('show');
+    ok = false;
+  } else {
+    document.getElementById('topicHint').classList.remove('show');
+  }
+  return ok;
+}
+
+/* =============================================
+   OVERLAY
+   ============================================= */
+function showOverlay() {
+  document.getElementById('magicOverlay').classList.add('show');
+}
+function hideOverlay() {
+  const overlay = document.getElementById('magicOverlay');
+  overlay.style.transition = 'opacity .5s ease';
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    overlay.classList.remove('show');
+    overlay.style.opacity = '';
+    overlay.style.transition = '';
+  }, 500);
+}
+
+/* =============================================
+   ПРОМПТЫ
+   ============================================= */
+function buildTextMessages(direction, tone, topic, withPoem) {
+  const isEnergo = direction === 'Энерготерапия';
+
+  const poemInstruction = withPoem
+    ? ' В конце текста органично вплети красивое, трогательное, ритмичное стихотворение (4–8 строк) по теме поста.'
+    : '';
+
+  const seoInstruction = isEnergo
+    ? ' Пиши БЕЗ привязки к городу Нефтекамск. В конце добавь блок из 8–12 универсальных тематических хэштегов по энерготерапии, биоэнергетике и духовным практикам — без гео-тегов.'
+    : ` Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте (1–3 раза). В конце добавь блок из 10–15 хэштегов для ВКонтакте и Яндекса: обязательно включи гео-хэштеги (#нефтекамск и релевантные гео-варианты для направления "${direction}"), тематические хэштеги по направлению и общие популярные хэштеги по здоровью и красоте.`;
+
+  const system = `Ты профессиональный SMM-копирайтер. Пишешь вовлекающие посты для ВКонтакте. Тон: ${tone} — живой, современный, без канцелярита. Используй эмодзи умеренно (3–6 штук). Структурируй: цепляющее начало, польза, призыв к действию. Длина 150–260 слов.${poemInstruction}${seoInstruction}`;
+
+  const user = `Экспертная ниша: ${direction}.\nТема поста: ${topic}.\n\nНапиши пост.`;
+
+  return [
+    { role: 'system', content: system },
+    { role: 'user',   content: user }
+  ];
+}
+
+function buildImagePrompt(direction, topic) {
+  return `Aesthetic high-quality cinematic photograph. Theme: "${direction}" and "${topic}". Beautiful natural light, shallow depth of field, warm tones. Organically integrated large beautiful Russian text that reflects the essence of the topic. High detail, editorial style, inspirational mood.`;
+}
+
+/* =============================================
+   API ЗАПРОСЫ
+   ============================================= */
+async function fetchText(messages) {
+  const res = await fetch(API_URL_CHAT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+    body: JSON.stringify({ model: TEXT_MODEL, messages, max_tokens: 1024, temperature: 0.85 })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Ошибка текста: ${res.status}`);
+  }
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
+async function fetchImage(prompt) {
+  const res = await fetch(API_URL_IMAGE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+    body: JSON.stringify({
+    model: IMAGE_MODEL,
+    prompt: `Красивая, эстетичная фотография. Тема: ${document.querySelector('.chip.active')?.textContent || 'Творчество'} - ${document.querySelector('textarea').value.substring(0, 100)}. На картинке красиво написан текст на русском языке. Высокое качество.`,
+    n: 1,
+    size: "1024x1024"
+})
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `Ошибка картинки: ${res.status}`);
+  }
+  const data = await res.json();
+  return data.data?.[0]?.url || data.data?.[0]?.b64_json || null;
+}
+
+/* =============================================
+   ГЛАВНАЯ ФУНКЦИЯ
+   ============================================= */
+async function handleGenerate(isRegen = false) {
+  if (!validate()) return;
+
+  const direction = selectedDirection;
+  const tone      = selectedTone;
+  const topic     = document.getElementById('topicInput').value.trim();
+  const withPoem  = document.getElementById('poemToggle').checked;
+  const btn       = document.getElementById('generateBtn');
+  const errorBox  = document.getElementById('errorBox');
+
+  errorBox.classList.remove('show');
+  errorBox.textContent = '';
+  if (!isRegen) document.getElementById('resultsBlock').classList.remove('show');
+
+  btn.disabled = true;
+  showOverlay();
+
+  try {
+    const messages    = buildTextMessages(direction, tone, topic, withPoem);
+    const imagePrompt = buildImagePrompt(direction, topic);
+
+    const [textResult, imageUrl] = await Promise.all([
+      fetchText(messages),
+      fetchImage(imagePrompt).catch(e => { console.warn('Image error:', e); return null; })
+    ]);
+
+    // Текст
+    document.getElementById('resultText').value = textResult;
+
+    // Картинка
+    const imgWrap     = document.getElementById('imgWrap');
+    const imgDownload = document.getElementById('imgDownload');
+
+    if (imageUrl) {
+      const src = imageUrl.startsWith('http') ? imageUrl : `data:image/png;base64,${imageUrl}`;
+      imgWrap.innerHTML = `<img src="${src}" alt="Сгенерированная картинка" loading="lazy">`;
+      imgDownload.href = src;
+      imgDownload.style.display = 'inline-flex';
+    } else {
+      imgWrap.innerHTML = '<div class="img-placeholder"><div>&#127912;</div><p>Картинку не удалось получить</p></div>';
+      imgDownload.style.display = 'none';
+    }
+
+    document.getElementById('resultsBlock').classList.add('show');
+
+    // Сохранить в историю
+    saveToHistory(direction, tone, topic, textResult);
+
+    setTimeout(() => {
+      document.getElementById('resultsBlock').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+
+  } catch (err) {
+    console.error(err);
+    errorBox.textContent = '⚠️ ' + (err.message || 'Что-то пошло не так. Проверь API-ключ и попробуй снова.');
+    errorBox.classList.add('show');
+  } finally {
+    hideOverlay();
+    btn.disabled = false;
+  }
+}
+
+/* =============================================
+   КОПИРОВАНИЕ
+   ============================================= */
+async function copyText() {
+  const text = document.getElementById('resultText').value;
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const ta = document.getElementById('resultText');
+    ta.select();
+    document.execCommand('copy');
+  }
+  const btn = document.getElementById('copyBtn');
+  const lbl = document.getElementById('copyBtnText');
+  btn.classList.add('copied');
+  lbl.textContent = 'Скопировано ✓';
+  setTimeout(() => { btn.classList.remove('copied'); lbl.textContent = 'Скопировать текст'; }, 2500);
+}
+
+/* =============================================
+   ИСТОРИЯ (localStorage)
+   ============================================= */
+const HIST_KEY = 'magic_history_v1';
+
+function saveToHistory(direction, tone, topic, text) {
+  let hist = getHistory();
+  hist.unshift({
+    id: Date.now(),
+    date: new Date().toLocaleString('ru', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }),
+    direction, tone, topic, text
+  });
+  if (hist.length > 10) hist = hist.slice(0, 10);
+  localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+}
+
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(HIST_KEY)) || []; } catch { return []; }
+}
+
+function openHistory() {
+  const hist = getHistory();
+  const list = document.getElementById('histList');
+
+  if (!hist.length) {
+    list.innerHTML = '<div class="hist-empty">&#128218; История пока пуста.<br>Создай первый пост!</div>';
+  } else {
+    list.innerHTML = hist.map((item, i) => `
+      <div class="hist-item" onclick="toggleHistItem(${i})">
+        <div class="hist-item-meta">
+          <span class="hist-item-date">&#128197; ${item.date}</span>
+          <span class="hist-item-dir">${item.direction}</span>
+        </div>
+        <div class="hist-item-preview">${item.text.slice(0, 90).replace(/\n/g,' ')}...</div>
+        <div class="hist-item-full" id="histFull${i}">
+          <textarea rows="6" onclick="event.stopPropagation()">${item.text}</textarea>
+          <button class="hist-copy" onclick="event.stopPropagation();histCopy(${i},this)">&#128203; Скопировать</button>
+        </div>
+      </div>
+    `).join('') + `<button class="hist-clear" onclick="clearHistory()">&#128465;&#65039; Очистить историю</button>`;
+  }
+
+  document.getElementById('histModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function toggleHistItem(i) {
+  const el = document.getElementById('histFull' + i);
+  if (!el) return;
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+async function histCopy(i, btn) {
+  const hist = getHistory();
+  if (!hist[i]) return;
+  try { await navigator.clipboard.writeText(hist[i].text); } catch { ; }
+  btn.textContent = '✓ Скопировано';
+  setTimeout(() => { btn.innerHTML = '&#128203; Скопировать'; }, 2000);
+}
+
+function clearHistory() {
+  if (!confirm('Очистить всю историю постов?')) return;
+  localStorage.removeItem(HIST_KEY);
+  closeHistory();
+}
+
+function closeHistory() {
+  document.getElementById('histModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function closeHistoryOutside(e) {
+  if (e.target === document.getElementById('histModal')) closeHistory();
+}
+</script>
+</body>
+</html>
