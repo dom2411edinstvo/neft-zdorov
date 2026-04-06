@@ -336,16 +336,19 @@ a{text-decoration:none;color:inherit}
 .magic-phrase{
   font-family:'Nunito',Georgia,serif;
   font-style:italic;
-  font-size:clamp(.95rem,4vw,1.4rem);
+  font-size:clamp(1rem,5vw,1.5rem);
   color:#ffd6e0;
   text-align:center;
-  padding:0 16px;
+  padding:0;
+  margin:0;
   animation:silverShimmer 3s ease-in-out infinite,phrasePop .5s ease both;
-  max-width:440px;
+  width:100%;
+  max-width:100%;
   line-height:1.45;
   font-weight:700;
   letter-spacing:.02em;
   word-break:break-word;
+  white-space:normal;
 }
 
 /* ── RESULT ── */
@@ -518,7 +521,7 @@ a{text-decoration:none;color:inherit}
   .sec-label{font-size:.8rem}
   .btn-generate{padding:14px;font-size:.97rem}
   .result-ta{min-height:170px;max-height:260px;font-size:.93rem}
-  .magic-phrase{font-size:.93rem;padding:0 8px}
+  .magic-phrase{font-size:1rem;padding:0;width:100%;max-width:100%}
   .overlay-hearts{font-size:1.8rem;gap:9px}
   .footer-text{font-size:.82rem}
   .back-link{font-size:.77rem;padding:7px 9px}
@@ -545,7 +548,7 @@ a{text-decoration:none;color:inherit}
       <span style="color:#ffc8d5;filter:drop-shadow(0 0 11px #ffb6c1)">💗</span>
       <span style="color:#ffb3c6;filter:drop-shadow(0 0 9px #ff8fab)">🩷</span>
     </div>
-    <div class="magic-phrase" id="overlayPhrase">«&thinsp;Свет очей безусловный невидимый&thinsp;»</div>
+    <div class="magic-phrase" id="overlayPhrase">Свет очей безусловный невидимый</div>
     <div class="overlay-hearts" style="animation-delay:.7s">
       <span style="color:#ffd6e0;filter:drop-shadow(0 0 9px #ffc8d5)">💕</span>
       <span style="color:#ffb3c6;filter:drop-shadow(0 0 11px #ff8fab)">🩷</span>
@@ -786,7 +789,6 @@ function createFloatingHearts() {
     '#ff69b4','#ff85c2','#ff4d9e','#ffb3c6','#ff1493',
     '#e91e8c','#ff6eb4','#ffc8d5','#dc143c','#c71585'
   ];
-  // Меньше сердечек для производительности
   for (let i = 0; i < 16; i++) {
     const h = document.createElement('div');
     h.className = 'fheart';
