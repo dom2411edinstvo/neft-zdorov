@@ -9,199 +9,144 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
+html,body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
 body{
   font-family:'Nunito',system-ui,sans-serif;
   color:#2d1a2e;
   line-height:1.6;
   min-height:100vh;
   background:#2a0a3e;
-  overflow-x:hidden;
 }
 a{text-decoration:none;color:inherit}
 
-/* ── ROMANTIC BACKGROUND — lighter, warmer, more romantic ── */
+/* ── BACKGROUND — не fixed, чтобы не тормозило на мобиле ── */
 .bg-canvas{
-  position:fixed;inset:0;z-index:0;
-  background: radial-gradient(ellipse at 15% 15%, #6b21a8 0%, transparent 48%),
-              radial-gradient(ellipse at 85% 85%, #9f1239 0%, transparent 48%),
-              radial-gradient(ellipse at 50% 50%, #312e81 0%, transparent 65%),
-              radial-gradient(ellipse at 70% 20%, #be185d 0%, transparent 40%),
-              linear-gradient(135deg,#2a0a3e 0%,#4a1060 40%,#3b0d55 70%,#2a0a3e 100%);
-  overflow:hidden;
-}
-.bg-canvas::before{
-  content:'';position:absolute;inset:0;
-  background: radial-gradient(ellipse at 30% 70%, rgba(236,72,153,.22) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 30%, rgba(251,113,133,.18) 0%, transparent 50%),
-              radial-gradient(ellipse at 50% 90%, rgba(192,38,211,.15) 0%, transparent 45%);
-  animation:bgPulse 7s ease-in-out infinite alternate;
-}
-.bg-canvas::after{
-  content:'';position:absolute;inset:0;
-  background: radial-gradient(ellipse at 20% 50%, rgba(255,182,193,.06) 0%, transparent 40%),
-              radial-gradient(ellipse at 80% 50%, rgba(255,105,180,.07) 0%, transparent 40%);
-  animation:bgPulse 11s ease-in-out infinite alternate-reverse;
-}
-@keyframes bgPulse{
-  0%{opacity:.5}100%{opacity:1}
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  min-height:100%;
+  z-index:0;
+  background:
+    radial-gradient(ellipse at 15% 15%, #6b21a8 0%, transparent 48%),
+    radial-gradient(ellipse at 85% 85%, #9f1239 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 50%, #312e81 0%, transparent 65%),
+    radial-gradient(ellipse at 70% 20%, #be185d 0%, transparent 40%),
+    linear-gradient(135deg,#2a0a3e 0%,#4a1060 40%,#3b0d55 70%,#2a0a3e 100%);
+  will-change:auto;
 }
 
-/* ── FLOATING HEARTS — only pink/red/burgundy, NO black ── */
-.hearts-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+/* ── FLOATING HEARTS ── */
+.hearts-bg{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;pointer-events:none;overflow:hidden}
 .fheart{
   position:absolute;bottom:-60px;
-  font-size:1.4rem;
   animation:floatUp linear infinite;
   opacity:0;
 }
 @keyframes floatUp{
   0%{transform:translateY(0) rotate(-10deg) scale(.8);opacity:0}
-  10%{opacity:.9}
-  90%{opacity:.5}
+  10%{opacity:.8}
+  90%{opacity:.4}
   100%{transform:translateY(-110vh) rotate(15deg) scale(1.1);opacity:0}
 }
 
-/* ── PAGE WRAPPER ── */
-.page{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:14px 12px 100px}
+/* ── WRAPPER ── */
+.site-wrap{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+}
 
-/* ── ANIMATIONS — smooth & natural ── */
-@keyframes fadeInDown{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:translateY(0)}}
+/* ── PAGE WRAPPER ── */
+.page{
+  position:relative;
+  z-index:2;
+  max-width:600px;
+  margin:0 auto;
+  padding:14px 12px 100px;
+  width:100%;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes resultFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes heartBeat{0%,100%{transform:scale(1)}40%{transform:scale(1.22)}70%{transform:scale(1.09)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes resultFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}40%{transform:scale(1.2)}70%{transform:scale(1.08)}}
 @keyframes silverShimmer{
-  0%,100%{
-    text-shadow:0 0 12px #ffb6c1cc,0 0 28px #ffcdd9aa,0 0 50px #ffb6c1aa,0 0 80px #ff9ab055;
-    opacity:.92;color:#ffd6e0;
-  }
-  50%{
-    text-shadow:0 0 20px #ffcdd9ff,0 0 50px #ffe4ecdd,0 0 90px #ffb6c1cc,0 0 130px #ff9ab088;
-    opacity:1;color:#fff0f4;
-  }
+  0%,100%{text-shadow:0 0 12px #ffb6c1cc,0 0 28px #ffcdd9aa;opacity:.92;color:#ffd6e0}
+  50%{text-shadow:0 0 20px #ffcdd9ff,0 0 50px #ffe4ecdd;opacity:1;color:#fff0f4}
 }
-@keyframes phrasePop{0%{opacity:0;transform:scale(.85) translateY(10px)}60%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
-@keyframes rotateHeart{0%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.15)}100%{transform:rotate(-5deg) scale(1)}}
-@keyframes glowPulse{0%,100%{box-shadow:0 0 18px rgba(236,72,153,.35),0 4px 20px rgba(0,0,0,.3)}50%{box-shadow:0 0 36px rgba(236,72,153,.6),0 4px 30px rgba(0,0,0,.4)}}
+@keyframes phrasePop{0%{opacity:0;transform:scale(.88) translateY(8px)}60%{transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
+@keyframes rotateHeart{0%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.12)}100%{transform:rotate(-5deg) scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 16px rgba(236,72,153,.35),0 4px 20px rgba(0,0,0,.3)}50%{box-shadow:0 0 32px rgba(236,72,153,.6),0 4px 28px rgba(0,0,0,.4)}}
 @keyframes shimmerText{0%{background-position:0%}100%{background-position:200%}}
-@keyframes overlayHeartFloat{
-  0%,100%{transform:translateY(0) scale(1)}
-  50%{transform:translateY(-10px) scale(1.1)}
-}
-@keyframes rosePulse{
-  0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px #ff6b6b88)}
-  50%{transform:scale(1.12);filter:drop-shadow(0 0 16px #ff4444cc)}
-}
+@keyframes overlayHeartFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.08)}}
 @keyframes diamondHeartPink{
-  0%,100%{
-    filter:drop-shadow(0 0 8px #ff69b4) drop-shadow(0 0 18px #ff1493aa) drop-shadow(0 0 32px #ff69b4aa);
-    transform:scale(1);color:#ff69b4;
-  }
-  33%{
-    filter:drop-shadow(0 0 16px #fff0f4) drop-shadow(0 0 36px #ff69b4ff) drop-shadow(0 0 60px #ff1493ff);
-    transform:scale(1.18);color:#ffb6c1;
-  }
-  66%{
-    filter:drop-shadow(0 0 12px #ffd6e0) drop-shadow(0 0 26px #ff69b4cc) drop-shadow(0 0 45px #ff1493cc);
-    transform:scale(1.09);color:#ff69b4;
-  }
+  0%,100%{filter:drop-shadow(0 0 8px #ff69b4) drop-shadow(0 0 18px #ff1493aa);transform:scale(1);color:#ff69b4}
+  50%{filter:drop-shadow(0 0 16px #fff0f4) drop-shadow(0 0 36px #ff69b4ff);transform:scale(1.15);color:#ffb6c1}
 }
 
 /* ── OVERLAY HEARTS ── */
-.overlay-hearts{font-size:2.2rem;display:flex;gap:14px}
-.overlay-hearts span{
-  display:inline-block;
-  animation:overlayHeartFloat 3.8s ease-in-out infinite;
-}
-.overlay-hearts span:nth-child(2){animation-delay:.9s}
-.overlay-hearts span:nth-child(3){animation-delay:1.8s}
+.overlay-hearts{font-size:2rem;display:flex;gap:12px}
+.overlay-hearts span{display:inline-block;animation:overlayHeartFloat 3.5s ease-in-out infinite}
+.overlay-hearts span:nth-child(2){animation-delay:.8s}
+.overlay-hearts span:nth-child(3){animation-delay:1.6s}
 
 /* ── GREETING ── */
-.greeting-wrap{animation:fadeInDown .8s ease both}
+.greeting-wrap{animation:fadeInDown .6s ease both}
 .greeting-block{
-  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
-  backdrop-filter:blur(14px);
-  border:1.5px solid rgba(255,150,180,.35);
+  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.07));
+  backdrop-filter:blur(10px);
+  border:1.5px solid rgba(255,150,180,.3);
   border-radius:20px;
-  padding:16px 18px;
-  margin-bottom:14px;
+  padding:14px 16px;
+  margin-bottom:12px;
   text-align:center;
-  box-shadow:0 8px 32px rgba(220,38,127,.22),inset 0 1px 0 rgba(255,255,255,.18);
-  position:relative;
+  box-shadow:0 6px 24px rgba(220,38,127,.18);
   overflow:hidden;
 }
-.greeting-block::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(236,72,153,.1),rgba(139,0,70,.06));
-  border-radius:20px;
-}
-
-/* ── HEARTS ROW — SVG pink hearts, no emoji rendering issues ── */
-.hearts-row{
-  display:flex;justify-content:center;gap:18px;
-  margin-bottom:8px;
-}
-.heart-svg-item{
-  display:inline-block;
-  animation:heartBeat 2.2s ease-in-out infinite;
-}
+.hearts-row{display:flex;justify-content:center;gap:16px;margin-bottom:8px}
+.heart-svg-item{display:inline-block;animation:heartBeat 2.2s ease-in-out infinite}
 .heart-svg-item:nth-child(1){animation-delay:.3s}
 .heart-svg-item:nth-child(2){animation-delay:1s}
-
-.greeting-text{
-  font-size:1.05rem;font-weight:800;
-  color:#fff;
-  margin-bottom:6px;
-  position:relative;
-  text-shadow:0 2px 8px rgba(236,72,153,.6),0 1px 0 rgba(255,255,255,.3);
-}
-.quote-text{
-  font-size:.92rem;
-  color:#f0d0e0;
-  font-style:italic;
-  line-height:1.6;
-  position:relative;
-  text-shadow:0 1px 4px rgba(0,0,0,.5);
-}
+.greeting-text{font-size:1rem;font-weight:800;color:#fff;margin-bottom:5px;text-shadow:0 2px 8px rgba(236,72,153,.5)}
+.quote-text{font-size:.88rem;color:#f0d0e0;font-style:italic;line-height:1.5;text-shadow:0 1px 4px rgba(0,0,0,.4)}
 
 /* ── HEADER ── */
-.page-header{text-align:center;margin-bottom:18px;animation:fadeIn .7s .2s both}
+.page-header{text-align:center;margin-bottom:16px;animation:fadeIn .6s .15s both}
 .page-header h1{
-  font-size:1.9rem;font-weight:900;
+  font-size:1.8rem;font-weight:900;
   background:linear-gradient(135deg,#ff6eb4,#ff2d78,#c2006e,#ff6eb4);
   background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   animation:shimmerText 3s linear infinite;
-  text-shadow:none;
-  filter:drop-shadow(0 3px 8px rgba(236,72,153,.5));
-  margin-bottom:4px;
+  filter:drop-shadow(0 2px 6px rgba(236,72,153,.4));
+  margin-bottom:3px;
 }
-.page-header p{
-  color:#e0b0cc;
-  font-size:.92rem;
-  font-weight:600;
-  text-shadow:0 1px 4px rgba(0,0,0,.5);
-}
+.page-header p{color:#e0b0cc;font-size:.88rem;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.4)}
 
-/* ── NAV LINKS ROW ── */
+/* ── NAV LINKS ── */
 .nav-links{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:14px;
+  gap:7px;
+  margin-bottom:12px;
+  width:100%;
 }
 .back-link{
-  display:inline-flex;align-items:center;gap:6px;
+  display:inline-flex;align-items:center;gap:5px;
   color:#ffb0d8;
-  font-size:.82rem;font-weight:800;
-  padding:8px 12px;
+  font-size:.8rem;font-weight:800;
+  padding:8px 10px;
   border-radius:14px;
   background:rgba(255,77,158,.1);
   border:1.5px solid rgba(255,77,158,.25);
-  transition:background .4s ease,border-color .4s ease,color .4s ease,box-shadow .4s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
-  backdrop-filter:blur(8px);
+  transition:background .15s,border-color .15s,color .15s,transform .15s;
+  backdrop-filter:blur(6px);
   text-decoration:none;
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
   white-space:nowrap;
   flex:1;
   justify-content:center;
@@ -210,835 +155,589 @@ a{text-decoration:none;color:inherit}
   touch-action:manipulation;
 }
 .back-link:hover{
-  background:rgba(255,77,158,.24);
-  border-color:rgba(255,77,158,.6);
+  background:rgba(255,77,158,.22);
+  border-color:rgba(255,77,158,.55);
   color:#fff;
-  box-shadow:0 4px 16px rgba(236,72,153,.3);
-  transform:translateY(-2px);
+  transform:translateY(-1px);
 }
+.back-link:active{transform:scale(.97)}
 .back-link svg{flex-shrink:0}
-.back-link .lnk-icon{font-size:1rem;flex-shrink:0}
 
 /* ── CARD ── */
 .card{
-  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
-  backdrop-filter:blur(16px);
-  border-radius:22px;
-  padding:18px 16px;
-  box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.15),0 0 0 1px rgba(255,150,180,.2);
-  margin-bottom:16px;
-  animation:fadeInUp .6s .3s both;
-  border:1px solid rgba(255,150,180,.2);
+  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.07));
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:16px 14px;
+  box-shadow:0 6px 28px rgba(0,0,0,.28),0 0 0 1px rgba(255,150,180,.18);
+  margin-bottom:14px;
+  animation:fadeInUp .5s .2s both;
+  border:1px solid rgba(255,150,180,.18);
   position:relative;overflow:hidden;
 }
 .card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,100,180,.65),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,100,180,.6),transparent);
 }
 
 /* ── SECTION LABEL ── */
-.sec-label{
-  font-size:.88rem;font-weight:800;
-  color:#ff9dc8;
-  text-transform:uppercase;letter-spacing:.08em;
-  margin-bottom:10px;
-  text-shadow:0 0 10px rgba(255,100,180,.5),0 2px 4px rgba(0,0,0,.3);
-}
+.sec-label{font-size:.85rem;font-weight:800;color:#ff9dc8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px;text-shadow:0 0 8px rgba(255,100,180,.4)}
 
 /* ── CHIP CATEGORY ── */
-.chip-cat{
-  font-size:.75rem;color:#d08aaa;font-weight:800;
-  text-transform:uppercase;letter-spacing:.06em;
-  margin:10px 0 6px;display:block;
-  text-shadow:0 1px 3px rgba(0,0,0,.4);
-}
+.chip-cat{font-size:.72rem;color:#d08aaa;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:9px 0 5px;display:block}
 
 /* ── CHIPS ── */
-.chips-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.chips-group{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:3px}
 .chip{
-  padding:9px 14px;
+  padding:8px 13px;
   border-radius:20px;
-  border:2px solid rgba(255,150,200,.3);
-  background:rgba(255,255,255,.08);
-  font-size:.9rem;font-weight:700;
+  border:2px solid rgba(255,150,200,.25);
+  background:rgba(255,255,255,.07);
+  font-size:.87rem;font-weight:700;
   cursor:pointer;
-  transition:border-color .35s ease,background .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,color .35s ease;
+  transition:border-color .12s,background .12s,transform .12s,box-shadow .12s,color .12s;
   color:#f0cce0;
   user-select:none;
-  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
   position:relative;overflow:hidden;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
 }
-.chip::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
-  border-radius:20px;
-  pointer-events:none;
-}
-.chip:hover{
-  border-color:rgba(255,100,180,.65);
-  background:rgba(255,100,180,.16);
-  transform:translateY(-2px);
-  box-shadow:0 6px 18px rgba(236,72,153,.28);
-  color:#fff;
-}
-.chip:active{transform:scale(.96) translateY(0)}
+.chip:active{transform:scale(.95)}
 .chip.active{
   border-color:#ff4d9e;
   background:linear-gradient(135deg,rgba(255,77,158,.28),rgba(190,24,93,.22));
   color:#fff;
-  box-shadow:0 4px 16px rgba(236,72,153,.38),inset 0 1px 0 rgba(255,255,255,.2);
-  transform:translateY(-1px);
+  box-shadow:0 3px 14px rgba(236,72,153,.35);
 }
 
 /* ── EMOJI 3D ── */
-.emoji-3d{
-  display:inline-block;
-  font-style:normal;
-  filter:drop-shadow(0 3px 4px rgba(0,0,0,.4)) drop-shadow(0 1px 2px rgba(255,100,150,.5));
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
-}
+.emoji-3d{display:inline-block;font-style:normal}
 
 /* ── TONE CHIPS ── */
-.tone-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tone-chips{display:flex;flex-wrap:wrap;gap:7px}
 .tone-chip{
-  padding:10px 16px;
+  padding:9px 14px;
   border-radius:20px;
-  border:2px solid rgba(255,150,200,.3);
-  background:rgba(255,255,255,.08);
-  font-size:.9rem;font-weight:700;
+  border:2px solid rgba(255,150,200,.25);
+  background:rgba(255,255,255,.07);
+  font-size:.87rem;font-weight:700;
   cursor:pointer;
-  transition:border-color .35s ease,background .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,color .35s ease;
+  transition:border-color .12s,background .12s,transform .12s,box-shadow .12s,color .12s;
   color:#f0cce0;
-  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
   position:relative;overflow:hidden;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
 }
-.tone-chip::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
-  border-radius:20px;
-  pointer-events:none;
-}
-.tone-chip:hover{
-  border-color:rgba(255,100,180,.65);
-  background:rgba(255,100,180,.16);
-  transform:translateY(-2px);
-  box-shadow:0 6px 18px rgba(236,72,153,.28);
-  color:#fff;
-}
-.tone-chip:active{transform:scale(.96) translateY(0)}
+.tone-chip:active{transform:scale(.95)}
 .tone-chip.active{
   border-color:#ff4d9e;
   background:linear-gradient(135deg,rgba(255,77,158,.28),rgba(190,24,93,.22));
   color:#fff;
-  box-shadow:0 4px 16px rgba(236,72,153,.38),inset 0 1px 0 rgba(255,255,255,.2);
-  transform:translateY(-1px);
+  box-shadow:0 3px 14px rgba(236,72,153,.35);
 }
 
 /* ── TEXTAREA ── */
-.ta-wrap{position:relative;margin-top:4px}
+.ta-wrap{position:relative;margin-top:3px}
 .ta-wrap textarea{
   width:100%;
-  padding:14px 16px;
-  border:2px solid rgba(255,150,200,.3);
-  border-radius:16px;
-  font-size:1.04rem;
+  padding:12px 14px;
+  border:2px solid rgba(255,150,200,.28);
+  border-radius:14px;
+  font-size:1rem;
   font-family:'Nunito',inherit;
-  resize:vertical;min-height:90px;
-  line-height:1.6;
-  transition:border-color .4s ease,box-shadow .4s ease;
+  resize:vertical;min-height:88px;
+  line-height:1.55;
+  transition:border-color .15s,box-shadow .15s;
   color:#1e0a2e;
   background:rgba(255,255,255,.96);
-  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
   font-weight:700;
   -webkit-appearance:none;
+  max-width:100%;
 }
-.ta-wrap textarea:focus{
-  outline:none;
-  border-color:#ff4d9e;
-  box-shadow:0 0 0 3px rgba(255,77,158,.2),0 2px 12px rgba(0,0,0,.2);
-}
-.ta-wrap textarea::placeholder{
-  color:#8b6070;
-  font-weight:700;
-  font-size:1.04rem;
-}
-.char-count{text-align:right;font-size:.8rem;color:#d090b0;margin-top:4px;font-weight:600}
+.ta-wrap textarea:focus{outline:none;border-color:#ff4d9e;box-shadow:0 0 0 3px rgba(255,77,158,.18)}
+.ta-wrap textarea::placeholder{color:#8b6070;font-weight:700;font-size:1rem}
+.char-count{text-align:right;font-size:.78rem;color:#d090b0;margin-top:3px;font-weight:600}
 
 /* ── POEM TOGGLE ── */
 .poem-toggle-card{
-  background:linear-gradient(135deg,rgba(255,77,158,.15),rgba(139,0,70,.12));
-  border:2px solid rgba(255,100,180,.35);
-  border-radius:16px;
-  padding:13px 16px;
-  margin-top:4px;
-  display:flex;align-items:center;gap:12px;
-  box-shadow:0 4px 16px rgba(236,72,153,.15),inset 0 1px 0 rgba(255,255,255,.12);
-  transition:all .4s ease;
-  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,77,158,.14),rgba(139,0,70,.1));
+  border:2px solid rgba(255,100,180,.3);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-top:3px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 3px 12px rgba(236,72,153,.12);
   -webkit-tap-highlight-color:transparent;
 }
-.poem-toggle-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.07),transparent);
-  border-radius:16px;
-  pointer-events:none;
-}
 .poem-toggle-label{
-  font-size:.95rem;
-  color:#ffe0f0;
-  font-weight:800;
-  cursor:pointer;
-  flex:1;
-  position:relative;
-  line-height:1.4;
-  text-shadow:0 1px 4px rgba(0,0,0,.4);
+  font-size:.92rem;color:#ffe0f0;font-weight:800;cursor:pointer;flex:1;line-height:1.35;
 }
 .poem-toggle-label .poem-icon{
-  font-size:1.3rem;
-  display:inline-block;
-  filter:drop-shadow(0 2px 4px rgba(255,100,180,.8));
+  font-size:1.2rem;display:inline-block;
   animation:rotateHeart 3s ease-in-out infinite;
-  margin-right:6px;
-  vertical-align:middle;
+  margin-right:5px;vertical-align:middle;
 }
 
 /* ── TOGGLE ── */
-.toggle{position:relative;width:52px;height:30px;flex-shrink:0}
+.toggle{position:relative;width:50px;height:28px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
 .slider{
   position:absolute;inset:0;
-  background:rgba(255,255,255,.2);
-  border-radius:15px;
-  cursor:pointer;
-  transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
-  border:1.5px solid rgba(255,150,200,.3);
+  background:rgba(255,255,255,.18);
+  border-radius:14px;cursor:pointer;
+  transition:background .15s,box-shadow .15s;
+  border:1.5px solid rgba(255,150,200,.28);
 }
 .slider:before{
   content:'';position:absolute;
-  width:22px;height:22px;
-  left:4px;top:3px;
+  width:20px;height:20px;left:4px;top:3px;
   background:#fff;border-radius:50%;
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  transition:transform .2s cubic-bezier(.34,1.4,.64,1);
+  box-shadow:0 2px 5px rgba(0,0,0,.28);
 }
-.toggle input:checked+.slider{
-  background:linear-gradient(135deg,#ff4d9e,#c2006e);
-  border-color:#ff4d9e;
-  box-shadow:0 0 14px rgba(255,77,158,.55);
-}
-.toggle input:checked+.slider:before{
-  transform:translateX(22px);
-  box-shadow:0 2px 8px rgba(0,0,0,.3),0 0 6px rgba(255,255,255,.4);
-}
+.toggle input:checked+.slider{background:linear-gradient(135deg,#ff4d9e,#c2006e);border-color:#ff4d9e;box-shadow:0 0 12px rgba(255,77,158,.5)}
+.toggle input:checked+.slider:before{transform:translateX(22px)}
 
 /* ── BTN GENERATE ── */
 .btn-generate{
   width:100%;
   background:linear-gradient(135deg,#ff2d78,#c2006e,#8b0050);
   color:#fff;border:none;
-  padding:17px;border-radius:16px;
-  font-size:1.05rem;font-weight:900;
-  cursor:pointer;margin-top:14px;
-  box-shadow:0 6px 24px rgba(236,72,153,.45),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2);
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease,opacity .3s ease;
+  padding:15px;border-radius:14px;
+  font-size:1rem;font-weight:900;
+  cursor:pointer;margin-top:12px;
+  box-shadow:0 5px 20px rgba(236,72,153,.42),inset 0 1px 0 rgba(255,255,255,.18);
+  transition:transform .15s,box-shadow .15s,opacity .15s;
   letter-spacing:.02em;
   position:relative;overflow:hidden;
-  text-shadow:0 1px 3px rgba(0,0,0,.4);
+  text-shadow:0 1px 3px rgba(0,0,0,.35);
   font-family:'Nunito',inherit;
   animation:glowPulse 3s ease-in-out infinite;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
 }
-.btn-generate::before{
-  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-  transition:left .55s ease;
-}
-.btn-generate:hover::before{left:100%}
-.btn-generate:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 12px 38px rgba(236,72,153,.58),0 4px 12px rgba(0,0,0,.3)}
-.btn-generate:active{transform:scale(.97);transition:transform .15s ease}
+.btn-generate:active{transform:scale(.97);animation:none}
 .btn-generate:disabled{opacity:.55;cursor:not-allowed;animation:none;transform:none}
 
 /* ── MAGIC OVERLAY ── */
 .magic-overlay{
   position:fixed;inset:0;
   background:rgba(10,0,30,.88);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(6px);
   z-index:3000;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;
-  opacity:0;pointer-events:none;transition:opacity .5s ease;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;
+  opacity:0;pointer-events:none;transition:opacity .4s ease;
   padding:20px;
 }
 .magic-overlay.show{opacity:1;pointer-events:all}
 .magic-phrase{
   font-family:'Nunito',Georgia,serif;
   font-style:italic;
-  font-size:clamp(1rem,4.5vw,1.5rem);
+  font-size:clamp(.95rem,4vw,1.4rem);
   color:#ffd6e0;
   text-align:center;
-  padding:0 20px;
-  animation:silverShimmer 3.2s ease-in-out infinite,phrasePop .6s ease both;
-  max-width:460px;
+  padding:0 16px;
+  animation:silverShimmer 3s ease-in-out infinite,phrasePop .5s ease both;
+  max-width:440px;
   line-height:1.45;
   font-weight:700;
-  letter-spacing:.03em;
-  white-space:normal;
+  letter-spacing:.02em;
   word-break:break-word;
 }
 
 /* ── RESULT ── */
 .result-block{
-  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.07));
-  backdrop-filter:blur(16px);
-  border-radius:22px;
-  padding:20px 16px;
-  box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,150,180,.2),inset 0 1px 0 rgba(255,255,255,.15);
-  animation:resultFade .55s ease both;
-  border:1px solid rgba(255,150,180,.18);
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:18px 14px;
+  box-shadow:0 6px 28px rgba(0,0,0,.28),0 0 0 1px rgba(255,150,180,.18);
+  animation:resultFade .4s ease both;
+  border:1px solid rgba(255,150,180,.16);
 }
 .result-label{
-  font-size:.88rem;font-weight:800;
-  color:#4ade80;
-  text-transform:uppercase;letter-spacing:.07em;
-  margin-bottom:10px;
-  display:flex;align-items:center;gap:8px;
-  text-shadow:0 0 10px rgba(74,222,128,.4),0 1px 3px rgba(0,0,0,.3);
+  font-size:.85rem;font-weight:800;color:#4ade80;
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;
+  display:flex;align-items:center;gap:7px;
 }
-.result-label .dot{
-  display:inline-block;width:10px;height:10px;
-  background:radial-gradient(circle at 35% 35%,#86efac,#16a34a);
-  border-radius:50%;
-  box-shadow:0 0 8px rgba(74,222,128,.6);
-}
+.result-label .dot{display:inline-block;width:9px;height:9px;background:radial-gradient(circle at 35% 35%,#86efac,#16a34a);border-radius:50%;box-shadow:0 0 7px rgba(74,222,128,.55)}
 
-/* ── RESULT TEXTAREA with BIG SCROLLBAR ── */
+/* ── RESULT TEXTAREA ── */
 .result-ta-wrap{
-  position:relative;
-  border:2.5px solid rgba(255,100,160,.5);
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 2px 16px rgba(236,72,153,.18),0 0 0 1px rgba(255,150,200,.15);
+  border:2px solid rgba(255,100,160,.45);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(236,72,153,.15);
 }
 .result-ta{
-  width:100%;
-  border:none;
-  outline:none;
-  padding:16px 18px;
-  font-size:1rem;
-  font-family:'Nunito',inherit;
-  line-height:1.75;
-  min-height:200px;
-  max-height:340px;
-  resize:none;
-  color:#1e0a2e;
+  width:100%;border:none;outline:none;
+  padding:14px 16px;
+  font-size:.97rem;font-family:'Nunito',inherit;
+  line-height:1.7;min-height:190px;max-height:320px;
+  resize:none;color:#1e0a2e;
   background:rgba(255,255,255,.97);
-  font-weight:600;
-  display:block;
-  overflow-y:auto;
-  scrollbar-width:thick;
-  scrollbar-color:#ff4d9e rgba(255,200,220,.3);
+  font-weight:600;display:block;overflow-y:auto;
+  scrollbar-width:thick;scrollbar-color:#ff4d9e rgba(255,200,220,.3);
 }
-.result-ta::-webkit-scrollbar{width:16px}
-.result-ta::-webkit-scrollbar-track{background:rgba(255,180,210,.22);border-radius:10px;margin:4px 0}
-.result-ta::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8fc8,#ff2d78,#c2006e);border-radius:10px;border:3px solid rgba(255,200,230,.35);box-shadow:0 2px 8px rgba(236,72,153,.5);min-height:56px}
-.result-ta::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#ffb0d8,#ff4d9e,#e0006a);box-shadow:0 2px 14px rgba(236,72,153,.7)}
-.result-ta::-webkit-scrollbar-thumb:active{background:linear-gradient(180deg,#ffc8e0,#ff2d78,#a0005a)}
+.result-ta::-webkit-scrollbar{width:14px}
+.result-ta::-webkit-scrollbar-track{background:rgba(255,180,210,.2);border-radius:8px;margin:3px 0}
+.result-ta::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8fc8,#ff2d78,#c2006e);border-radius:8px;border:3px solid rgba(255,200,230,.3);min-height:48px}
 
-.result-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.result-btns{display:flex;gap:9px;margin-top:10px;flex-wrap:wrap}
 .btn-copy{
-  flex:1;min-width:140px;
+  flex:1;min-width:130px;
   background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#fff;border:none;
-  padding:14px 16px;border-radius:14px;
-  font-size:.95rem;font-weight:800;
-  cursor:pointer;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease;
-  box-shadow:0 4px 14px rgba(34,197,94,.35);
+  color:#fff;border:none;padding:13px 14px;border-radius:12px;
+  font-size:.92rem;font-weight:800;cursor:pointer;
+  transition:transform .12s,box-shadow .12s;
+  box-shadow:0 3px 12px rgba(34,197,94,.32);
   font-family:'Nunito',inherit;
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
-.btn-copy:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(34,197,94,.5)}
 .btn-copy:active{transform:scale(.96)}
 .btn-regen{
-  flex:1;min-width:140px;
+  flex:1;min-width:130px;
   background:linear-gradient(135deg,rgba(255,77,158,.18),rgba(190,24,93,.14));
-  color:#ffb0d8;
-  border:2px solid rgba(255,77,158,.5);
-  padding:14px 16px;border-radius:14px;
-  font-size:.95rem;font-weight:800;
-  cursor:pointer;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease,color .3s ease;
+  color:#ffb0d8;border:2px solid rgba(255,77,158,.45);
+  padding:13px 14px;border-radius:12px;
+  font-size:.92rem;font-weight:800;cursor:pointer;
+  transition:transform .12s,background .12s,color .12s;
   font-family:'Nunito',inherit;
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-.btn-regen:hover{
-  background:linear-gradient(135deg,rgba(255,77,158,.3),rgba(190,24,93,.25));
-  color:#fff;transform:translateY(-2px);
-  box-shadow:0 8px 22px rgba(236,72,153,.35);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
 .btn-regen:active{transform:scale(.96)}
 
 /* ── HISTORY BTN ── */
 .btn-history{
-  display:flex;align-items:center;justify-content:center;gap:10px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
   width:100%;
-  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
-  color:#ffb0d8;
-  border:2px solid rgba(255,150,200,.3);
-  padding:14px;border-radius:16px;
-  font-size:1rem;font-weight:800;
-  cursor:pointer;margin-top:4px;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease,border-color .4s ease,color .3s ease;
-  backdrop-filter:blur(10px);
-  box-shadow:0 4px 16px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);
+  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.05));
+  color:#ffb0d8;border:2px solid rgba(255,150,200,.28);
+  padding:13px;border-radius:14px;
+  font-size:.97rem;font-weight:800;cursor:pointer;margin-top:3px;
+  transition:transform .12s,background .12s,border-color .12s,color .12s;
+  backdrop-filter:blur(8px);
   font-family:'Nunito',inherit;
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-.btn-history:hover{
-  background:linear-gradient(135deg,rgba(255,77,158,.22),rgba(190,24,93,.16));
-  border-color:rgba(255,77,158,.55);
-  color:#fff;transform:translateY(-2px);
-  box-shadow:0 10px 28px rgba(236,72,153,.28);
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
 }
 .btn-history:active{transform:scale(.97)}
-.btn-history .hist-icon-svg{
-  width:24px;height:24px;
-  filter:drop-shadow(0 2px 4px rgba(255,100,180,.6));
-}
+.btn-history .hist-icon-svg{width:22px;height:22px}
 
 /* ── HISTORY MODAL ── */
 .history-modal{
   position:fixed;inset:0;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(5px);
   z-index:4000;
   display:flex;align-items:flex-end;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .4s ease;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
 }
 .history-modal.show{opacity:1;pointer-events:all}
 .history-panel{
   background:linear-gradient(160deg,#3d1855,#2a0a3e);
-  border-radius:26px 26px 0 0;
+  border-radius:24px 24px 0 0;
   width:100%;max-width:600px;
-  max-height:85vh;overflow-y:auto;
-  padding:22px 16px 50px;
-  transform:translateY(80px);
-  transition:transform .45s cubic-bezier(.4,0,.2,1);
-  border-top:2px solid rgba(255,150,200,.3);
-  box-shadow:0 -8px 40px rgba(0,0,0,.5);
-  scrollbar-width:thick;
-  scrollbar-color:#ff4d9e rgba(255,200,220,.2);
+  max-height:82vh;overflow-y:auto;
+  padding:20px 14px 48px;
+  transform:translateY(70px);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  border-top:2px solid rgba(255,150,200,.28);
+  box-shadow:0 -6px 36px rgba(0,0,0,.45);
+  scrollbar-width:thin;scrollbar-color:#ff4d9e rgba(255,200,220,.2);
 }
-.history-panel::-webkit-scrollbar{width:10px}
-.history-panel::-webkit-scrollbar-track{background:rgba(255,200,220,.1);border-radius:6px}
-.history-panel::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff6eb4,#c2006e);border-radius:6px;min-height:40px}
 .history-modal.show .history-panel{transform:translateY(0)}
-.history-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.history-header h3{
-  font-size:1.15rem;font-weight:900;
-  color:#fff;
-  text-shadow:0 2px 8px rgba(236,72,153,.5),0 1px 0 rgba(255,255,255,.3);
-}
+.history-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.history-header h3{font-size:1.1rem;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(236,72,153,.4)}
 .btn-close-hist{
-  background:rgba(255,77,158,.15);
-  border:2px solid rgba(255,77,158,.3);
-  font-size:1.5rem;cursor:pointer;
-  color:#ffb0d8;line-height:1;
-  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,77,158,.14);border:2px solid rgba(255,77,158,.28);
+  font-size:1.4rem;cursor:pointer;color:#ffb0d8;line-height:1;
+  width:38px;height:38px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  transition:all .4s cubic-bezier(.34,1.56,.64,1);
-  -webkit-tap-highlight-color:transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
 }
-.btn-close-hist:hover{background:rgba(255,77,158,.32);transform:rotate(90deg) scale(1.12);color:#fff}
+.btn-close-hist:active{transform:scale(.92)}
 .hist-item{
-  border:1.5px solid rgba(255,150,200,.2);
-  border-radius:16px;
-  padding:14px;margin-bottom:10px;
-  cursor:pointer;
-  transition:border-color .35s ease,background .35s ease,transform .35s ease;
-  background:rgba(255,255,255,.05);
+  border:1.5px solid rgba(255,150,200,.18);border-radius:14px;
+  padding:13px;margin-bottom:9px;cursor:pointer;
+  transition:border-color .12s,background .12s;
+  background:rgba(255,255,255,.04);
   -webkit-tap-highlight-color:transparent;
 }
-.hist-item:hover{
-  border-color:rgba(255,77,158,.5);
-  background:rgba(255,77,158,.09);
-  transform:translateX(4px);
-}
-.hist-meta{font-size:.78rem;color:#c090b0;margin-bottom:5px;display:flex;gap:8px;font-weight:700;flex-wrap:wrap}
-.hist-service{
-  font-size:.78rem;font-weight:800;
-  color:#ff9dc8;
-  background:rgba(255,77,158,.15);
-  padding:3px 10px;border-radius:10px;
-  border:1px solid rgba(255,77,158,.3);
-}
-.hist-preview{font-size:.9rem;color:#e0c0d0;line-height:1.55;font-weight:600}
-.hist-full{margin-top:10px;display:none}
+.hist-meta{font-size:.76rem;color:#c090b0;margin-bottom:4px;display:flex;gap:7px;font-weight:700;flex-wrap:wrap}
+.hist-service{font-size:.76rem;font-weight:800;color:#ff9dc8;background:rgba(255,77,158,.14);padding:2px 9px;border-radius:9px;border:1px solid rgba(255,77,158,.28)}
+.hist-preview{font-size:.88rem;color:#e0c0d0;line-height:1.5;font-weight:600}
+.hist-full{margin-top:9px;display:none}
 .hist-full textarea{
-  width:100%;
-  border:1.5px solid rgba(255,150,200,.3);
-  border-radius:12px;
-  padding:12px;
-  font-size:.9rem;
-  font-family:'Nunito',inherit;
-  min-height:120px;resize:vertical;
-  color:#1e0a2e;
-  background:rgba(255,255,255,.96);
-  font-weight:600;
-  scrollbar-width:thick;
-  scrollbar-color:#ff4d9e rgba(255,200,220,.3);
+  width:100%;border:1.5px solid rgba(255,150,200,.28);border-radius:11px;
+  padding:11px;font-size:.88rem;font-family:'Nunito',inherit;
+  min-height:110px;resize:vertical;color:#1e0a2e;
+  background:rgba(255,255,255,.96);font-weight:600;
 }
-.hist-full textarea::-webkit-scrollbar{width:10px}
-.hist-full textarea::-webkit-scrollbar-track{background:rgba(255,200,220,.2);border-radius:6px}
-.hist-full textarea::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff6eb4,#c2006e);border-radius:6px;min-height:36px}
 .hist-full .btn-copy-h{
-  background:linear-gradient(135deg,#ff4d9e,#c2006e);
-  color:#fff;border:none;
-  padding:10px 18px;border-radius:12px;
-  font-size:.88rem;font-weight:800;
-  cursor:pointer;margin-top:10px;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease;
-  font-family:'Nunito',inherit;
-  box-shadow:0 3px 10px rgba(236,72,153,.35);
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  background:linear-gradient(135deg,#ff4d9e,#c2006e);color:#fff;border:none;
+  padding:9px 16px;border-radius:11px;font-size:.86rem;font-weight:800;
+  cursor:pointer;margin-top:9px;
+  transition:transform .12s;font-family:'Nunito',inherit;
   -webkit-tap-highlight-color:transparent;
 }
-.hist-full .btn-copy-h:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(236,72,153,.5)}
+.hist-full .btn-copy-h:active{transform:scale(.96)}
 .hist-item.expanded .hist-full{display:block}
-.hist-empty{text-align:center;color:#c090b0;padding:36px 0;font-size:1rem;font-weight:700}
+.hist-empty{text-align:center;color:#c090b0;padding:32px 0;font-size:.97rem;font-weight:700}
 
 /* ── DIVIDER ── */
-.divider{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,150,200,.3),transparent);
-  margin:12px 0 16px;
-}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,150,200,.28),transparent);margin:10px 0 14px}
 
-/* ── FOOTER — no border/frame ── */
-.footer{
-  position:relative;z-index:2;
-  text-align:center;
-  padding:20px 16px 36px;
-  margin-top:4px;
-}
-.footer-inner{
-  display:inline-block;
-  background:transparent;
-  border:none;
-  padding:14px 24px;
-}
-.footer-bouquet{
-  display:flex;align-items:center;justify-content:center;
-  gap:0;
-  margin-bottom:8px;
-}
-.footer-rose{
-  display:inline-block;
-  animation:rosePulse 2.2s ease-in-out infinite;
-}
-.footer-rose:nth-child(1){animation-delay:.0s}
-.footer-rose:nth-child(2){animation-delay:.35s}
-.footer-rose:nth-child(3){animation-delay:.7s}
-.footer-rose:nth-child(4){animation-delay:.2s}
-.footer-rose:nth-child(5){animation-delay:.55s}
-
-/* Pink sparkling heart SVG in footer */
+/* ── FOOTER ── */
+.footer{position:relative;z-index:2;text-align:center;padding:18px 16px 32px;margin-top:2px}
+.footer-inner{display:inline-block;padding:12px 20px}
+.footer-bouquet{display:flex;align-items:center;justify-content:center;margin-bottom:7px}
 .footer-pink-heart{
-  display:inline-block;
-  font-size:2.2rem;
-  margin:0 6px;
+  display:inline-block;font-size:2rem;margin:0 5px;
   animation:diamondHeartPink 2.4s ease-in-out infinite;
-  color:#ff69b4;
-  filter:drop-shadow(0 0 10px #ff69b4) drop-shadow(0 0 22px #ff1493aa);
+  color:#ff69b4;filter:drop-shadow(0 0 8px #ff69b4);
 }
-.footer-text{
-  font-size:.92rem;
-  font-weight:800;
-  color:#f0b8d0;
-  text-shadow:0 1px 6px rgba(236,72,153,.5),0 1px 3px rgba(0,0,0,.4);
-  line-height:1.6;
-  letter-spacing:.02em;
-}
-.footer-text .name{
-  color:#ff9dc8;
-  font-size:1.05rem;
-  font-weight:900;
-  text-shadow:0 0 14px rgba(255,77,158,.7),0 1px 4px rgba(0,0,0,.4);
-}
+.footer-text{font-size:.88rem;font-weight:800;color:#f0b8d0;line-height:1.55;letter-spacing:.02em}
+.footer-text .name{color:#ff9dc8;font-size:1rem;font-weight:900;text-shadow:0 0 12px rgba(255,77,158,.6)}
 
-/* ── SCROLLBAR GLOBAL ── */
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
-::-webkit-scrollbar-thumb{background:rgba(255,77,158,.4);border-radius:10px}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,77,158,.6)}
+/* ── GLOBAL SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
+::-webkit-scrollbar-thumb{background:rgba(255,77,158,.38);border-radius:8px}
 
-/* ── MOBILE OPTIMIZATIONS ── */
+/* ── MOBILE ── */
 @media(max-width:480px){
-  .page{padding:10px 10px 90px}
-  .card{padding:15px 13px;border-radius:18px}
-  .greeting-block{padding:13px 14px;border-radius:16px}
-  .page-header h1{font-size:1.65rem}
-  .page-header p{font-size:.85rem}
-  .chip{padding:8px 12px;font-size:.85rem}
-  .tone-chip{padding:9px 13px;font-size:.85rem}
-  .sec-label{font-size:.82rem}
-  .btn-generate{padding:15px;font-size:1rem}
-  .result-ta{min-height:180px;max-height:280px;font-size:.97rem}
-  .result-ta::-webkit-scrollbar{width:18px}
-  .magic-phrase{font-size:1rem;padding:0 10px}
-  .overlay-hearts{font-size:2rem;gap:10px}
-  .footer-text{font-size:.85rem}
-  .back-link{font-size:.78rem;padding:7px 10px}
+  .page{padding:10px 10px 85px}
+  .card{padding:14px 12px;border-radius:18px}
+  .greeting-block{padding:12px 13px;border-radius:16px}
+  .page-header h1{font-size:1.55rem}
+  .page-header p{font-size:.83rem}
+  .chip{padding:7px 11px;font-size:.83rem}
+  .tone-chip{padding:8px 12px;font-size:.83rem}
+  .sec-label{font-size:.8rem}
+  .btn-generate{padding:14px;font-size:.97rem}
+  .result-ta{min-height:170px;max-height:260px;font-size:.93rem}
+  .magic-phrase{font-size:.93rem;padding:0 8px}
+  .overlay-hearts{font-size:1.8rem;gap:9px}
+  .footer-text{font-size:.82rem}
+  .back-link{font-size:.77rem;padding:7px 9px}
   .nav-links{gap:6px}
 }
 @media(max-width:360px){
   .nav-links{flex-direction:column}
-  .back-link{font-size:.8rem}
+  .back-link{font-size:.78rem}
 }
 </style>
 </head>
 <body>
 
-<!-- ROMANTIC BACKGROUND -->
-<div class="bg-canvas"></div>
+<div class="site-wrap">
+  <!-- BACKGROUND -->
+  <div class="bg-canvas"></div>
+  <!-- FLOATING HEARTS -->
+  <div class="hearts-bg" id="heartsContainer"></div>
 
-<!-- FLOATING HEARTS -->
-<div class="hearts-bg" id="heartsContainer"></div>
-
-<!-- MAGIC OVERLAY -->
-<div class="magic-overlay" id="magicOverlay">
-  <div class="overlay-hearts">
-    <span style="color:#ffb3c6;filter:drop-shadow(0 0 10px #ff8fab)">🩷</span>
-    <span style="color:#ffc8d5;filter:drop-shadow(0 0 12px #ffb6c1)">💗</span>
-    <span style="color:#ffb3c6;filter:drop-shadow(0 0 10px #ff8fab)">🩷</span>
-  </div>
-  <div class="magic-phrase" id="overlayPhrase">«&thinsp;Свет очей безусловный невидимый&thinsp;»</div>
-  <div class="overlay-hearts" style="animation-delay:.8s">
-    <span style="color:#ffd6e0;filter:drop-shadow(0 0 10px #ffc8d5)">💕</span>
-    <span style="color:#ffb3c6;filter:drop-shadow(0 0 12px #ff8fab)">🩷</span>
-    <span style="color:#ffd6e0;filter:drop-shadow(0 0 10px #ffc8d5)">💕</span>
-  </div>
-</div>
-
-<!-- HISTORY MODAL -->
-<div class="history-modal" id="historyModal">
-  <div class="history-panel">
-    <div class="history-header">
-      <h3>💖 Мои посты</h3>
-      <button class="btn-close-hist" onclick="closeHistory()">×</button>
+  <!-- MAGIC OVERLAY -->
+  <div class="magic-overlay" id="magicOverlay">
+    <div class="overlay-hearts">
+      <span style="color:#ffb3c6;filter:drop-shadow(0 0 9px #ff8fab)">🩷</span>
+      <span style="color:#ffc8d5;filter:drop-shadow(0 0 11px #ffb6c1)">💗</span>
+      <span style="color:#ffb3c6;filter:drop-shadow(0 0 9px #ff8fab)">🩷</span>
     </div>
-    <div id="historyList"></div>
-  </div>
-</div>
-
-<div class="page">
-
-  <!-- NAV LINKS ROW -->
-  <div class="nav-links">
-    <a href="https://dom2411edinstvo.github.io/neft-zdorov" class="back-link">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      На главную сайта
-    </a>
-    <a href="https://vk.com/energoterapia_hidjama_neftekamsk" target="_blank" class="back-link">
-      <span class="lnk-icon">👤</span>
-      Личная страница ВК
-    </a>
-    <a href="https://vk.com/energoterapia.hidjama.neftekamsk" target="_blank" class="back-link">
-      <span class="lnk-icon">💬</span>
-      Группа Энерготерапия
-    </a>
-  </div>
-
-  <!-- GREETING -->
-  <div class="greeting-wrap">
-    <div class="greeting-block">
-      <!-- Two bright pink SVG hearts — no emoji rendering issues -->
-      <div class="hearts-row">
-        <span class="heart-svg-item">
-          <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z"
-              fill="url(#pg1)" filter="url(#glow1)"/>
-            <defs>
-              <radialGradient id="pg1" cx="40%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#ffb6d9"/>
-                <stop offset="45%" stop-color="#ff69b4"/>
-                <stop offset="100%" stop-color="#e91e8c"/>
-              </radialGradient>
-              <filter id="glow1" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-          </svg>
-        </span>
-        <span class="heart-svg-item">
-          <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z"
-              fill="url(#pg2)" filter="url(#glow2)"/>
-            <defs>
-              <radialGradient id="pg2" cx="40%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#ffc8e0"/>
-                <stop offset="45%" stop-color="#ff85c2"/>
-                <stop offset="100%" stop-color="#d41b8a"/>
-              </radialGradient>
-              <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-          </svg>
-        </span>
-      </div>
-      <div class="greeting-text" id="greetingText"></div>
-      <div class="quote-text" id="quoteText"></div>
+    <div class="magic-phrase" id="overlayPhrase">«&thinsp;Каждое слово, написанное с любовью, находит своего читателя&thinsp;»</div>
+    <div class="overlay-hearts" style="animation-delay:.7s">
+      <span style="color:#ffd6e0;filter:drop-shadow(0 0 9px #ffc8d5)">💕</span>
+      <span style="color:#ffb3c6;filter:drop-shadow(0 0 11px #ff8fab)">🩷</span>
+      <span style="color:#ffd6e0;filter:drop-shadow(0 0 9px #ffc8d5)">💕</span>
     </div>
   </div>
 
-  <!-- HEADER -->
-  <div class="page-header">
-    <h1>Магия контента ✨</h1>
-    <p>❤️ Создай идеальный пост для ВКонтакте за секунды 💖</p>
+  <!-- HISTORY MODAL -->
+  <div class="history-modal" id="historyModal">
+    <div class="history-panel">
+      <div class="history-header">
+        <h3>💖 Мои посты</h3>
+        <button class="btn-close-hist" onclick="closeHistory()">×</button>
+      </div>
+      <div id="historyList"></div>
+    </div>
   </div>
 
-  <!-- FORM CARD -->
-  <div class="card">
+  <div class="page">
 
-    <!-- DIRECTION -->
-    <div class="sec-label">💫 Направление</div>
-    <span class="chip-cat">Танцы</span>
-    <div class="chips-group" id="dirChips">
-      <div class="chip" data-dir="Pole Dance"><span class="emoji-3d">🎀</span> Pole Dance</div>
-    </div>
-    <span class="chip-cat">Оздоровление</span>
-    <div class="chips-group" id="dirChips2">
-      <div class="chip" data-dir="Энерготерапия"><span class="emoji-3d">✨</span> Энерготерапия</div>
-      <div class="chip" data-dir="Гирудотерапия">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,0,0,.6))"><ellipse cx="18" cy="18" rx="10" ry="6" fill="#b91c1c"/><ellipse cx="18" cy="16" rx="8" ry="4" fill="#dc2626"/><circle cx="13" cy="14" r="2" fill="#1e1b4b"/><circle cx="23" cy="14" r="2" fill="#1e1b4b"/><path d="M14 20 Q18 26 22 20" stroke="#991b1b" stroke-width="1.5" fill="none"/></svg>
-        Гирудотерапия
-      </div>
-      <div class="chip" data-dir="Хиджама">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,0,60,.6))"><rect x="8" y="6" width="20" height="24" rx="4" fill="#7c3aed" opacity=".85"/><rect x="10" y="8" width="16" height="10" rx="2" fill="#a78bfa"/><circle cx="18" cy="25" r="3" fill="#f87171"/><path d="M18 13 L18 19" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-        Хиджама
-      </div>
-      <div class="chip" data-dir="Иглоукалывание">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,0,180,.6))"><line x1="18" y1="4" x2="18" y2="32" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="5" r="3" fill="#c4b5fd"/><ellipse cx="18" cy="20" rx="5" ry="2" fill="#ddd6fe" opacity=".5"/><line x1="10" y1="14" x2="26" y2="14" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
-        Иглоукалывание
-      </div>
-      <div class="chip" data-dir="Иглонож"><span class="emoji-3d">⚕️</span> Иглонож</div>
-      <div class="chip" data-dir="ЛФК">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,50,100,.6))"><circle cx="18" cy="8" r="4" fill="#f9a8d4"/><path d="M18 13 L18 24" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/><path d="M18 18 L11 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 18 L25 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L12 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L24 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/></svg>
-        ЛФК
-      </div>
-      <div class="chip" data-dir="АФК"><span class="emoji-3d">💪</span> АФК</div>
-      <div class="chip" data-dir="Access Bars">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,50,200,.6))"><circle cx="18" cy="18" r="13" fill="none" stroke="#8b5cf6" stroke-width="2" opacity=".6"/><circle cx="18" cy="8" r="2.5" fill="#c4b5fd"/><circle cx="27" cy="13" r="2" fill="#a78bfa"/><circle cx="27" cy="23" r="2" fill="#a78bfa"/><circle cx="18" cy="28" r="2.5" fill="#c4b5fd"/><circle cx="9" cy="23" r="2" fill="#a78bfa"/><circle cx="9" cy="13" r="2" fill="#a78bfa"/><circle cx="18" cy="18" r="4" fill="#ddd6fe" opacity=".7"/></svg>
-        Access Bars
-      </div>
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+      <a href="https://dom2411edinstvo.github.io/neft-zdorov" class="back-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        На главную
+      </a>
+      <a href="https://vk.com/energoterapia_hidjama_neftekamsk" target="_blank" class="back-link">
+        Личная ВК
+      </a>
+      <a href="https://vk.com/energoterapia.hidjama.neftekamsk" target="_blank" class="back-link">
+        Группа ВК
+      </a>
     </div>
 
-    <div class="divider"></div>
-
-    <!-- TONE -->
-    <div class="sec-label">🎨 Тон поста</div>
-    <div class="tone-chips" id="toneChips">
-      <div class="tone-chip active" data-tone="Тёплый и заботливый">
-        <span class="emoji-3d" style="font-size:1.05rem">💛</span> Тёплый
-      </div>
-      <div class="tone-chip" data-tone="Энергичный и мотивирующий">
-        <span class="emoji-3d" style="font-size:1.05rem">🔥</span> Энергичный
-      </div>
-      <div class="tone-chip" data-tone="Экспертный и серьёзный">
-        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,50,200,.7))"><rect x="6" y="6" width="24" height="18" rx="3" fill="#4c1d95"/><rect x="8" y="8" width="20" height="14" rx="2" fill="#7c3aed"/><line x1="11" y1="12" x2="25" y2="12" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="15" x2="25" y2="15" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="20" y2="18" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="14" y="24" width="8" height="3" rx="1" fill="#6d28d9"/></svg>
-        Экспертный
+    <!-- GREETING -->
+    <div class="greeting-wrap">
+      <div class="greeting-block">
+        <div class="hearts-row">
+          <span class="heart-svg-item">
+            <svg width="30" height="26" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z" fill="url(#pg1)" filter="url(#glow1)"/>
+              <defs>
+                <radialGradient id="pg1" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#ffb6d9"/><stop offset="45%" stop-color="#ff69b4"/><stop offset="100%" stop-color="#e91e8c"/></radialGradient>
+                <filter id="glow1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+            </svg>
+          </span>
+          <span class="heart-svg-item">
+            <svg width="30" height="26" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z" fill="url(#pg2)" filter="url(#glow2)"/>
+              <defs>
+                <radialGradient id="pg2" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#ffc8e0"/><stop offset="45%" stop-color="#ff85c2"/><stop offset="100%" stop-color="#d41b8a"/></radialGradient>
+                <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+            </svg>
+          </span>
+        </div>
+        <div class="greeting-text" id="greetingText"></div>
+        <div class="quote-text" id="quoteText"></div>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <!-- TEXTAREA -->
-    <div class="sec-label">✏️ Тема поста</div>
-    <div class="ta-wrap">
-      <textarea id="topicInput" placeholder="О чём пишем сегодня?" maxlength="500" oninput="updateCharCount()"></textarea>
-      <div class="char-count" id="charCount">0 / 500</div>
+    <!-- HEADER -->
+    <div class="page-header">
+      <h1>Магия контента ✨</h1>
+      <p>❤️ Создай идеальный пост для ВКонтакте за секунды</p>
     </div>
 
-    <div class="divider"></div>
+    <!-- FORM CARD -->
+    <div class="card">
 
-    <!-- POEM TOGGLE -->
-    <div class="poem-toggle-card">
-      <label class="poem-toggle-label" for="poemToggle">
-        <span class="poem-icon">✨</span>Добавить красивый стих в текст
-      </label>
-      <label class="toggle">
-        <input type="checkbox" id="poemToggle">
-        <span class="slider"></span>
-      </label>
+      <!-- DIRECTION -->
+      <div class="sec-label">💫 Направление</div>
+      <span class="chip-cat">Танцы</span>
+      <div class="chips-group">
+        <div class="chip" data-dir="Pole Dance"><span class="emoji-3d">🎀</span> Pole Dance</div>
+      </div>
+      <span class="chip-cat">Оздоровление</span>
+      <div class="chips-group">
+        <div class="chip" data-dir="Энерготерапия"><span class="emoji-3d">✨</span> Энерготерапия</div>
+        <div class="chip" data-dir="Гирудотерапия">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><ellipse cx="18" cy="18" rx="10" ry="6" fill="#b91c1c"/><ellipse cx="18" cy="16" rx="8" ry="4" fill="#dc2626"/><circle cx="13" cy="14" r="2" fill="#1e1b4b"/><circle cx="23" cy="14" r="2" fill="#1e1b4b"/><path d="M14 20 Q18 26 22 20" stroke="#991b1b" stroke-width="1.5" fill="none"/></svg>
+          Гирудотерапия
+        </div>
+        <div class="chip" data-dir="Хиджама">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><rect x="8" y="6" width="20" height="24" rx="4" fill="#7c3aed" opacity=".85"/><rect x="10" y="8" width="16" height="10" rx="2" fill="#a78bfa"/><circle cx="18" cy="25" r="3" fill="#f87171"/><path d="M18 13 L18 19" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          Хиджама
+        </div>
+        <div class="chip" data-dir="Иглоукалывание">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><line x1="18" y1="4" x2="18" y2="32" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="5" r="3" fill="#c4b5fd"/><ellipse cx="18" cy="20" rx="5" ry="2" fill="#ddd6fe" opacity=".5"/><line x1="10" y1="14" x2="26" y2="14" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
+          Иглоукалывание
+        </div>
+        <div class="chip" data-dir="Иглонож"><span class="emoji-3d">⚕️</span> Иглонож</div>
+        <div class="chip" data-dir="ЛФК">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><circle cx="18" cy="8" r="4" fill="#f9a8d4"/><path d="M18 13 L18 24" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/><path d="M18 18 L11 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 18 L25 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L12 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L24 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/></svg>
+          ЛФК
+        </div>
+        <div class="chip" data-dir="АФК"><span class="emoji-3d">💪</span> АФК</div>
+        <div class="chip" data-dir="Access Bars">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><circle cx="18" cy="18" r="13" fill="none" stroke="#8b5cf6" stroke-width="2" opacity=".6"/><circle cx="18" cy="8" r="2.5" fill="#c4b5fd"/><circle cx="27" cy="13" r="2" fill="#a78bfa"/><circle cx="27" cy="23" r="2" fill="#a78bfa"/><circle cx="18" cy="28" r="2.5" fill="#c4b5fd"/><circle cx="9" cy="23" r="2" fill="#a78bfa"/><circle cx="9" cy="13" r="2" fill="#a78bfa"/><circle cx="18" cy="18" r="4" fill="#ddd6fe" opacity=".7"/></svg>
+          Access Bars
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TONE -->
+      <div class="sec-label">🎨 Тон поста</div>
+      <div class="tone-chips">
+        <div class="tone-chip active" data-tone="Тёплый и заботливый">
+          <span class="emoji-3d" style="font-size:1rem">💛</span> Тёплый
+        </div>
+        <div class="tone-chip" data-tone="Энергичный и мотивирующий">
+          <span class="emoji-3d" style="font-size:1rem">🔥</span> Энергичный
+        </div>
+        <div class="tone-chip" data-tone="Экспертный и серьёзный">
+          <svg width="16" height="16" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:3px"><rect x="6" y="6" width="24" height="18" rx="3" fill="#4c1d95"/><rect x="8" y="8" width="20" height="14" rx="2" fill="#7c3aed"/><line x1="11" y1="12" x2="25" y2="12" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="15" x2="25" y2="15" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="20" y2="18" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="14" y="24" width="8" height="3" rx="1" fill="#6d28d9"/></svg>
+          Экспертный
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TEXTAREA -->
+      <div class="sec-label">✏️ Тема поста</div>
+      <div class="ta-wrap">
+        <textarea id="topicInput" placeholder="О чём пишем сегодня?" maxlength="500" oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="charCount">0 / 500</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- POEM TOGGLE -->
+      <div class="poem-toggle-card">
+        <label class="poem-toggle-label" for="poemToggle">
+          <span class="poem-icon">✨</span>Добавить красивый стих в текст
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="poemToggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- GENERATE BTN -->
+      <button class="btn-generate" id="generateBtn" onclick="generate()">
+        ❤️ Создать пост с магией ❤️
+      </button>
     </div>
 
-    <!-- GENERATE BTN -->
-    <button class="btn-generate" id="generateBtn" onclick="generate()">
-      ❤️ Создать пост с магией ❤️
+    <!-- RESULT -->
+    <div id="resultWrapper" style="display:none;margin-bottom:14px"></div>
+
+    <!-- HISTORY BTN -->
+    <button class="btn-history" onclick="openHistory()">
+      <svg class="hist-icon-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="14" fill="none" stroke="#ff4d9e" stroke-width="2"/>
+        <path d="M18 10v8l5 3" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="18" cy="18" r="2.5" fill="#ff4d9e"/>
+      </svg>
+      <span>💖 Мои посты</span>
     </button>
+
   </div>
 
-  <!-- RESULT -->
-  <div id="resultWrapper" style="display:none;margin-bottom:16px"></div>
-
-  <!-- HISTORY BTN -->
-  <button class="btn-history" onclick="openHistory()">
-    <svg class="hist-icon-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="18" cy="18" r="14" fill="none" stroke="#ff4d9e" stroke-width="2"/>
-      <path d="M18 10v8l5 3" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M8 18 Q10 12 18 10" stroke="#ff4d9e" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-      <circle cx="18" cy="18" r="2.5" fill="#ff4d9e"/>
-    </svg>
-    <span>💖 Мои посты</span>
-  </button>
-
-</div>
-
-<!-- FOOTER — no frame/border -->
-<div class="footer">
-  <div class="footer-inner">
-    <!-- Only one sparkling pink heart above text, no roses -->
-    <div class="footer-bouquet">
-      <span class="footer-pink-heart">
-        <svg width="48" height="42" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="heartGrad" cx="38%" cy="32%" r="68%">
-              <stop offset="0%" stop-color="#ffc2e0"/>
-              <stop offset="35%" stop-color="#ff69b4"/>
-              <stop offset="70%" stop-color="#ff1493"/>
-              <stop offset="100%" stop-color="#c2006e"/>
-            </radialGradient>
-            <filter id="heartGlow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="3.5" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <path d="M24 38 C24 38 3 25 3 12.5 C3 7.2 7.2 3 12.5 3 C16.2 3 19.4 5.1 21.2 8.2 C22.2 6.4 24 4.8 24 4.8 C24 4.8 25.8 6.4 26.8 8.2 C28.6 5.1 31.8 3 35.5 3 C40.8 3 45 7.2 45 12.5 C45 25 24 38 24 38Z"
-            fill="url(#heartGrad)" filter="url(#heartGlow)"/>
-          <!-- shine -->
-          <ellipse cx="17" cy="11" rx="4" ry="2.5" fill="rgba(255,255,255,0.38)" transform="rotate(-25,17,11)"/>
-        </svg>
-      </span>
-    </div>
-    <div class="footer-text">
-      С любовью и нежностью от<br>
-      <span class="name">✨ Артёма ✨</span>
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-bouquet">
+        <span class="footer-pink-heart">
+          <svg width="44" height="38" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="heartGrad" cx="38%" cy="32%" r="68%">
+                <stop offset="0%" stop-color="#ffc2e0"/><stop offset="35%" stop-color="#ff69b4"/><stop offset="70%" stop-color="#ff1493"/><stop offset="100%" stop-color="#c2006e"/>
+              </radialGradient>
+              <filter id="heartGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path d="M24 38 C24 38 3 25 3 12.5 C3 7.2 7.2 3 12.5 3 C16.2 3 19.4 5.1 21.2 8.2 C22.2 6.4 24 4.8 24 4.8 C24 4.8 25.8 6.4 26.8 8.2 C28.6 5.1 31.8 3 35.5 3 C40.8 3 45 7.2 45 12.5 C45 25 24 38 24 38Z" fill="url(#heartGrad)" filter="url(#heartGlow)"/>
+            <ellipse cx="17" cy="11" rx="4" ry="2.5" fill="rgba(255,255,255,0.35)" transform="rotate(-25,17,11)"/>
+          </svg>
+        </span>
+      </div>
+      <div class="footer-text">
+        С любовью и нежностью от<br>
+        <span class="name">✨ Артёма ✨</span>
+      </div>
     </div>
   </div>
-</div>
+
+</div><!-- /site-wrap -->
 
 <script>
 /* ── CONSTANTS ── */
@@ -1080,40 +779,27 @@ const QUOTES = [
   "Ты создаёшь не посты, ты создаёшь сообщество."
 ];
 
-/* ── FLOATING HEARTS — only pink / red / crimson / rose, NEVER black ── */
+/* ── FLOATING HEARTS — малое кол-во, без анимации фон ── */
 function createFloatingHearts() {
   const container = document.getElementById('heartsContainer');
-
-  // Only SVG-based hearts to guarantee color — no emoji that renders as black
   const pinkColors = [
     '#ff69b4','#ff85c2','#ff4d9e','#ffb3c6','#ff1493',
-    '#e91e8c','#ff6eb4','#ffc8d5','#dc143c','#c71585',
-    '#ff8fab','#ff3366','#ff99bb','#e05580','#ff2d55'
+    '#e91e8c','#ff6eb4','#ffc8d5','#dc143c','#c71585'
   ];
-
-  for (let i = 0; i < 28; i++) {
+  // Меньше сердечек для производительности
+  for (let i = 0; i < 16; i++) {
     const h = document.createElement('div');
     h.className = 'fheart';
-    const color = pinkColors[Math.floor(Math.random() * pinkColors.length)];
-    const size = 14 + Math.floor(Math.random() * 20); // px
-    const dur = 14 + Math.random() * 22;
-
-    // SVG heart
-    h.innerHTML = `<svg width="${size}" height="${Math.round(size*.9)}" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z" fill="${color}" opacity="0.88"/>
-    </svg>`;
-
-    h.style.cssText = `
-      left:${Math.random()*100}%;
-      animation-duration:${dur}s;
-      animation-delay:${Math.random()*18}s;
-      filter:drop-shadow(0 0 4px ${color}99);
-    `;
+    const color = pinkColors[i % pinkColors.length];
+    const size = 13 + Math.floor(Math.random() * 18);
+    const dur = 16 + Math.random() * 20;
+    h.innerHTML = `<svg width="${size}" height="${Math.round(size*.9)}" viewBox="0 0 32 28" fill="none"><path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z" fill="${color}" opacity="0.82"/></svg>`;
+    h.style.cssText = `left:${Math.random()*98}%;animation-duration:${dur}s;animation-delay:${Math.random()*16}s;`;
     container.appendChild(h);
   }
 }
 
-/* ── GREETING — remove emoji after "Ирина!" ── */
+/* ── GREETING ── */
 function initGreeting() {
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
@@ -1121,11 +807,11 @@ function initGreeting() {
   const h = neft.getHours();
   const day = neft.getDate();
   let msg;
-  if (h >= 5 && h < 12)  msg = "Доброе утро, Ирина! Пусть день будет творческим!";
+  if (h >= 5 && h < 12)       msg = "Доброе утро, Ирина! Пусть день будет творческим!";
   else if (h >= 12 && h < 17) msg = "Добрый день, Ирина! Время создавать магию!";
   else if (h >= 17 && h < 22) msg = "Добрый вечер, Ирина! Вдохновение уже здесь...";
-  else msg = "Доброй ночи, Ирина! Даже звёзды ждут твоих постов...";
-  document.getElementById('greetingText').innerHTML = msg;
+  else                          msg = "Доброй ночи, Ирина! Даже звёзды ждут твоих постов...";
+  document.getElementById('greetingText').textContent = msg;
   document.getElementById('quoteText').textContent = "«" + QUOTES[(day - 1) % QUOTES.length] + "»";
 }
 
@@ -1134,18 +820,16 @@ let selectedDir = "";
 let selectedTone = "Тёплый и заботливый";
 
 function initChips() {
-  const allDir = document.querySelectorAll('[data-dir]');
-  allDir.forEach(ch => {
+  document.querySelectorAll('[data-dir]').forEach(ch => {
     ch.addEventListener('click', () => {
-      allDir.forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('[data-dir]').forEach(c => c.classList.remove('active'));
       ch.classList.add('active');
       selectedDir = ch.dataset.dir;
     });
   });
-  const allTone = document.querySelectorAll('[data-tone]');
-  allTone.forEach(ch => {
+  document.querySelectorAll('[data-tone]').forEach(ch => {
     ch.addEventListener('click', () => {
-      allTone.forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('[data-tone]').forEach(c => c.classList.remove('active'));
       ch.classList.add('active');
       selectedTone = ch.dataset.tone;
     });
@@ -1154,101 +838,72 @@ function initChips() {
 
 /* ── CHAR COUNT ── */
 function updateCharCount() {
-  const v = document.getElementById('topicInput').value.length;
-  document.getElementById('charCount').textContent = v + " / 500";
+  document.getElementById('charCount').textContent = document.getElementById('topicInput').value.length + " / 500";
 }
 
 /* ── OVERLAY ── */
-function showOverlay() {
-  document.getElementById('magicOverlay').classList.add('show');
-}
+function showOverlay() { document.getElementById('magicOverlay').classList.add('show'); }
 function hideOverlay() {
   const o = document.getElementById('magicOverlay');
-  o.style.transition = 'opacity .6s ease';
   o.style.opacity = '0';
-  setTimeout(() => {
-    o.classList.remove('show');
-    o.style.opacity = '';
-    o.style.transition = '';
-  }, 650);
+  setTimeout(() => { o.classList.remove('show'); o.style.opacity = ''; }, 450);
 }
 
 /* ── CLEAN TEXT ── */
-function cleanText(text) {
-  return text
-    .replace(/\*\*/g, '')
-    .replace(/\*/g, '')
-    .replace(/^---+$/gm, '')
-    .replace(/^___+$/gm, '')
-    .replace(/^===+$/gm, '')
-    .replace(/^\s*[-–—]{3,}\s*$/gm, '')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+function cleanText(t) {
+  return t
+    .replace(/\*\*/g,'').replace(/\*/g,'')
+    .replace(/^---+$/gm,'').replace(/^___+$/gm,'').replace(/^===+$/gm,'')
+    .replace(/^\s*[-–—]{3,}\s*$/gm,'')
+    .replace(/\n{3,}/g,'\n\n').trim();
 }
 
-/* ── PROMPT ── */
+/* ── BUILD MESSAGES ── */
 function buildMessages(dir, tone, topic, poem) {
   const isEnergo = dir === "Энерготерапия";
-  let seoRule = isEnergo
+  const seoRule = isEnergo
     ? "Пиши БЕЗ привязки к городу Нефтекамск. Добавь универсальные тематические хэштеги, без гео-тегов."
-    : "Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте 1–3 раза. В конце добавь 5–10 хэштегов для ВКонтакте и Яндекса, ОБЯЗАТЕЛЬНО включая гео-хэштеги (например, #нефтекамск #" + dir.toLowerCase().replace(/\s/g,'') + "нефтекамск) и тематические.";
-  const poemRule = poem ? "Органично вплети в текст красивое небольшое стихотворение (4–8 строк), связанное с темой." : "";
-  const system = `Ты профессиональный SMM-копирайтер для ВКонтакте. Пишешь живые, человечные и цепляющие тексты. Используй эмодзи умеренно — для акцентов, не перегружай. Структурируй пост: зацепка → суть → призыв к действию. ВАЖНО: не используй markdown-форматирование — никаких **, *, ---, === и прочих спецсимволов. Только живой читаемый текст. ${seoRule}`;
-  const user = `Напиши пост для ВКонтакте.\nНиша: ${dir}.\nТема: ${topic || "общая польза и преимущества направления"}.\nТон: ${tone}.\n${poemRule}\nПост должен быть от 150 до 350 слов, живой и искренний. Без символов разметки (**,*,---).`;
+    : `Пост SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск 1–3 раза. В конце 5–10 хэштегов включая #нефтекамск #${dir.toLowerCase().replace(/\s/g,'')}нефтекамск.`;
+  const poemRule = poem ? "Вплети в текст красивое стихотворение (4–8 строк), связанное с темой." : "";
   return [
-    { role: "system", content: system },
-    { role: "user", content: user }
+    { role:"system", content:`Ты SMM-копирайтер для ВКонтакте. Пишешь живые, цепляющие тексты. Эмодзи умеренно. Структура: зацепка → суть → призыв. БЕЗ markdown (**,*,---). ${seoRule}` },
+    { role:"user",   content:`Напиши пост ВКонтакте.\nНиша: ${dir}.\nТема: ${topic||"польза и преимущества направления"}.\nТон: ${tone}.\n${poemRule}\nОт 150 до 350 слов. Без разметки.` }
   ];
 }
 
 /* ── GENERATE ── */
 async function generate() {
-  if (!selectedDir) {
-    alert("Пожалуйста, выбери направление 💙");
-    return;
-  }
+  if (!selectedDir) { alert("Выбери направление 💙"); return; }
   const topic = document.getElementById('topicInput').value.trim();
-  const poem = document.getElementById('poemToggle').checked;
-  const btn = document.getElementById('generateBtn');
+  const poem  = document.getElementById('poemToggle').checked;
+  const btn   = document.getElementById('generateBtn');
   btn.disabled = true;
   showOverlay();
-  const messages = buildMessages(selectedDir, selectedTone, topic, poem);
   let result = "";
   try {
     const resp = await fetch(API_URL_CHAT, {
-      method: "POST", mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + API_KEY,
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        model: TEXT_MODEL,
-        messages: messages,
-        max_tokens: 1500,
-        temperature: 0.85
-      })
+      method:"POST", mode:"cors",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+API_KEY,"Accept":"application/json"},
+      body:JSON.stringify({model:TEXT_MODEL,messages:buildMessages(selectedDir,selectedTone,topic,poem),max_tokens:1500,temperature:0.85})
     });
     if (!resp.ok) {
-      let errMsg = "Ошибка API: " + resp.status;
-      try { const e = await resp.json(); errMsg = e.error?.message || errMsg; } catch(_){}
-      throw new Error(errMsg);
+      let em = "Ошибка API: "+resp.status;
+      try { const e=await resp.json(); em=e.error?.message||em; } catch(_){}
+      throw new Error(em);
     }
     const data = await resp.json();
-    result = data.choices?.[0]?.message?.content?.trim() || "";
+    result = data.choices?.[0]?.message?.content?.trim()||"";
     if (!result) throw new Error("Пустой ответ от API");
     result = cleanText(result);
   } catch(e) {
-    hideOverlay();
-    btn.disabled = false;
-    let msg = e.message;
+    hideOverlay(); btn.disabled=false;
+    let msg=e.message;
     if (msg.includes("Failed to fetch")||msg.includes("NetworkError")||msg.includes("Load failed"))
-      msg = "Нет соединения с сервером.\nПроверьте интернет или попробуйте чуть позже.";
-    alert("Ошибка генерации:\n" + msg);
+      msg="Нет соединения с сервером.\nПроверьте интернет или попробуйте позже.";
+    alert("Ошибка:\n"+msg);
     return;
   }
-  hideOverlay();
-  btn.disabled = false;
+  hideOverlay(); btn.disabled=false;
   renderResult(result);
   saveToHistory(result, selectedDir);
 }
@@ -1266,16 +921,16 @@ function renderResult(text) {
       <div class="result-btns">
         <button class="btn-copy" id="copyBtn" onclick="copyResult()">📋 Скопировать текст</button>
         <button class="btn-regen" onclick="generate()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;margin-right:5px;filter:drop-shadow(0 1px 3px rgba(255,100,180,.6))"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><polyline points="19 5 19.5 9 15.5 9" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="5 19 4.5 15 8.5 15" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><polyline points="19 5 19.5 9 15.5 9" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="5 19 4.5 15 8.5 15" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Ещё вариант
         </button>
       </div>
     </div>`;
-  setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+  setTimeout(() => wrap.scrollIntoView({behavior:'smooth',block:'start'}), 80);
 }
 
-function escHtml(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 /* ── COPY ── */
@@ -1286,45 +941,32 @@ function copyResult() {
     const btn = document.getElementById('copyBtn');
     btn.textContent = "✅ Скопировано!";
     btn.style.background = "linear-gradient(135deg,#059669,#047857)";
-    setTimeout(() => {
-      btn.textContent = "📋 Скопировать текст";
-      btn.style.background = "";
-    }, 1500);
+    setTimeout(() => { btn.textContent="📋 Скопировать текст"; btn.style.background=""; }, 1500);
   });
 }
 
 /* ── HISTORY ── */
 function saveToHistory(text, dir) {
   let hist = getHistory();
-  hist.unshift({
-    id: Date.now(),
-    date: new Date().toLocaleString('ru', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),
-    service: dir, text: text
-  });
-  if (hist.length > 10) hist = hist.slice(0, 10);
+  hist.unshift({id:Date.now(),date:new Date().toLocaleString('ru',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),service:dir,text});
+  if (hist.length > 10) hist = hist.slice(0,10);
   localStorage.setItem('magic_history', JSON.stringify(hist));
 }
-
 function getHistory() {
-  try { return JSON.parse(localStorage.getItem('magic_history') || '[]'); }
-  catch { return []; }
+  try { return JSON.parse(localStorage.getItem('magic_history')||'[]'); } catch { return []; }
 }
-
 function openHistory() {
   const hist = getHistory();
   const list = document.getElementById('historyList');
   if (!hist.length) {
-    list.innerHTML = '<div class="hist-empty">❤️ Пока нет сохранённых постов 🌱<br><small style="color:#d090b0;font-size:.85rem">Создай первый пост с магией!</small></div>';
+    list.innerHTML = '<div class="hist-empty">❤️ Пока нет сохранённых постов 🌱<br><small style="color:#d090b0;font-size:.83rem">Создай первый пост с магией!</small></div>';
   } else {
     list.innerHTML = hist.map(h => `
       <div class="hist-item" id="hi${h.id}" onclick="toggleHistItem(${h.id})">
-        <div class="hist-meta">
-          <span>${h.date}</span>
-          <span class="hist-service">❤️ ${h.service}</span>
-        </div>
+        <div class="hist-meta"><span>${h.date}</span><span class="hist-service">❤️ ${h.service}</span></div>
         <div class="hist-preview">${escHtml(h.text.slice(0,90))}…</div>
         <div class="hist-full">
-          <textarea id="hta${h.id}" style="width:100%;border:1.5px solid rgba(255,150,200,.3);border-radius:12px;padding:12px;font-size:.9rem;font-family:inherit;min-height:120px;resize:vertical;color:#1e0a2e;background:rgba(255,255,255,.96);font-weight:600;scrollbar-width:thick;scrollbar-color:#ff4d9e rgba(255,200,220,.3)">${escHtml(h.text)}</textarea>
+          <textarea id="hta${h.id}" style="width:100%;border:1.5px solid rgba(255,150,200,.28);border-radius:11px;padding:11px;font-size:.88rem;font-family:inherit;min-height:110px;resize:vertical;color:#1e0a2e;background:rgba(255,255,255,.96);font-weight:600">${escHtml(h.text)}</textarea>
           <button class="btn-copy-h" onclick="copyHist(event,${h.id})">📋 Скопировать</button>
         </div>
       </div>`).join('');
@@ -1332,26 +974,20 @@ function openHistory() {
   document.getElementById('historyModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
-
-function toggleHistItem(id) {
-  document.getElementById('hi'+id).classList.toggle('expanded');
-}
-
+function toggleHistItem(id) { document.getElementById('hi'+id).classList.toggle('expanded'); }
 function copyHist(e, id) {
   e.stopPropagation();
   const ta = document.getElementById('hta'+id);
   if (!ta) return;
   navigator.clipboard.writeText(ta.value).then(() => {
     e.target.textContent = "✅ Скопировано!";
-    setTimeout(() => e.target.textContent = "📋 Скопировать", 1500);
+    setTimeout(() => e.target.textContent="📋 Скопировать", 1500);
   });
 }
-
 function closeHistory() {
   document.getElementById('historyModal').classList.remove('show');
   document.body.style.overflow = '';
 }
-
 document.getElementById('historyModal').addEventListener('click', function(e) {
   if (e.target === this) closeHistory();
 });
