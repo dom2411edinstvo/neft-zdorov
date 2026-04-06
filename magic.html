@@ -4,638 +4,1362 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Магия контента ✨</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%230ea5e9'/><polygon points='50,15 61,38 87,38 66,56 74,80 50,64 26,80 34,56 13,38 39,38' fill='%23FFD700' stroke='%23fff' stroke-width='2'/></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e11d48'/%3E%3Cstop offset='100%25' stop-color='%23be185d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='32,4 36,26 58,26 40,40 47,62 32,48 17,62 24,40 6,26 28,26' fill='url(%23g)'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;color:#1e293b;line-height:1.6;background:linear-gradient(135deg,#f0f9ff,#e0f2fe,#bae6fd);min-height:100vh}
+
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  color:#2d1a2e;
+  line-height:1.6;
+  min-height:100vh;
+  background:#2a0a3e;
+  overflow-x:hidden;
+}
 a{text-decoration:none;color:inherit}
 
-/* HEADER */
-.hd{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
-.hd-logo{font-size:1.15rem;font-weight:800;color:#0c4a6e;display:flex;align-items:center;gap:8px}
-.hd-back{color:#0ea5e9;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:4px}
-.hd-back:hover{color:#0284c7}
-.hd-hist{background:#f0f9ff;border:2px solid #bae6fd;color:#0ea5e9;padding:8px 16px;border-radius:20px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s}
-.hd-hist:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
+/* ── ROMANTIC BACKGROUND — lighter, warmer, more romantic ── */
+.bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  background: radial-gradient(ellipse at 15% 15%, #6b21a8 0%, transparent 48%),
+              radial-gradient(ellipse at 85% 85%, #9f1239 0%, transparent 48%),
+              radial-gradient(ellipse at 50% 50%, #312e81 0%, transparent 65%),
+              radial-gradient(ellipse at 70% 20%, #be185d 0%, transparent 40%),
+              linear-gradient(135deg,#2a0a3e 0%,#4a1060 40%,#3b0d55 70%,#2a0a3e 100%);
+  overflow:hidden;
+}
+.bg-canvas::before{
+  content:'';position:absolute;inset:0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(236,72,153,.22) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, rgba(251,113,133,.18) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 90%, rgba(192,38,211,.15) 0%, transparent 45%);
+  animation:bgPulse 7s ease-in-out infinite alternate;
+}
+.bg-canvas::after{
+  content:'';position:absolute;inset:0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255,182,193,.06) 0%, transparent 40%),
+              radial-gradient(ellipse at 80% 50%, rgba(255,105,180,.07) 0%, transparent 40%);
+  animation:bgPulse 11s ease-in-out infinite alternate-reverse;
+}
+@keyframes bgPulse{
+  0%{opacity:.5}100%{opacity:1}
+}
 
-/* PAGE */
-.page{max-width:680px;margin:0 auto;padding:28px 16px 80px}
+/* ── FLOATING HEARTS — only pink/red/burgundy, NO black ── */
+.hearts-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fheart{
+  position:absolute;bottom:-60px;
+  font-size:1.4rem;
+  animation:floatUp linear infinite;
+  opacity:0;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(-10deg) scale(.8);opacity:0}
+  10%{opacity:.9}
+  90%{opacity:.5}
+  100%{transform:translateY(-110vh) rotate(15deg) scale(1.1);opacity:0}
+}
 
-/* GREETING */
-.greeting-block{text-align:center;margin-bottom:28px;animation:fadeInDown .8s ease forwards;opacity:0}
-@keyframes fadeInDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
-.greeting-text{font-size:1.5rem;font-weight:800;color:#0c4a6e;margin-bottom:10px;line-height:1.4}
-.greeting-quote{font-style:italic;font-size:1rem;color:#64748b;line-height:1.7;max-width:480px;margin:0 auto;animation:fadeInDown 1.1s ease forwards;opacity:0}
+/* ── PAGE WRAPPER ── */
+.page{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:14px 12px 100px}
 
-/* HERO */
-.magic-hero{text-align:center;margin-bottom:28px;animation:fadeInDown .9s ease .1s forwards;opacity:0}
-.magic-hero h1{font-size:2.1rem;font-weight:800;color:#0c4a6e;letter-spacing:-.5px}
-.magic-hero h1 span{color:#0ea5e9}
-.magic-hero p{color:#475569;margin-top:8px;font-size:1.05rem;font-weight:500}
+/* ── ANIMATIONS — smooth & natural ── */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes resultFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}40%{transform:scale(1.22)}70%{transform:scale(1.09)}}
+@keyframes silverShimmer{
+  0%,100%{
+    text-shadow:0 0 12px #ffb6c1cc,0 0 28px #ffcdd9aa,0 0 50px #ffb6c1aa,0 0 80px #ff9ab055;
+    opacity:.92;color:#ffd6e0;
+  }
+  50%{
+    text-shadow:0 0 20px #ffcdd9ff,0 0 50px #ffe4ecdd,0 0 90px #ffb6c1cc,0 0 130px #ff9ab088;
+    opacity:1;color:#fff0f4;
+  }
+}
+@keyframes phrasePop{0%{opacity:0;transform:scale(.85) translateY(10px)}60%{transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+@keyframes rotateHeart{0%{transform:rotate(-5deg) scale(1)}50%{transform:rotate(5deg) scale(1.15)}100%{transform:rotate(-5deg) scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 18px rgba(236,72,153,.35),0 4px 20px rgba(0,0,0,.3)}50%{box-shadow:0 0 36px rgba(236,72,153,.6),0 4px 30px rgba(0,0,0,.4)}}
+@keyframes shimmerText{0%{background-position:0%}100%{background-position:200%}}
+@keyframes overlayHeartFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-10px) scale(1.1)}
+}
+@keyframes rosePulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px #ff6b6b88)}
+  50%{transform:scale(1.12);filter:drop-shadow(0 0 16px #ff4444cc)}
+}
+@keyframes diamondHeartPink{
+  0%,100%{
+    filter:drop-shadow(0 0 8px #ff69b4) drop-shadow(0 0 18px #ff1493aa) drop-shadow(0 0 32px #ff69b4aa);
+    transform:scale(1);color:#ff69b4;
+  }
+  33%{
+    filter:drop-shadow(0 0 16px #fff0f4) drop-shadow(0 0 36px #ff69b4ff) drop-shadow(0 0 60px #ff1493ff);
+    transform:scale(1.18);color:#ffb6c1;
+  }
+  66%{
+    filter:drop-shadow(0 0 12px #ffd6e0) drop-shadow(0 0 26px #ff69b4cc) drop-shadow(0 0 45px #ff1493cc);
+    transform:scale(1.09);color:#ff69b4;
+  }
+}
 
-/* CARD */
-.card{background:#fff;border-radius:20px;box-shadow:0 4px 24px rgba(14,165,233,.1);padding:26px;margin-bottom:18px}
-.card-title{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:#64748b;margin-bottom:16px}
+/* ── OVERLAY HEARTS ── */
+.overlay-hearts{font-size:2.2rem;display:flex;gap:14px}
+.overlay-hearts span{
+  display:inline-block;
+  animation:overlayHeartFloat 3.8s ease-in-out infinite;
+}
+.overlay-hearts span:nth-child(2){animation-delay:.9s}
+.overlay-hearts span:nth-child(3){animation-delay:1.8s}
 
-/* CHIPS */
-.chips-group{margin-bottom:14px}
-.chips-label{font-size:.85rem;font-weight:800;color:#0ea5e9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:50px;border:2px solid #e2e8f0;background:#f8fafc;color:#334155;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s ease;user-select:none;-webkit-tap-highlight-color:transparent}
-.chip:hover{border-color:#0ea5e9;color:#0ea5e9;background:#f0f9ff}
-.chip.active{border-color:#0ea5e9;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;box-shadow:0 4px 12px rgba(14,165,233,.35)}
-.chip-sport.active{background:linear-gradient(135deg,#a855f7,#7c3aed);border-color:#a855f7;box-shadow:0 4px 12px rgba(168,85,247,.35)}
-.chip-sport:hover{border-color:#a855f7;color:#a855f7;background:#faf5ff}
-.chip-tone.active.warm{background:linear-gradient(135deg,#f59e0b,#d97706);border-color:#f59e0b;box-shadow:0 4px 12px rgba(245,158,11,.35)}
-.chip-tone.active.energy{background:linear-gradient(135deg,#ef4444,#dc2626);border-color:#ef4444;box-shadow:0 4px 12px rgba(239,68,68,.35)}
-.chip-tone.active.expert{background:linear-gradient(135deg,#10b981,#059669);border-color:#10b981;box-shadow:0 4px 12px rgba(16,185,129,.35)}
-.divider{height:1px;background:#f1f5f9;margin:16px 0}
+/* ── GREETING ── */
+.greeting-wrap{animation:fadeInDown .8s ease both}
+.greeting-block{
+  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
+  backdrop-filter:blur(14px);
+  border:1.5px solid rgba(255,150,180,.35);
+  border-radius:20px;
+  padding:16px 18px;
+  margin-bottom:14px;
+  text-align:center;
+  box-shadow:0 8px 32px rgba(220,38,127,.22),inset 0 1px 0 rgba(255,255,255,.18);
+  position:relative;
+  overflow:hidden;
+}
+.greeting-block::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(236,72,153,.1),rgba(139,0,70,.06));
+  border-radius:20px;
+}
 
-/* TEXTAREA */
-.field-label{display:block;font-weight:700;color:#1e293b;font-size:1rem;margin-bottom:10px}
-.field-textarea{width:100%;padding:16px;border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;font-family:inherit;resize:vertical;min-height:105px;transition:border-color .2s;color:#1e293b;background:#fafbfc;line-height:1.6}
-.field-textarea:focus{outline:none;border-color:#0ea5e9;background:#fff}
-.char-counter{text-align:right;font-size:.88rem;color:#94a3b8;margin-top:6px;font-weight:600}
-.char-counter.warn{color:#f59e0b}
-.char-counter.over{color:#ef4444}
+/* ── HEARTS ROW — SVG pink hearts, no emoji rendering issues ── */
+.hearts-row{
+  display:flex;justify-content:center;gap:18px;
+  margin-bottom:8px;
+}
+.heart-svg-item{
+  display:inline-block;
+  animation:heartBeat 2.2s ease-in-out infinite;
+}
+.heart-svg-item:nth-child(1){animation-delay:.3s}
+.heart-svg-item:nth-child(2){animation-delay:1s}
 
-/* TOGGLE */
-.toggle-row{display:flex;align-items:center;gap:14px;padding:10px 0}
-.toggle-label{font-size:1.05rem;font-weight:700;color:#1e293b;cursor:pointer;flex:1;line-height:1.4}
-.toggle{position:relative;width:56px;height:30px;flex-shrink:0}
+.greeting-text{
+  font-size:1.05rem;font-weight:800;
+  color:#fff;
+  margin-bottom:6px;
+  position:relative;
+  text-shadow:0 2px 8px rgba(236,72,153,.6),0 1px 0 rgba(255,255,255,.3);
+}
+.quote-text{
+  font-size:.92rem;
+  color:#f0d0e0;
+  font-style:italic;
+  line-height:1.6;
+  position:relative;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+}
+
+/* ── HEADER ── */
+.page-header{text-align:center;margin-bottom:18px;animation:fadeIn .7s .2s both}
+.page-header h1{
+  font-size:1.9rem;font-weight:900;
+  background:linear-gradient(135deg,#ff6eb4,#ff2d78,#c2006e,#ff6eb4);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmerText 3s linear infinite;
+  text-shadow:none;
+  filter:drop-shadow(0 3px 8px rgba(236,72,153,.5));
+  margin-bottom:4px;
+}
+.page-header p{
+  color:#e0b0cc;
+  font-size:.92rem;
+  font-weight:600;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+}
+
+/* ── NAV LINKS ROW ── */
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:14px;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:6px;
+  color:#ffb0d8;
+  font-size:.82rem;font-weight:800;
+  padding:8px 12px;
+  border-radius:14px;
+  background:rgba(255,77,158,.1);
+  border:1.5px solid rgba(255,77,158,.25);
+  transition:background .4s ease,border-color .4s ease,color .4s ease,box-shadow .4s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
+  backdrop-filter:blur(8px);
+  text-decoration:none;
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  white-space:nowrap;
+  flex:1;
+  justify-content:center;
+  min-width:0;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.back-link:hover{
+  background:rgba(255,77,158,.24);
+  border-color:rgba(255,77,158,.6);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(236,72,153,.3);
+  transform:translateY(-2px);
+}
+.back-link svg{flex-shrink:0}
+.back-link .lnk-icon{font-size:1rem;flex-shrink:0}
+
+/* ── CARD ── */
+.card{
+  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
+  backdrop-filter:blur(16px);
+  border-radius:22px;
+  padding:18px 16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.15),0 0 0 1px rgba(255,150,180,.2);
+  margin-bottom:16px;
+  animation:fadeInUp .6s .3s both;
+  border:1px solid rgba(255,150,180,.2);
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,100,180,.65),transparent);
+}
+
+/* ── SECTION LABEL ── */
+.sec-label{
+  font-size:.88rem;font-weight:800;
+  color:#ff9dc8;
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:10px;
+  text-shadow:0 0 10px rgba(255,100,180,.5),0 2px 4px rgba(0,0,0,.3);
+}
+
+/* ── CHIP CATEGORY ── */
+.chip-cat{
+  font-size:.75rem;color:#d08aaa;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;
+  margin:10px 0 6px;display:block;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);
+}
+
+/* ── CHIPS ── */
+.chips-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.chip{
+  padding:9px 14px;
+  border-radius:20px;
+  border:2px solid rgba(255,150,200,.3);
+  background:rgba(255,255,255,.08);
+  font-size:.9rem;font-weight:700;
+  cursor:pointer;
+  transition:border-color .35s ease,background .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,color .35s ease;
+  color:#f0cce0;
+  user-select:none;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.chip::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
+  border-radius:20px;
+  pointer-events:none;
+}
+.chip:hover{
+  border-color:rgba(255,100,180,.65);
+  background:rgba(255,100,180,.16);
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(236,72,153,.28);
+  color:#fff;
+}
+.chip:active{transform:scale(.96) translateY(0)}
+.chip.active{
+  border-color:#ff4d9e;
+  background:linear-gradient(135deg,rgba(255,77,158,.28),rgba(190,24,93,.22));
+  color:#fff;
+  box-shadow:0 4px 16px rgba(236,72,153,.38),inset 0 1px 0 rgba(255,255,255,.2);
+  transform:translateY(-1px);
+}
+
+/* ── EMOJI 3D ── */
+.emoji-3d{
+  display:inline-block;
+  font-style:normal;
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.4)) drop-shadow(0 1px 2px rgba(255,100,150,.5));
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── TONE CHIPS ── */
+.tone-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tone-chip{
+  padding:10px 16px;
+  border-radius:20px;
+  border:2px solid rgba(255,150,200,.3);
+  background:rgba(255,255,255,.08);
+  font-size:.9rem;font-weight:700;
+  cursor:pointer;
+  transition:border-color .35s ease,background .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,color .35s ease;
+  color:#f0cce0;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+  position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.tone-chip::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
+  border-radius:20px;
+  pointer-events:none;
+}
+.tone-chip:hover{
+  border-color:rgba(255,100,180,.65);
+  background:rgba(255,100,180,.16);
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(236,72,153,.28);
+  color:#fff;
+}
+.tone-chip:active{transform:scale(.96) translateY(0)}
+.tone-chip.active{
+  border-color:#ff4d9e;
+  background:linear-gradient(135deg,rgba(255,77,158,.28),rgba(190,24,93,.22));
+  color:#fff;
+  box-shadow:0 4px 16px rgba(236,72,153,.38),inset 0 1px 0 rgba(255,255,255,.2);
+  transform:translateY(-1px);
+}
+
+/* ── TEXTAREA ── */
+.ta-wrap{position:relative;margin-top:4px}
+.ta-wrap textarea{
+  width:100%;
+  padding:14px 16px;
+  border:2px solid rgba(255,150,200,.3);
+  border-radius:16px;
+  font-size:1.04rem;
+  font-family:'Nunito',inherit;
+  resize:vertical;min-height:90px;
+  line-height:1.6;
+  transition:border-color .4s ease,box-shadow .4s ease;
+  color:#1e0a2e;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  font-weight:700;
+  -webkit-appearance:none;
+}
+.ta-wrap textarea:focus{
+  outline:none;
+  border-color:#ff4d9e;
+  box-shadow:0 0 0 3px rgba(255,77,158,.2),0 2px 12px rgba(0,0,0,.2);
+}
+.ta-wrap textarea::placeholder{
+  color:#8b6070;
+  font-weight:700;
+  font-size:1.04rem;
+}
+.char-count{text-align:right;font-size:.8rem;color:#d090b0;margin-top:4px;font-weight:600}
+
+/* ── POEM TOGGLE ── */
+.poem-toggle-card{
+  background:linear-gradient(135deg,rgba(255,77,158,.15),rgba(139,0,70,.12));
+  border:2px solid rgba(255,100,180,.35);
+  border-radius:16px;
+  padding:13px 16px;
+  margin-top:4px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 4px 16px rgba(236,72,153,.15),inset 0 1px 0 rgba(255,255,255,.12);
+  transition:all .4s ease;
+  position:relative;overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.poem-toggle-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.07),transparent);
+  border-radius:16px;
+  pointer-events:none;
+}
+.poem-toggle-label{
+  font-size:.95rem;
+  color:#ffe0f0;
+  font-weight:800;
+  cursor:pointer;
+  flex:1;
+  position:relative;
+  line-height:1.4;
+  text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.poem-toggle-label .poem-icon{
+  font-size:1.3rem;
+  display:inline-block;
+  filter:drop-shadow(0 2px 4px rgba(255,100,180,.8));
+  animation:rotateHeart 3s ease-in-out infinite;
+  margin-right:6px;
+  vertical-align:middle;
+}
+
+/* ── TOGGLE ── */
+.toggle{position:relative;width:52px;height:30px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;inset:0;background:#e2e8f0;border-radius:50px;cursor:pointer;transition:.3s}
-.toggle-slider:before{content:'';position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.toggle input:checked+.toggle-slider{background:linear-gradient(135deg,#f59e0b,#d97706)}
-.toggle input:checked+.toggle-slider:before{transform:translateX(26px)}
+.slider{
+  position:absolute;inset:0;
+  background:rgba(255,255,255,.2);
+  border-radius:15px;
+  cursor:pointer;
+  transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
+  border:1.5px solid rgba(255,150,200,.3);
+}
+.slider:before{
+  content:'';position:absolute;
+  width:22px;height:22px;
+  left:4px;top:3px;
+  background:#fff;border-radius:50%;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+}
+.toggle input:checked+.slider{
+  background:linear-gradient(135deg,#ff4d9e,#c2006e);
+  border-color:#ff4d9e;
+  box-shadow:0 0 14px rgba(255,77,158,.55);
+}
+.toggle input:checked+.slider:before{
+  transform:translateX(22px);
+  box-shadow:0 2px 8px rgba(0,0,0,.3),0 0 6px rgba(255,255,255,.4);
+}
 
-/* GENERATE BUTTON */
-.btn-generate{width:100%;padding:20px;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;border-radius:16px;font-size:1.2rem;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:all .2s ease;box-shadow:0 6px 20px rgba(14,165,233,.4);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
-.btn-generate:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(14,165,233,.5)}
-.btn-generate:active{transform:translateY(0)}
-.btn-generate:disabled{opacity:.65;cursor:not-allowed;transform:none}
+/* ── BTN GENERATE ── */
+.btn-generate{
+  width:100%;
+  background:linear-gradient(135deg,#ff2d78,#c2006e,#8b0050);
+  color:#fff;border:none;
+  padding:17px;border-radius:16px;
+  font-size:1.05rem;font-weight:900;
+  cursor:pointer;margin-top:14px;
+  box-shadow:0 6px 24px rgba(236,72,153,.45),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease,opacity .3s ease;
+  letter-spacing:.02em;
+  position:relative;overflow:hidden;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);
+  font-family:'Nunito',inherit;
+  animation:glowPulse 3s ease-in-out infinite;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn-generate::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transition:left .55s ease;
+}
+.btn-generate:hover::before{left:100%}
+.btn-generate:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 12px 38px rgba(236,72,153,.58),0 4px 12px rgba(0,0,0,.3)}
+.btn-generate:active{transform:scale(.97);transition:transform .15s ease}
+.btn-generate:disabled{opacity:.55;cursor:not-allowed;animation:none;transform:none}
 
-/* MAGIC OVERLAY */
-.magic-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(12,74,110,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:28px}
-.magic-overlay.show{display:flex;animation:fadeInOverlay .5s ease forwards}
-@keyframes fadeInOverlay{from{opacity:0}to{opacity:1}}
-.magic-phrase{font-family:'Georgia','Times New Roman',serif;font-style:italic;font-size:clamp(1.4rem,5vw,2.3rem);font-weight:400;color:#fff;text-align:center;line-height:1.7;padding:0 28px;letter-spacing:.5px;animation:breathe 3s ease-in-out infinite;text-shadow:0 0 20px rgba(212,175,55,.9),0 0 40px rgba(212,175,55,.6),0 0 70px rgba(212,175,55,.35),0 2px 4px rgba(0,0,0,.3)}
-@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
-.magic-stars{font-size:1.7rem;animation:breathe 3s ease-in-out infinite;animation-delay:.5s;letter-spacing:10px;opacity:.8}
-.magic-dots{display:flex;gap:10px}
-.magic-dot{width:10px;height:10px;border-radius:50%;background:rgba(212,175,55,.8);animation:dotPulse 1.4s ease-in-out infinite}
-.magic-dot:nth-child(2){animation-delay:.2s}
-.magic-dot:nth-child(3){animation-delay:.4s}
-@keyframes dotPulse{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+/* ── MAGIC OVERLAY ── */
+.magic-overlay{
+  position:fixed;inset:0;
+  background:rgba(10,0,30,.88);
+  backdrop-filter:blur(8px);
+  z-index:3000;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;
+  opacity:0;pointer-events:none;transition:opacity .5s ease;
+  padding:20px;
+}
+.magic-overlay.show{opacity:1;pointer-events:all}
+.magic-phrase{
+  font-family:'Nunito',Georgia,serif;
+  font-style:italic;
+  font-size:clamp(1rem,4.5vw,1.5rem);
+  color:#ffd6e0;
+  text-align:center;
+  padding:0 20px;
+  animation:silverShimmer 3.2s ease-in-out infinite,phrasePop .6s ease both;
+  max-width:460px;
+  line-height:1.45;
+  font-weight:700;
+  letter-spacing:.03em;
+  white-space:normal;
+  word-break:break-word;
+}
 
-/* RESULTS */
-.results{display:none;animation:slideUp .5s ease forwards}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.results.show{display:block}
-.result-label{font-size:.9rem;font-weight:800;color:#0ea5e9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.result-text{width:100%;min-height:240px;padding:18px;border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;font-family:inherit;resize:vertical;color:#1e293b;line-height:1.8;background:#fafbfc;transition:border-color .2s}
-.result-text:focus{outline:none;border-color:#0ea5e9;background:#fff}
-.result-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
-.action-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:20px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;border:2px solid #bae6fd;background:#f0f9ff;color:#0ea5e9}
-.action-btn:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
-.action-btn.copied{background:#10b981;color:#fff;border-color:#10b981}
-.action-btn.regen{border-color:#e0f2fe;background:#f0f9ff;color:#0284c7}
-.action-btn.regen:hover{background:#0284c7;color:#fff;border-color:#0284c7}
+/* ── RESULT ── */
+.result-block{
+  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.07));
+  backdrop-filter:blur(16px);
+  border-radius:22px;
+  padding:20px 16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(255,150,180,.2),inset 0 1px 0 rgba(255,255,255,.15);
+  animation:resultFade .55s ease both;
+  border:1px solid rgba(255,150,180,.18);
+}
+.result-label{
+  font-size:.88rem;font-weight:800;
+  color:#4ade80;
+  text-transform:uppercase;letter-spacing:.07em;
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+  text-shadow:0 0 10px rgba(74,222,128,.4),0 1px 3px rgba(0,0,0,.3);
+}
+.result-label .dot{
+  display:inline-block;width:10px;height:10px;
+  background:radial-gradient(circle at 35% 35%,#86efac,#16a34a);
+  border-radius:50%;
+  box-shadow:0 0 8px rgba(74,222,128,.6);
+}
 
-/* ERROR */
-.error-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;padding:16px 20px;color:#991b1b;font-size:1rem;margin-top:16px;display:none;font-weight:600;line-height:1.5}
-.error-box.show{display:block}
+/* ── RESULT TEXTAREA with BIG SCROLLBAR ── */
+.result-ta-wrap{
+  position:relative;
+  border:2.5px solid rgba(255,100,160,.5);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 16px rgba(236,72,153,.18),0 0 0 1px rgba(255,150,200,.15);
+}
+.result-ta{
+  width:100%;
+  border:none;
+  outline:none;
+  padding:16px 18px;
+  font-size:1rem;
+  font-family:'Nunito',inherit;
+  line-height:1.75;
+  min-height:200px;
+  max-height:340px;
+  resize:none;
+  color:#1e0a2e;
+  background:rgba(255,255,255,.97);
+  font-weight:600;
+  display:block;
+  overflow-y:auto;
+  scrollbar-width:thick;
+  scrollbar-color:#ff4d9e rgba(255,200,220,.3);
+}
+.result-ta::-webkit-scrollbar{width:16px}
+.result-ta::-webkit-scrollbar-track{background:rgba(255,180,210,.22);border-radius:10px;margin:4px 0}
+.result-ta::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff8fc8,#ff2d78,#c2006e);border-radius:10px;border:3px solid rgba(255,200,230,.35);box-shadow:0 2px 8px rgba(236,72,153,.5);min-height:56px}
+.result-ta::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#ffb0d8,#ff4d9e,#e0006a);box-shadow:0 2px 14px rgba(236,72,153,.7)}
+.result-ta::-webkit-scrollbar-thumb:active{background:linear-gradient(180deg,#ffc8e0,#ff2d78,#a0005a)}
 
-/* HINT */
-.hint{font-size:.9rem;color:#d97706;font-weight:700;margin-top:8px;display:none}
-.hint.show{display:block}
+.result-btns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn-copy{
+  flex:1;min-width:140px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#fff;border:none;
+  padding:14px 16px;border-radius:14px;
+  font-size:.95rem;font-weight:800;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease;
+  box-shadow:0 4px 14px rgba(34,197,94,.35);
+  font-family:'Nunito',inherit;
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn-copy:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(34,197,94,.5)}
+.btn-copy:active{transform:scale(.96)}
+.btn-regen{
+  flex:1;min-width:140px;
+  background:linear-gradient(135deg,rgba(255,77,158,.18),rgba(190,24,93,.14));
+  color:#ffb0d8;
+  border:2px solid rgba(255,77,158,.5);
+  padding:14px 16px;border-radius:14px;
+  font-size:.95rem;font-weight:800;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease,color .3s ease;
+  font-family:'Nunito',inherit;
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn-regen:hover{
+  background:linear-gradient(135deg,rgba(255,77,158,.3),rgba(190,24,93,.25));
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(236,72,153,.35);
+}
+.btn-regen:active{transform:scale(.96)}
 
-/* HISTORY MODAL */
-.hist-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center}
-.hist-modal.show{display:flex;animation:fadeInOverlay .3s ease forwards}
-.hist-panel{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:680px;max-height:82vh;overflow-y:auto;padding:26px 22px 44px;animation:slideUp .35s ease forwards}
-.hist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.hist-header h3{font-size:1.2rem;font-weight:800;color:#0c4a6e}
-.hist-close{background:none;border:none;font-size:1.8rem;cursor:pointer;color:#94a3b8;line-height:1}
-.hist-empty{text-align:center;color:#64748b;padding:36px 0;font-size:1rem;font-weight:600}
-.hist-item{border:2px solid #e2e8f0;border-radius:14px;padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:all .2s}
-.hist-item:hover{border-color:#0ea5e9;background:#f0f9ff}
-.hist-item-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.hist-item-date{font-size:.85rem;color:#64748b;font-weight:600}
-.hist-item-dir{font-size:.85rem;color:#0ea5e9;font-weight:800;background:#f0f9ff;padding:3px 12px;border-radius:20px}
-.hist-item-preview{font-size:.95rem;color:#334155;line-height:1.6;font-weight:500}
-.hist-item-full{display:none;margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9}
-.hist-item-full textarea{width:100%;min-height:150px;padding:14px;border:2px solid #e2e8f0;border-radius:10px;font-size:.95rem;font-family:inherit;resize:vertical;color:#1e293b;line-height:1.7}
-.hist-copy{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:9px 18px;background:#f0f9ff;color:#0ea5e9;border:2px solid #bae6fd;border-radius:15px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s}
-.hist-copy:hover{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
-.hist-clear{width:100%;margin-top:18px;padding:14px;background:#fef2f2;color:#dc2626;border:2px solid #fca5a5;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
-.hist-clear:hover{background:#dc2626;color:#fff;border-color:#dc2626}
+/* ── HISTORY BTN ── */
+.btn-history{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+  color:#ffb0d8;
+  border:2px solid rgba(255,150,200,.3);
+  padding:14px;border-radius:16px;
+  font-size:1rem;font-weight:800;
+  cursor:pointer;margin-top:4px;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease,background .4s ease,border-color .4s ease,color .3s ease;
+  backdrop-filter:blur(10px);
+  box-shadow:0 4px 16px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);
+  font-family:'Nunito',inherit;
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn-history:hover{
+  background:linear-gradient(135deg,rgba(255,77,158,.22),rgba(190,24,93,.16));
+  border-color:rgba(255,77,158,.55);
+  color:#fff;transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(236,72,153,.28);
+}
+.btn-history:active{transform:scale(.97)}
+.btn-history .hist-icon-svg{
+  width:24px;height:24px;
+  filter:drop-shadow(0 2px 4px rgba(255,100,180,.6));
+}
 
-/* FOOTER */
-.magic-footer{text-align:center;color:#64748b;font-size:1rem;margin-top:44px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
-.magic-footer .heart{color:#e11d48;font-size:1.2rem}
+/* ── HISTORY MODAL ── */
+.history-modal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(6px);
+  z-index:4000;
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s ease;
+}
+.history-modal.show{opacity:1;pointer-events:all}
+.history-panel{
+  background:linear-gradient(160deg,#3d1855,#2a0a3e);
+  border-radius:26px 26px 0 0;
+  width:100%;max-width:600px;
+  max-height:85vh;overflow-y:auto;
+  padding:22px 16px 50px;
+  transform:translateY(80px);
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  border-top:2px solid rgba(255,150,200,.3);
+  box-shadow:0 -8px 40px rgba(0,0,0,.5);
+  scrollbar-width:thick;
+  scrollbar-color:#ff4d9e rgba(255,200,220,.2);
+}
+.history-panel::-webkit-scrollbar{width:10px}
+.history-panel::-webkit-scrollbar-track{background:rgba(255,200,220,.1);border-radius:6px}
+.history-panel::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff6eb4,#c2006e);border-radius:6px;min-height:40px}
+.history-modal.show .history-panel{transform:translateY(0)}
+.history-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.history-header h3{
+  font-size:1.15rem;font-weight:900;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(236,72,153,.5),0 1px 0 rgba(255,255,255,.3);
+}
+.btn-close-hist{
+  background:rgba(255,77,158,.15);
+  border:2px solid rgba(255,77,158,.3);
+  font-size:1.5rem;cursor:pointer;
+  color:#ffb0d8;line-height:1;
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-close-hist:hover{background:rgba(255,77,158,.32);transform:rotate(90deg) scale(1.12);color:#fff}
+.hist-item{
+  border:1.5px solid rgba(255,150,200,.2);
+  border-radius:16px;
+  padding:14px;margin-bottom:10px;
+  cursor:pointer;
+  transition:border-color .35s ease,background .35s ease,transform .35s ease;
+  background:rgba(255,255,255,.05);
+  -webkit-tap-highlight-color:transparent;
+}
+.hist-item:hover{
+  border-color:rgba(255,77,158,.5);
+  background:rgba(255,77,158,.09);
+  transform:translateX(4px);
+}
+.hist-meta{font-size:.78rem;color:#c090b0;margin-bottom:5px;display:flex;gap:8px;font-weight:700;flex-wrap:wrap}
+.hist-service{
+  font-size:.78rem;font-weight:800;
+  color:#ff9dc8;
+  background:rgba(255,77,158,.15);
+  padding:3px 10px;border-radius:10px;
+  border:1px solid rgba(255,77,158,.3);
+}
+.hist-preview{font-size:.9rem;color:#e0c0d0;line-height:1.55;font-weight:600}
+.hist-full{margin-top:10px;display:none}
+.hist-full textarea{
+  width:100%;
+  border:1.5px solid rgba(255,150,200,.3);
+  border-radius:12px;
+  padding:12px;
+  font-size:.9rem;
+  font-family:'Nunito',inherit;
+  min-height:120px;resize:vertical;
+  color:#1e0a2e;
+  background:rgba(255,255,255,.96);
+  font-weight:600;
+  scrollbar-width:thick;
+  scrollbar-color:#ff4d9e rgba(255,200,220,.3);
+}
+.hist-full textarea::-webkit-scrollbar{width:10px}
+.hist-full textarea::-webkit-scrollbar-track{background:rgba(255,200,220,.2);border-radius:6px}
+.hist-full textarea::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#ff6eb4,#c2006e);border-radius:6px;min-height:36px}
+.hist-full .btn-copy-h{
+  background:linear-gradient(135deg,#ff4d9e,#c2006e);
+  color:#fff;border:none;
+  padding:10px 18px;border-radius:12px;
+  font-size:.88rem;font-weight:800;
+  cursor:pointer;margin-top:10px;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease;
+  font-family:'Nunito',inherit;
+  box-shadow:0 3px 10px rgba(236,72,153,.35);
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  -webkit-tap-highlight-color:transparent;
+}
+.hist-full .btn-copy-h:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(236,72,153,.5)}
+.hist-item.expanded .hist-full{display:block}
+.hist-empty{text-align:center;color:#c090b0;padding:36px 0;font-size:1rem;font-weight:700}
 
-/* MOBILE */
+/* ── DIVIDER ── */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,150,200,.3),transparent);
+  margin:12px 0 16px;
+}
+
+/* ── FOOTER — no border/frame ── */
+.footer{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:20px 16px 36px;
+  margin-top:4px;
+}
+.footer-inner{
+  display:inline-block;
+  background:transparent;
+  border:none;
+  padding:14px 24px;
+}
+.footer-bouquet{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;
+  margin-bottom:8px;
+}
+.footer-rose{
+  display:inline-block;
+  animation:rosePulse 2.2s ease-in-out infinite;
+}
+.footer-rose:nth-child(1){animation-delay:.0s}
+.footer-rose:nth-child(2){animation-delay:.35s}
+.footer-rose:nth-child(3){animation-delay:.7s}
+.footer-rose:nth-child(4){animation-delay:.2s}
+.footer-rose:nth-child(5){animation-delay:.55s}
+
+/* Pink sparkling heart SVG in footer */
+.footer-pink-heart{
+  display:inline-block;
+  font-size:2.2rem;
+  margin:0 6px;
+  animation:diamondHeartPink 2.4s ease-in-out infinite;
+  color:#ff69b4;
+  filter:drop-shadow(0 0 10px #ff69b4) drop-shadow(0 0 22px #ff1493aa);
+}
+.footer-text{
+  font-size:.92rem;
+  font-weight:800;
+  color:#f0b8d0;
+  text-shadow:0 1px 6px rgba(236,72,153,.5),0 1px 3px rgba(0,0,0,.4);
+  line-height:1.6;
+  letter-spacing:.02em;
+}
+.footer-text .name{
+  color:#ff9dc8;
+  font-size:1.05rem;
+  font-weight:900;
+  text-shadow:0 0 14px rgba(255,77,158,.7),0 1px 4px rgba(0,0,0,.4);
+}
+
+/* ── SCROLLBAR GLOBAL ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
+::-webkit-scrollbar-thumb{background:rgba(255,77,158,.4);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,77,158,.6)}
+
+/* ── MOBILE OPTIMIZATIONS ── */
 @media(max-width:480px){
-  .magic-hero h1{font-size:1.8rem}
-  .card{padding:20px}
-  .btn-generate{font-size:1.1rem;padding:18px}
-  .chip{font-size:.95rem;padding:9px 15px}
-  .greeting-text{font-size:1.3rem}
-  .result-btns{gap:10px}
-  .action-btn{font-size:.9rem;padding:10px 16px}
-  .hd-logo{font-size:1rem}
+  .page{padding:10px 10px 90px}
+  .card{padding:15px 13px;border-radius:18px}
+  .greeting-block{padding:13px 14px;border-radius:16px}
+  .page-header h1{font-size:1.65rem}
+  .page-header p{font-size:.85rem}
+  .chip{padding:8px 12px;font-size:.85rem}
+  .tone-chip{padding:9px 13px;font-size:.85rem}
+  .sec-label{font-size:.82rem}
+  .btn-generate{padding:15px;font-size:1rem}
+  .result-ta{min-height:180px;max-height:280px;font-size:.97rem}
+  .result-ta::-webkit-scrollbar{width:18px}
+  .magic-phrase{font-size:1rem;padding:0 10px}
+  .overlay-hearts{font-size:2rem;gap:10px}
+  .footer-text{font-size:.85rem}
+  .back-link{font-size:.78rem;padding:7px 10px}
+  .nav-links{gap:6px}
+}
+@media(max-width:360px){
+  .nav-links{flex-direction:column}
+  .back-link{font-size:.8rem}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="hd">
-  <div class="hd-logo"><span>&#10024;</span> Магия контента</div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <button class="hd-hist" onclick="openHistory()">&#128218; Мои посты</button>
-    <a href="index.html" class="hd-back">&#8592; На сайт</a>
-  </div>
-</header>
+<!-- ROMANTIC BACKGROUND -->
+<div class="bg-canvas"></div>
+
+<!-- FLOATING HEARTS -->
+<div class="hearts-bg" id="heartsContainer"></div>
 
 <!-- MAGIC OVERLAY -->
 <div class="magic-overlay" id="magicOverlay">
-  <div class="magic-stars">&#10022; &#10023; &#10022;</div>
-  <div class="magic-phrase">Свет очей безусловный невидимый</div>
-  <div class="magic-dots">
-    <div class="magic-dot"></div>
-    <div class="magic-dot"></div>
-    <div class="magic-dot"></div>
+  <div class="overlay-hearts">
+    <span style="color:#ffb3c6;filter:drop-shadow(0 0 10px #ff8fab)">🩷</span>
+    <span style="color:#ffc8d5;filter:drop-shadow(0 0 12px #ffb6c1)">💗</span>
+    <span style="color:#ffb3c6;filter:drop-shadow(0 0 10px #ff8fab)">🩷</span>
+  </div>
+  <div class="magic-phrase" id="overlayPhrase">«&thinsp;Свет очей безусловный невидимый&thinsp;»</div>
+  <div class="overlay-hearts" style="animation-delay:.8s">
+    <span style="color:#ffd6e0;filter:drop-shadow(0 0 10px #ffc8d5)">💕</span>
+    <span style="color:#ffb3c6;filter:drop-shadow(0 0 12px #ff8fab)">🩷</span>
+    <span style="color:#ffd6e0;filter:drop-shadow(0 0 10px #ffc8d5)">💕</span>
   </div>
 </div>
 
 <!-- HISTORY MODAL -->
-<div class="hist-modal" id="histModal" onclick="closeHistoryOutside(event)">
-  <div class="hist-panel" id="histPanel">
-    <div class="hist-header">
-      <h3>&#128218; История постов</h3>
-      <button class="hist-close" onclick="closeHistory()">&#10005;</button>
+<div class="history-modal" id="historyModal">
+  <div class="history-panel">
+    <div class="history-header">
+      <h3>💖 Мои посты</h3>
+      <button class="btn-close-hist" onclick="closeHistory()">×</button>
     </div>
-    <div id="histList"></div>
+    <div id="historyList"></div>
   </div>
 </div>
 
-<!-- MAIN -->
-<main class="page">
+<div class="page">
+
+  <!-- NAV LINKS ROW -->
+  <div class="nav-links">
+    <a href="https://dom2411edinstvo.github.io/neft-zdorov" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      На главную сайта
+    </a>
+    <a href="https://vk.com/energoterapia_hidjama_neftekamsk" target="_blank" class="back-link">
+      <span class="lnk-icon">👤</span>
+      Личная страница ВК
+    </a>
+    <a href="https://vk.com/energoterapia.hidjama.neftekamsk" target="_blank" class="back-link">
+      <span class="lnk-icon">💬</span>
+      Группа Энерготерапия
+    </a>
+  </div>
 
   <!-- GREETING -->
-  <div class="greeting-block" id="greetingBlock">
-    <div class="greeting-text" id="greetingText"></div>
-    <div class="greeting-quote" id="greetingQuote"></div>
+  <div class="greeting-wrap">
+    <div class="greeting-block">
+      <!-- Two bright pink SVG hearts — no emoji rendering issues -->
+      <div class="hearts-row">
+        <span class="heart-svg-item">
+          <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z"
+              fill="url(#pg1)" filter="url(#glow1)"/>
+            <defs>
+              <radialGradient id="pg1" cx="40%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#ffb6d9"/>
+                <stop offset="45%" stop-color="#ff69b4"/>
+                <stop offset="100%" stop-color="#e91e8c"/>
+              </radialGradient>
+              <filter id="glow1" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+          </svg>
+        </span>
+        <span class="heart-svg-item">
+          <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z"
+              fill="url(#pg2)" filter="url(#glow2)"/>
+            <defs>
+              <radialGradient id="pg2" cx="40%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#ffc8e0"/>
+                <stop offset="45%" stop-color="#ff85c2"/>
+                <stop offset="100%" stop-color="#d41b8a"/>
+              </radialGradient>
+              <filter id="glow2" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+          </svg>
+        </span>
+      </div>
+      <div class="greeting-text" id="greetingText"></div>
+      <div class="quote-text" id="quoteText"></div>
+    </div>
   </div>
 
-  <!-- HERO -->
-  <div class="magic-hero">
-    <h1>Магия контента <span>&#10024;</span></h1>
-    <p>Выбери направление — и ИИ создаст пост для ВКонтакте</p>
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1>Магия контента ✨</h1>
+    <p>❤️ Создай идеальный пост для ВКонтакте за секунды 💖</p>
   </div>
 
-  <!-- CARD: Направление -->
+  <!-- FORM CARD -->
   <div class="card">
-    <div class="card-title">1 — Выбери направление</div>
-    <div class="chips-group">
-      <div class="chips-label">&#127941; Спорт</div>
-      <div class="chips">
-        <div class="chip chip-sport" data-value="Pole Dance" data-group="direction">&#128137; Pole Dance</div>
+
+    <!-- DIRECTION -->
+    <div class="sec-label">💫 Направление</div>
+    <span class="chip-cat">Танцы</span>
+    <div class="chips-group" id="dirChips">
+      <div class="chip" data-dir="Pole Dance"><span class="emoji-3d">🎀</span> Pole Dance</div>
+    </div>
+    <span class="chip-cat">Оздоровление</span>
+    <div class="chips-group" id="dirChips2">
+      <div class="chip" data-dir="Энерготерапия"><span class="emoji-3d">✨</span> Энерготерапия</div>
+      <div class="chip" data-dir="Гирудотерапия">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,0,0,.6))"><ellipse cx="18" cy="18" rx="10" ry="6" fill="#b91c1c"/><ellipse cx="18" cy="16" rx="8" ry="4" fill="#dc2626"/><circle cx="13" cy="14" r="2" fill="#1e1b4b"/><circle cx="23" cy="14" r="2" fill="#1e1b4b"/><path d="M14 20 Q18 26 22 20" stroke="#991b1b" stroke-width="1.5" fill="none"/></svg>
+        Гирудотерапия
+      </div>
+      <div class="chip" data-dir="Хиджама">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,0,60,.6))"><rect x="8" y="6" width="20" height="24" rx="4" fill="#7c3aed" opacity=".85"/><rect x="10" y="8" width="16" height="10" rx="2" fill="#a78bfa"/><circle cx="18" cy="25" r="3" fill="#f87171"/><path d="M18 13 L18 19" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        Хиджама
+      </div>
+      <div class="chip" data-dir="Иглоукалывание">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,0,180,.6))"><line x1="18" y1="4" x2="18" y2="32" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="5" r="3" fill="#c4b5fd"/><ellipse cx="18" cy="20" rx="5" ry="2" fill="#ddd6fe" opacity=".5"/><line x1="10" y1="14" x2="26" y2="14" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
+        Иглоукалывание
+      </div>
+      <div class="chip" data-dir="Иглонож"><span class="emoji-3d">⚕️</span> Иглонож</div>
+      <div class="chip" data-dir="ЛФК">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(180,50,100,.6))"><circle cx="18" cy="8" r="4" fill="#f9a8d4"/><path d="M18 13 L18 24" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/><path d="M18 18 L11 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 18 L25 22" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L12 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/><path d="M18 24 L24 32" stroke="#ec4899" stroke-width="2" stroke-linecap="round"/></svg>
+        ЛФК
+      </div>
+      <div class="chip" data-dir="АФК"><span class="emoji-3d">💪</span> АФК</div>
+      <div class="chip" data-dir="Access Bars">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,50,200,.6))"><circle cx="18" cy="18" r="13" fill="none" stroke="#8b5cf6" stroke-width="2" opacity=".6"/><circle cx="18" cy="8" r="2.5" fill="#c4b5fd"/><circle cx="27" cy="13" r="2" fill="#a78bfa"/><circle cx="27" cy="23" r="2" fill="#a78bfa"/><circle cx="18" cy="28" r="2.5" fill="#c4b5fd"/><circle cx="9" cy="23" r="2" fill="#a78bfa"/><circle cx="9" cy="13" r="2" fill="#a78bfa"/><circle cx="18" cy="18" r="4" fill="#ddd6fe" opacity=".7"/></svg>
+        Access Bars
       </div>
     </div>
+
     <div class="divider"></div>
-    <div class="chips-group">
-      <div class="chips-label">&#127807; Оздоровление</div>
-      <div class="chips">
-        <div class="chip" data-value="Энерготерапия" data-group="direction">&#10024; Энерготерапия</div>
-        <div class="chip" data-value="Гирудотерапия" data-group="direction">&#129656; Гирудотерапия</div>
-        <div class="chip" data-value="Хиджама" data-group="direction">&#129371; Хиджама</div>
-        <div class="chip" data-value="Иглоукалывание" data-group="direction">&#129505; Иглоукалывание</div>
-        <div class="chip" data-value="Иглонож" data-group="direction">&#9889; Иглонож</div>
-        <div class="chip" data-value="ЛФК" data-group="direction">&#127939; ЛФК</div>
-        <div class="chip" data-value="АФК" data-group="direction">&#129336; АФК</div>
-        <div class="chip" data-value="Access Bars" data-group="direction">&#129504; Access Bars</div>
+
+    <!-- TONE -->
+    <div class="sec-label">🎨 Тон поста</div>
+    <div class="tone-chips" id="toneChips">
+      <div class="tone-chip active" data-tone="Тёплый и заботливый">
+        <span class="emoji-3d" style="font-size:1.05rem">💛</span> Тёплый
+      </div>
+      <div class="tone-chip" data-tone="Энергичный и мотивирующий">
+        <span class="emoji-3d" style="font-size:1.05rem">🔥</span> Энергичный
+      </div>
+      <div class="tone-chip" data-tone="Экспертный и серьёзный">
+        <svg width="17" height="17" viewBox="0 0 36 36" style="display:inline-block;vertical-align:middle;margin-right:4px;filter:drop-shadow(0 2px 4px rgba(100,50,200,.7))"><rect x="6" y="6" width="24" height="18" rx="3" fill="#4c1d95"/><rect x="8" y="8" width="20" height="14" rx="2" fill="#7c3aed"/><line x1="11" y1="12" x2="25" y2="12" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="15" x2="25" y2="15" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="18" x2="20" y2="18" stroke="#c4b5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="14" y="24" width="8" height="3" rx="1" fill="#6d28d9"/></svg>
+        Экспертный
       </div>
     </div>
-    <div class="hint" id="chipHint">&#9888;&#65039; Выбери хотя бы одно направление</div>
-  </div>
 
-  <!-- CARD: Тон -->
-  <div class="card">
-    <div class="card-title">2 — Тон поста</div>
-    <div class="chips">
-      <div class="chip chip-tone warm active" data-value="Тёплый и заботливый" data-group="tone" data-cls="warm">&#128155; Тёплый и заботливый</div>
-      <div class="chip chip-tone energy" data-value="Энергичный и мотивирующий" data-group="tone" data-cls="energy">&#128293; Энергичный и мотивирующий</div>
-      <div class="chip chip-tone expert" data-value="Экспертный и серьёзный" data-group="tone" data-cls="expert">&#129504; Экспертный и серьёзный</div>
+    <div class="divider"></div>
+
+    <!-- TEXTAREA -->
+    <div class="sec-label">✏️ Тема поста</div>
+    <div class="ta-wrap">
+      <textarea id="topicInput" placeholder="О чём пишем сегодня?" maxlength="500" oninput="updateCharCount()"></textarea>
+      <div class="char-count" id="charCount">0 / 500</div>
     </div>
-  </div>
 
-  <!-- CARD: Тема -->
-  <div class="card">
-    <div class="card-title">3 — О чём пишем</div>
-    <label class="field-label" for="topicInput">Твои мысли, факты или польза по теме:</label>
-    <textarea class="field-textarea" id="topicInput" placeholder="О чём пишем сегодня? (пара мыслей, фактов или польза)" rows="4" maxlength="500"></textarea>
-    <div class="char-counter" id="charCounter">0 / 500</div>
-    <div class="hint" id="topicHint">&#9888;&#65039; Напиши хотя бы пару слов о теме</div>
-  </div>
+    <div class="divider"></div>
 
-  <!-- CARD: Настройки -->
-  <div class="card">
-    <div class="card-title">4 — Настройки</div>
-    <div class="toggle-row">
-      <label class="toggle-label" for="poemToggle">&#10024; Добавить красивый стих в текст</label>
+    <!-- POEM TOGGLE -->
+    <div class="poem-toggle-card">
+      <label class="poem-toggle-label" for="poemToggle">
+        <span class="poem-icon">✨</span>Добавить красивый стих в текст
+      </label>
       <label class="toggle">
         <input type="checkbox" id="poemToggle">
-        <span class="toggle-slider"></span>
+        <span class="slider"></span>
       </label>
     </div>
+
+    <!-- GENERATE BTN -->
+    <button class="btn-generate" id="generateBtn" onclick="generate()">
+      ❤️ Создать пост с магией ❤️
+    </button>
   </div>
 
-  <!-- GENERATE -->
-  <button class="btn-generate" id="generateBtn" onclick="handleGenerate()">
-    <span>&#10024;</span> Создать пост
+  <!-- RESULT -->
+  <div id="resultWrapper" style="display:none;margin-bottom:16px"></div>
+
+  <!-- HISTORY BTN -->
+  <button class="btn-history" onclick="openHistory()">
+    <svg class="hist-icon-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="14" fill="none" stroke="#ff4d9e" stroke-width="2"/>
+      <path d="M18 10v8l5 3" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 18 Q10 12 18 10" stroke="#ff4d9e" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+      <circle cx="18" cy="18" r="2.5" fill="#ff4d9e"/>
+    </svg>
+    <span>💖 Мои посты</span>
   </button>
 
-  <!-- ERROR -->
-  <div class="error-box" id="errorBox"></div>
+</div>
 
-  <!-- RESULTS -->
-  <div class="results" id="resultsBlock">
-    <div class="card" style="margin-top:24px">
-      <div class="result-label">&#128221; Готовый пост</div>
-      <textarea class="result-text" id="resultText" placeholder="Здесь появится текст поста..."></textarea>
-      <div class="result-btns">
-        <button class="action-btn" id="copyBtn" onclick="copyText()">
-          <span>&#128203;</span> <span id="copyBtnText">Скопировать текст</span>
-        </button>
-        <button class="action-btn regen" onclick="handleGenerate(true)">
-          <span>&#128260;</span> Ещё вариант
-        </button>
-      </div>
+<!-- FOOTER — no frame/border -->
+<div class="footer">
+  <div class="footer-inner">
+    <!-- Only one sparkling pink heart above text, no roses -->
+    <div class="footer-bouquet">
+      <span class="footer-pink-heart">
+        <svg width="48" height="42" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="heartGrad" cx="38%" cy="32%" r="68%">
+              <stop offset="0%" stop-color="#ffc2e0"/>
+              <stop offset="35%" stop-color="#ff69b4"/>
+              <stop offset="70%" stop-color="#ff1493"/>
+              <stop offset="100%" stop-color="#c2006e"/>
+            </radialGradient>
+            <filter id="heartGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="3.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <path d="M24 38 C24 38 3 25 3 12.5 C3 7.2 7.2 3 12.5 3 C16.2 3 19.4 5.1 21.2 8.2 C22.2 6.4 24 4.8 24 4.8 C24 4.8 25.8 6.4 26.8 8.2 C28.6 5.1 31.8 3 35.5 3 C40.8 3 45 7.2 45 12.5 C45 25 24 38 24 38Z"
+            fill="url(#heartGrad)" filter="url(#heartGlow)"/>
+          <!-- shine -->
+          <ellipse cx="17" cy="11" rx="4" ry="2.5" fill="rgba(255,255,255,0.38)" transform="rotate(-25,17,11)"/>
+        </svg>
+      </span>
+    </div>
+    <div class="footer-text">
+      С любовью и нежностью от<br>
+      <span class="name">✨ Артёма ✨</span>
     </div>
   </div>
-
-  <div class="magic-footer">
-    С любовью от Артёма <span class="heart">&#10084;&#65039;</span>
-  </div>
-</main>
+</div>
 
 <script>
-/* =============================================
-   НАСТРОЙКИ API
-   ============================================= */
-const API_KEY      = "";
+/* ── CONSTANTS ── */
+const API_KEY = "sk-or-vv-a0ace08311df28a37a7fd4d34ba79e52dba5272d350d6890293a94f39043ee68";
 const API_URL_CHAT = "https://api.vsegpt.ru/v1/chat/completions";
-const TEXT_MODEL   = "google/gemini-1.5-pro-exp";
+const TEXT_MODEL = "anthropic/claude-sonnet-4.6-thinking-high";
 
-/* =============================================
-   СОСТОЯНИЕ
-   ============================================= */
-let selectedDirection = null;
-let selectedTone      = "Тёплый и заботливый";
-
-/* =============================================
-   ПРИВЕТСТВИЕ ПО ВРЕМЕНИ (UTC+5 Нефтекамск)
-   ============================================= */
+/* ── QUOTES ── */
 const QUOTES = [
-  "Творчество — это позволить себе ошибиться. Искусство — знать, какие ошибки оставить.",
-  "Женщина, знающая свою силу, — это тихий ураган, меняющий мир вокруг себя.",
-  "Здоровье — это не всё, но без здоровья всё — ничто.",
-  "Каждый пост — это семя, которое ты бросаешь в мир. Оно обязательно прорастёт.",
-  "Вдохновение приходит к тем, кто уже сидит за работой.",
-  "Твоя история — лучший контент, который только существует.",
-  "Красота начинается там, где ты решаешь быть собой.",
-  "Слова, сказанные с любовью, долетают до самых закрытых сердец.",
-  "Энергия, которую ты вкладываешь в слова, возвращается к тебе сторицей.",
-  "Магия случается, когда смелость встречается с мастерством.",
-  "Настоящий эксперт — тот, кто умеет объяснить сложное просто и с душой.",
-  "Каждое доброе слово — это маленькое исцеление для того, кто его читает.",
-  "Сила женщины — в её способности создавать уют даже в словах.",
-  "Не бойся показывать своё призвание. Мир ждёт именно тебя.",
-  "Контент — это разговор с теми, кто тебя ещё не встретил.",
-  "Твоё дело помогает людям. Расскажи об этом — и помощь умножится.",
-  "Каждое утро — это чистая страница. Напиши что-то достойное.",
-  "Женская мудрость — самый тёплый свет в любом тексте.",
-  "Исцеление начинается с одного шага навстречу себе.",
-  "Гармония внутри рождает красоту снаружи — в словах, делах и жизни.",
-  "Пиши так, будто разговариваешь с лучшей подругой — честно и с теплом.",
-  "Твой голос важен. Молчание — это тоже выбор, но не всегда лучший.",
-  "Движение — это жизнь. Слово — это связь. Совмести оба.",
-  "Настоящий контент рождается из опыта, а не из воздуха.",
-  "Каждая клиентка — это история, которую ты помогаешь написать.",
-  "Доверие строится словами, искренними как утренний свет.",
-  "Творческая усталость — знак того, что ты вкладываешь душу.",
-  "Маленькие регулярные шаги создают большие результаты.",
-  "Пусть каждый твой пост — это объятие для читателя.",
-  "Самый мощный маркетинг — это искренняя забота."
+  "Твоё тело — это храм, а каждый сеанс — молитва о здоровье.",
+  "Женская сила — не в жёсткости, а в умении течь и возрождаться.",
+  "Творчество — это душа, говорящая вслух.",
+  "Каждое слово, написанное с любовью, находит своего читателя.",
+  "Исцеление начинается там, где заканчиваются сомнения.",
+  "Ты сама себе лучший целитель — и лучший автор.",
+  "Энергия не исчезает, она меняет форму — как твои идеи.",
+  "Пост с душой — это мост между тобой и теми, кому ты нужна.",
+  "Гармония тела рождает гармонию слова.",
+  "Каждый день — чистая страница. Пиши смело.",
+  "Настоящая женщина не ищет совершенства — она создаёт его.",
+  "Контент, написанный из сердца, не нуждается в алгоритмах.",
+  "Вдохновение живёт в тишине между мыслями.",
+  "Ты не продаёшь услугу — ты делишься даром.",
+  "Pole dance — это поэзия тела в движении.",
+  "Самое мощное слово — то, что сказано вовремя.",
+  "Твоя работа меняет людей. Пусть об этом узнают все.",
+  "Красота слова в простоте. Красота исцеления — в искренности.",
+  "Каждый хэштег — это дверь, за которой ждёт твой клиент.",
+  "Пиявки лечили царей. Ты лечишь сердца.",
+  "Когда слова текут легко — значит, ты на своём месте.",
+  "Создание контента — это медитация в движении.",
+  "Сила не в громкости голоса, а в его теплоте.",
+  "Пост — это не реклама. Это разговор по душам.",
+  "Твоя экспертность — дар для тех, кто ещё ищет путь.",
+  "Хиджама очищает кровь, вдохновение — мысли.",
+  "Access Bars открывает ум. Хороший текст — открывает сердца.",
+  "Каждое утро — новая возможность рассказать свою историю.",
+  "Творчество и здоровье — два крыла одной птицы.",
+  "Ты создаёшь не посты, ты создаёшь сообщество."
 ];
 
+/* ── FLOATING HEARTS — only pink / red / crimson / rose, NEVER black ── */
+function createFloatingHearts() {
+  const container = document.getElementById('heartsContainer');
+
+  // Only SVG-based hearts to guarantee color — no emoji that renders as black
+  const pinkColors = [
+    '#ff69b4','#ff85c2','#ff4d9e','#ffb3c6','#ff1493',
+    '#e91e8c','#ff6eb4','#ffc8d5','#dc143c','#c71585',
+    '#ff8fab','#ff3366','#ff99bb','#e05580','#ff2d55'
+  ];
+
+  for (let i = 0; i < 28; i++) {
+    const h = document.createElement('div');
+    h.className = 'fheart';
+    const color = pinkColors[Math.floor(Math.random() * pinkColors.length)];
+    const size = 14 + Math.floor(Math.random() * 20); // px
+    const dur = 14 + Math.random() * 22;
+
+    // SVG heart
+    h.innerHTML = `<svg width="${size}" height="${Math.round(size*.9)}" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 25 C16 25 2 16 2 8.5 C2 4.9 4.9 2 8.5 2 C11 2 13.2 3.4 14.5 5.5 C15.2 4.2 16 3.2 16 3.2 C16 3.2 16.8 4.2 17.5 5.5 C18.8 3.4 21 2 23.5 2 C27.1 2 30 4.9 30 8.5 C30 16 16 25 16 25Z" fill="${color}" opacity="0.88"/>
+    </svg>`;
+
+    h.style.cssText = `
+      left:${Math.random()*100}%;
+      animation-duration:${dur}s;
+      animation-delay:${Math.random()*18}s;
+      filter:drop-shadow(0 0 4px ${color}99);
+    `;
+    container.appendChild(h);
+  }
+}
+
+/* ── GREETING — remove emoji after "Ирина!" ── */
 function initGreeting() {
-  const now  = new Date();
-  const utc  = now.getTime() + now.getTimezoneOffset() * 60000;
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
   const neft = new Date(utc + 5 * 3600000);
-  const hour = neft.getHours();
-  const day  = neft.getDate();
-
-  let greet;
-  if (hour >= 5 && hour < 12) {
-    greet = "Доброе утро, Ирина &#9728;&#65039; Пусть день будет творческим!";
-  } else if (hour >= 12 && hour < 17) {
-    greet = "Добрый день, Ирина &#127800; Время создавать магию!";
-  } else if (hour >= 17 && hour < 22) {
-    greet = "Добрый вечер, Ирина &#127769; Вдохновение уже здесь...";
-  } else {
-    greet = "Доброй ночи, Ирина &#10024; Даже звёзды ждут твоих постов...";
-  }
-
-  const quoteIndex = (day - 1) % QUOTES.length;
-  document.getElementById('greetingText').innerHTML   = greet;
-  document.getElementById('greetingQuote').textContent = "«" + QUOTES[quoteIndex] + "»";
+  const h = neft.getHours();
+  const day = neft.getDate();
+  let msg;
+  if (h >= 5 && h < 12)  msg = "Доброе утро, Ирина! Пусть день будет творческим!";
+  else if (h >= 12 && h < 17) msg = "Добрый день, Ирина! Время создавать магию!";
+  else if (h >= 17 && h < 22) msg = "Добрый вечер, Ирина! Вдохновение уже здесь...";
+  else msg = "Доброй ночи, Ирина! Даже звёзды ждут твоих постов...";
+  document.getElementById('greetingText').innerHTML = msg;
+  document.getElementById('quoteText').textContent = "«" + QUOTES[(day - 1) % QUOTES.length] + "»";
 }
-initGreeting();
 
-/* =============================================
-   CHIPS
-   ============================================= */
-document.querySelectorAll('.chip[data-group="direction"]').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('.chip[data-group="direction"]').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    selectedDirection = chip.dataset.value;
-    document.getElementById('chipHint').classList.remove('show');
-  });
-});
+/* ── CHIPS ── */
+let selectedDir = "";
+let selectedTone = "Тёплый и заботливый";
 
-document.querySelectorAll('.chip[data-group="tone"]').forEach(chip => {
-  chip.addEventListener('click', () => {
-    document.querySelectorAll('.chip[data-group="tone"]').forEach(c => {
-      c.classList.remove('active');
-      if (c.dataset.cls) c.classList.remove(c.dataset.cls);
+function initChips() {
+  const allDir = document.querySelectorAll('[data-dir]');
+  allDir.forEach(ch => {
+    ch.addEventListener('click', () => {
+      allDir.forEach(c => c.classList.remove('active'));
+      ch.classList.add('active');
+      selectedDir = ch.dataset.dir;
     });
-    chip.classList.add('active');
-    if (chip.dataset.cls) chip.classList.add(chip.dataset.cls);
-    selectedTone = chip.dataset.value;
   });
-});
-
-/* =============================================
-   СЧЁТЧИК СИМВОЛОВ
-   ============================================= */
-document.getElementById('topicInput').addEventListener('input', function() {
-  const len     = this.value.length;
-  const counter = document.getElementById('charCounter');
-  counter.textContent = len + ' / 500';
-  counter.className   = 'char-counter' + (len > 450 ? ' warn' : '') + (len >= 500 ? ' over' : '');
-  if (len >= 3) document.getElementById('topicHint').classList.remove('show');
-});
-
-/* =============================================
-   ВАЛИДАЦИЯ
-   ============================================= */
-function validate() {
-  let ok = true;
-  if (!selectedDirection) {
-    document.getElementById('chipHint').classList.add('show');
-    ok = false;
-  }
-  const topic = document.getElementById('topicInput').value.trim();
-  if (topic.length < 3) {
-    document.getElementById('topicHint').classList.add('show');
-    ok = false;
-  } else {
-    document.getElementById('topicHint').classList.remove('show');
-  }
-  return ok;
+  const allTone = document.querySelectorAll('[data-tone]');
+  allTone.forEach(ch => {
+    ch.addEventListener('click', () => {
+      allTone.forEach(c => c.classList.remove('active'));
+      ch.classList.add('active');
+      selectedTone = ch.dataset.tone;
+    });
+  });
 }
 
-/* =============================================
-   OVERLAY
-   ============================================= */
+/* ── CHAR COUNT ── */
+function updateCharCount() {
+  const v = document.getElementById('topicInput').value.length;
+  document.getElementById('charCount').textContent = v + " / 500";
+}
+
+/* ── OVERLAY ── */
 function showOverlay() {
   document.getElementById('magicOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
 }
 function hideOverlay() {
-  const overlay = document.getElementById('magicOverlay');
-  overlay.style.transition = 'opacity .5s ease';
-  overlay.style.opacity    = '0';
+  const o = document.getElementById('magicOverlay');
+  o.style.transition = 'opacity .6s ease';
+  o.style.opacity = '0';
   setTimeout(() => {
-    overlay.classList.remove('show');
-    overlay.style.opacity    = '';
-    overlay.style.transition = '';
-    document.body.style.overflow = '';
-  }, 500);
+    o.classList.remove('show');
+    o.style.opacity = '';
+    o.style.transition = '';
+  }, 650);
 }
 
-/* =============================================
-   ПРОМПТЫ
-   ============================================= */
-function buildTextMessages(direction, tone, topic, withPoem) {
-  const isEnergo = direction === 'Энерготерапия';
+/* ── CLEAN TEXT ── */
+function cleanText(text) {
+  return text
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    .replace(/^---+$/gm, '')
+    .replace(/^___+$/gm, '')
+    .replace(/^===+$/gm, '')
+    .replace(/^\s*[-–—]{3,}\s*$/gm, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
 
-  const poemInstruction = withPoem
-    ? ' В конце текста органично вплети красивое, трогательное, ритмичное стихотворение (4–8 строк) по теме поста.'
-    : '';
-
-  const seoInstruction = isEnergo
-    ? ' Пиши БЕЗ привязки к городу Нефтекамск. В конце добавь блок из 8–12 универсальных тематических хэштегов по энерготерапии, биоэнергетике и духовным практикам — без гео-тегов.'
-    : ` Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте (1–3 раза). В конце добавь блок из 10–15 хэштегов для ВКонтакте и Яндекса: обязательно включи гео-хэштеги (#нефтекамск и релевантные гео-варианты для направления "${direction}"), тематические хэштеги по направлению и общие популярные хэштеги по здоровью и красоте.`;
-
-  const system = `Ты профессиональный SMM-копирайтер. Пишешь вовлекающие посты для ВКонтакте. Тон: ${tone} — живой, современный, без канцелярита. Используй эмодзи умеренно (3–6 штук). Структурируй: цепляющее начало, польза, призыв к действию. Длина 150–260 слов.${poemInstruction}${seoInstruction}`;
-
-  const user = `Экспертная ниша: ${direction}.\nТема поста: ${topic}.\n\nНапиши пост.`;
-
+/* ── PROMPT ── */
+function buildMessages(dir, tone, topic, poem) {
+  const isEnergo = dir === "Энерготерапия";
+  let seoRule = isEnergo
+    ? "Пиши БЕЗ привязки к городу Нефтекамск. Добавь универсальные тематические хэштеги, без гео-тегов."
+    : "Пост должен быть идеально SEO-оптимизирован под город Нефтекамск. Упомяни Нефтекамск в тексте 1–3 раза. В конце добавь 5–10 хэштегов для ВКонтакте и Яндекса, ОБЯЗАТЕЛЬНО включая гео-хэштеги (например, #нефтекамск #" + dir.toLowerCase().replace(/\s/g,'') + "нефтекамск) и тематические.";
+  const poemRule = poem ? "Органично вплети в текст красивое небольшое стихотворение (4–8 строк), связанное с темой." : "";
+  const system = `Ты профессиональный SMM-копирайтер для ВКонтакте. Пишешь живые, человечные и цепляющие тексты. Используй эмодзи умеренно — для акцентов, не перегружай. Структурируй пост: зацепка → суть → призыв к действию. ВАЖНО: не используй markdown-форматирование — никаких **, *, ---, === и прочих спецсимволов. Только живой читаемый текст. ${seoRule}`;
+  const user = `Напиши пост для ВКонтакте.\nНиша: ${dir}.\nТема: ${topic || "общая польза и преимущества направления"}.\nТон: ${tone}.\n${poemRule}\nПост должен быть от 150 до 350 слов, живой и искренний. Без символов разметки (**,*,---).`;
   return [
-    { role: 'system', content: system },
-    { role: 'user',   content: user }
+    { role: "system", content: system },
+    { role: "user", content: user }
   ];
 }
 
-/* =============================================
-   API ЗАПРОС через CORS-прокси
-   ============================================= */
-async function fetchText(messages) {
-  // Пробуем несколько CORS-прокси по очереди
-  const proxies = [
-    url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
-    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-    url => `https://thingproxy.freeboard.io/fetch/${url}`,
-  ];
-
-  let lastErr;
-  for (const makeProxy of proxies) {
-    const proxyUrl = makeProxy(API_URL_CHAT);
-    try {
-      const res = await fetch(proxyUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`,
-          'x-requested-with': 'XMLHttpRequest'
-        },
-        body: JSON.stringify({
-          model: TEXT_MODEL,
-          messages,
-          max_tokens: 1024,
-          temperature: 0.85
-        })
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error?.message || `Ошибка: ${res.status}`);
-      }
-      const data = await res.json();
-      return data.choices?.[0]?.message?.content || '';
-    } catch (e) {
-      lastErr = e;
-      console.warn('Прокси не сработал:', proxyUrl, e.message);
-    }
+/* ── GENERATE ── */
+async function generate() {
+  if (!selectedDir) {
+    alert("Пожалуйста, выбери направление 💙");
+    return;
   }
-  throw lastErr || new Error('Все прокси недоступны');
-}
-
-/* =============================================
-   ГЛАВНАЯ ФУНКЦИЯ
-   ============================================= */
-async function handleGenerate(isRegen = false) {
-  if (!validate()) return;
-
-  const direction = selectedDirection;
-  const tone      = selectedTone;
-  const topic     = document.getElementById('topicInput').value.trim();
-  const withPoem  = document.getElementById('poemToggle').checked;
-  const btn       = document.getElementById('generateBtn');
-  const errorBox  = document.getElementById('errorBox');
-
-  errorBox.classList.remove('show');
-  errorBox.textContent = '';
-  if (!isRegen) document.getElementById('resultsBlock').classList.remove('show');
-
+  const topic = document.getElementById('topicInput').value.trim();
+  const poem = document.getElementById('poemToggle').checked;
+  const btn = document.getElementById('generateBtn');
   btn.disabled = true;
   showOverlay();
-
+  const messages = buildMessages(selectedDir, selectedTone, topic, poem);
+  let result = "";
   try {
-    const messages   = buildTextMessages(direction, tone, topic, withPoem);
-    const textResult = await fetchText(messages);
-
-    document.getElementById('resultText').value = textResult;
-    document.getElementById('resultsBlock').classList.add('show');
-
-    saveToHistory(direction, tone, topic, textResult);
-
-    setTimeout(() => {
-      document.getElementById('resultsBlock').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 200);
-
-  } catch (err) {
-    console.error(err);
-    errorBox.textContent = '⚠️ ' + (err.message || 'Что-то пошло не так. Проверь API-ключ и попробуй снова.');
-    errorBox.classList.add('show');
-  } finally {
+    const resp = await fetch(API_URL_CHAT, {
+      method: "POST", mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + API_KEY,
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        model: TEXT_MODEL,
+        messages: messages,
+        max_tokens: 1500,
+        temperature: 0.85
+      })
+    });
+    if (!resp.ok) {
+      let errMsg = "Ошибка API: " + resp.status;
+      try { const e = await resp.json(); errMsg = e.error?.message || errMsg; } catch(_){}
+      throw new Error(errMsg);
+    }
+    const data = await resp.json();
+    result = data.choices?.[0]?.message?.content?.trim() || "";
+    if (!result) throw new Error("Пустой ответ от API");
+    result = cleanText(result);
+  } catch(e) {
     hideOverlay();
     btn.disabled = false;
+    let msg = e.message;
+    if (msg.includes("Failed to fetch")||msg.includes("NetworkError")||msg.includes("Load failed"))
+      msg = "Нет соединения с сервером.\nПроверьте интернет или попробуйте чуть позже.";
+    alert("Ошибка генерации:\n" + msg);
+    return;
   }
+  hideOverlay();
+  btn.disabled = false;
+  renderResult(result);
+  saveToHistory(result, selectedDir);
 }
 
-/* =============================================
-   КОПИРОВАНИЕ
-   ============================================= */
-async function copyText() {
-  const text = document.getElementById('resultText').value;
-  if (!text) return;
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const ta = document.getElementById('resultText');
-    ta.select();
-    document.execCommand('copy');
-  }
-  const btn = document.getElementById('copyBtn');
-  const lbl = document.getElementById('copyBtnText');
-  btn.classList.add('copied');
-  lbl.textContent = 'Скопировано ✓';
-  setTimeout(() => {
-    btn.classList.remove('copied');
-    lbl.textContent = 'Скопировать текст';
-  }, 2500);
+/* ── RENDER RESULT ── */
+function renderResult(text) {
+  const wrap = document.getElementById('resultWrapper');
+  wrap.style.display = 'block';
+  wrap.innerHTML = `
+    <div class="result-block">
+      <div class="result-label"><span class="dot"></span> ❤️ Готовый пост</div>
+      <div class="result-ta-wrap">
+        <textarea class="result-ta" id="resultTa" spellcheck="true">${escHtml(text)}</textarea>
+      </div>
+      <div class="result-btns">
+        <button class="btn-copy" id="copyBtn" onclick="copyResult()">📋 Скопировать текст</button>
+        <button class="btn-regen" onclick="generate()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;margin-right:5px;filter:drop-shadow(0 1px 3px rgba(255,100,180,.6))"><path d="M4 12a8 8 0 0 1 14.5-4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><path d="M20 12a8 8 0 0 1-14.5 4.6" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round"/><polyline points="19 5 19.5 9 15.5 9" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="5 19 4.5 15 8.5 15" stroke="#ff9dc8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Ещё вариант
+        </button>
+      </div>
+    </div>`;
+  setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'start' }), 100);
 }
 
-/* =============================================
-   ИСТОРИЯ (localStorage)
-   ============================================= */
-const HIST_KEY = 'magic_history_v1';
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 
-function saveToHistory(direction, tone, topic, text) {
+/* ── COPY ── */
+function copyResult() {
+  const ta = document.getElementById('resultTa');
+  if (!ta) return;
+  navigator.clipboard.writeText(ta.value).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = "✅ Скопировано!";
+    btn.style.background = "linear-gradient(135deg,#059669,#047857)";
+    setTimeout(() => {
+      btn.textContent = "📋 Скопировать текст";
+      btn.style.background = "";
+    }, 1500);
+  });
+}
+
+/* ── HISTORY ── */
+function saveToHistory(text, dir) {
   let hist = getHistory();
   hist.unshift({
     id: Date.now(),
-    date: new Date().toLocaleString('ru', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' }),
-    direction, tone, topic, text
+    date: new Date().toLocaleString('ru', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),
+    service: dir, text: text
   });
   if (hist.length > 10) hist = hist.slice(0, 10);
-  localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+  localStorage.setItem('magic_history', JSON.stringify(hist));
 }
 
 function getHistory() {
-  try { return JSON.parse(localStorage.getItem(HIST_KEY)) || []; } catch { return []; }
+  try { return JSON.parse(localStorage.getItem('magic_history') || '[]'); }
+  catch { return []; }
 }
 
 function openHistory() {
   const hist = getHistory();
-  const list = document.getElementById('histList');
-
+  const list = document.getElementById('historyList');
   if (!hist.length) {
-    list.innerHTML = '<div class="hist-empty">&#128218; История пока пуста.<br>Создай первый пост!</div>';
+    list.innerHTML = '<div class="hist-empty">❤️ Пока нет сохранённых постов 🌱<br><small style="color:#d090b0;font-size:.85rem">Создай первый пост с магией!</small></div>';
   } else {
-    list.innerHTML = hist.map((item, i) => `
-      <div class="hist-item" onclick="toggleHistItem(${i})">
-        <div class="hist-item-meta">
-          <span class="hist-item-date">&#128197; ${item.date}</span>
-          <span class="hist-item-dir">${item.direction}</span>
+    list.innerHTML = hist.map(h => `
+      <div class="hist-item" id="hi${h.id}" onclick="toggleHistItem(${h.id})">
+        <div class="hist-meta">
+          <span>${h.date}</span>
+          <span class="hist-service">❤️ ${h.service}</span>
         </div>
-        <div class="hist-item-preview">${item.text.slice(0, 100).replace(/\n/g,' ')}...</div>
-        <div class="hist-item-full" id="histFull${i}">
-          <textarea rows="6" onclick="event.stopPropagation()">${item.text}</textarea>
-          <button class="hist-copy" onclick="event.stopPropagation();histCopy(${i},this)">&#128203; Скопировать</button>
+        <div class="hist-preview">${escHtml(h.text.slice(0,90))}…</div>
+        <div class="hist-full">
+          <textarea id="hta${h.id}" style="width:100%;border:1.5px solid rgba(255,150,200,.3);border-radius:12px;padding:12px;font-size:.9rem;font-family:inherit;min-height:120px;resize:vertical;color:#1e0a2e;background:rgba(255,255,255,.96);font-weight:600;scrollbar-width:thick;scrollbar-color:#ff4d9e rgba(255,200,220,.3)">${escHtml(h.text)}</textarea>
+          <button class="btn-copy-h" onclick="copyHist(event,${h.id})">📋 Скопировать</button>
         </div>
-      </div>
-    `).join('') + `<button class="hist-clear" onclick="clearHistory()">&#128465;&#65039; Очистить историю</button>`;
+      </div>`).join('');
   }
-
-  document.getElementById('histModal').classList.add('show');
+  document.getElementById('historyModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
 
-function toggleHistItem(i) {
-  const el = document.getElementById('histFull' + i);
-  if (!el) return;
-  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+function toggleHistItem(id) {
+  document.getElementById('hi'+id).classList.toggle('expanded');
 }
 
-async function histCopy(i, btn) {
-  const hist = getHistory();
-  if (!hist[i]) return;
-  try { await navigator.clipboard.writeText(hist[i].text); } catch { ; }
-  btn.textContent = '✓ Скопировано';
-  setTimeout(() => { btn.innerHTML = '&#128203; Скопировать'; }, 2000);
-}
-
-function clearHistory() {
-  if (!confirm('Очистить всю историю постов?')) return;
-  localStorage.removeItem(HIST_KEY);
-  closeHistory();
+function copyHist(e, id) {
+  e.stopPropagation();
+  const ta = document.getElementById('hta'+id);
+  if (!ta) return;
+  navigator.clipboard.writeText(ta.value).then(() => {
+    e.target.textContent = "✅ Скопировано!";
+    setTimeout(() => e.target.textContent = "📋 Скопировать", 1500);
+  });
 }
 
 function closeHistory() {
-  document.getElementById('histModal').classList.remove('show');
+  document.getElementById('historyModal').classList.remove('show');
   document.body.style.overflow = '';
 }
 
-function closeHistoryOutside(e) {
-  if (e.target === document.getElementById('histModal')) closeHistory();
-}
+document.getElementById('historyModal').addEventListener('click', function(e) {
+  if (e.target === this) closeHistory();
+});
+
+/* ── INIT ── */
+initGreeting();
+initChips();
+createFloatingHearts();
 </script>
 </body>
 </html>
