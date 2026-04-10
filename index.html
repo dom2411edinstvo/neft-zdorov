@@ -129,10 +129,8 @@ img{max-width:100%;height:auto}
 .rv-a{width:50px;height:50px;border-radius:50%;background:#e0f2fe;display:flex;align-items:center;justify-content:center;font-size:1.3rem;overflow:hidden}
 .rv-a img{width:100%;height:100%;object-fit:cover}
 .rv-n{font-weight:700;color:#0c4a6e}
-
 .rv-s{color:#fbbf24;margin-bottom:8px}
 .rv-t{color:#64748b;font-size:.9rem;line-height:1.6}
-
 .rv-l{text-align:center}
 .rv-l a{color:#0ea5e9;font-weight:600}
 .frm{max-width:550px;margin:0 auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
@@ -163,6 +161,21 @@ img{max-width:100%;height:auto}
 .ft{background:linear-gradient(135deg,#0c4a6e,#0e7490);color:#fff;padding:25px 20px;text-align:center}
 .ft a{color:#fff;font-size:1.3rem;font-weight:700;display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
 .ft span{font-size:1rem}
+
+/* Developer footer block */
+.ft-dev{background:#0a1628;padding:18px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.08)}
+.ft-dev-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 4px;font-size:.88rem;color:#94a3b8}
+.ft-dev-label{color:#64748b;font-size:.83rem;margin-right:2px}
+.ft-dev a.tg-link{display:inline-flex;align-items:center;gap:5px;background:#0088cc;color:#fff;padding:3px 10px;border-radius:20px;font-weight:700;font-size:.85rem;transition:background .2s}
+.ft-dev a.tg-link:hover{background:#0077b5}
+.ft-dev a.tg-link svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
+.ft-dev-sep{color:#334155;margin:0 6px}
+.ft-dev a.max-link{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#5b2fc9,#7c3aed);color:#fff;padding:3px 10px;border-radius:20px;font-weight:700;font-size:.85rem;transition:opacity .2s}
+.ft-dev a.max-link:hover{opacity:.85}
+.ft-dev a.max-link svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
+.ft-dev a.vk-link{display:inline-flex;align-items:center;gap:5px;background:#4a76a8;color:#fff;padding:3px 10px;border-radius:20px;font-weight:700;font-size:.85rem;transition:background .2s}
+.ft-dev a.vk-link:hover{background:#3a6090}
+.ft-dev a.vk-link svg{width:14px;height:14px;fill:#fff;flex-shrink:0}
 
 .fl{position:fixed;bottom:25px;right:25px;display:flex;flex-direction:column;gap:12px;z-index:900}
 .fl a{width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.2)}
@@ -200,6 +213,8 @@ img{max-width:100%;height:auto}
 .ph{width:260px;height:260px}
 .bg1,.bg2{position:relative;top:auto;left:auto;right:auto;bottom:auto;margin:5px}
 .hr-i{flex-wrap:wrap}
+.ft-dev-inner{flex-direction:column;gap:8px}
+.ft-dev-sep{display:none}
 }
 html{scroll-behavior:smooth}
 </style>
@@ -439,8 +454,6 @@ html{scroll-behavior:smooth}
 </div>
 </section>
 
-
-
 <section class="sc sc-g" id="booking">
 <div class="cn">
 <div class="sc-h"><h2>Записаться на приём</h2><p>Заполните форму и я свяжусь с вами</p></div>
@@ -492,11 +505,30 @@ html{scroll-behavior:smooth}
 </div>
 </section>
 
-
-
 <footer class="ft">
 <span>© 2026 Энерготерапия Нефтекамск. Все права защищены.</span>
 </footer>
+
+<div class="ft-dev">
+  <div class="ft-dev-inner">
+    <span class="ft-dev-label">Разработчик сайта —</span>
+    <a href="https://t.me/samadhi2411" target="_blank" class="tg-link">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+      samadhi2411
+    </a>
+    <span class="ft-dev-sep">·</span>
+    <span style="color:#64748b;font-size:.83rem">Нужен сайт? Пиши →</span>
+    <a href="https://max.ru/u/f9LHodD0cOKDY1emmUrupKlXJll32btrvJyZe3d0CeMmvy_rHDa2TWoayQc" target="_blank" class="max-link">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 14h-1.75l-2.75-3.5-2.75 3.5H7.5l3.625-4.5L7.5 8h1.75l2.75 3.5L14.75 8H16.5l-3.625 4.5L16.5 16z"/></svg>
+      MAX
+    </a>
+    <span class="ft-dev-sep">·</span>
+    <a href="https://vk.com/samadhi2411" target="_blank" class="vk-link">
+      <svg viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.684 4 8.076c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg>
+      Вконтакте
+    </a>
+  </div>
+</div>
 
 <div class="sm" id="successModal" onclick="closeSuccess()">
 <div class="sm-c" onclick="event.stopPropagation()">
@@ -524,10 +556,8 @@ function closeSuccess(){document.getElementById('successModal').classList.remove
 function openCM(n){curCert=n;document.getElementById('certImg').src='img/cert-'+n+'.jpg';document.getElementById('certCt').textContent=n+' / 17';document.getElementById('certModal').classList.add('a');document.body.style.overflow='hidden'}
 function closeCM(){document.getElementById('certModal').classList.remove('a');document.body.style.overflow=''}
 function navCert(d){curCert+=d;if(curCert<1)curCert=17;if(curCert>17)curCert=1;document.getElementById('certImg').src='img/cert-'+curCert+'.jpg';document.getElementById('certCt').textContent=curCert+' / 17'}
-
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCM();if(document.getElementById('certModal').classList.contains('a')){if(e.key==='ArrowLeft')navCert(-1);if(e.key==='ArrowRight')navCert(1)}});
 document.querySelectorAll('.mm a').forEach(function(a){a.onclick=function(){document.getElementById('mm').classList.remove('a')}});
-
 </script>
 </body>
 </html>
